@@ -58,18 +58,18 @@ export const Footer = ({ onShowToast }) => {
   };
 
   return (
-    <footer className="bg-[#05090f] border-t border-emerald-950/80 pt-16 pb-12 relative overflow-hidden">
+    <footer className="bg-[#04080e] border-t border-emerald-950/80 pt-16 pb-12 relative overflow-hidden">
       {/* Background accents */}
-      <div className="absolute top-0 right-1/3 w-80 h-80 bg-emerald-500/5 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute top-0 right-1/3 w-80 h-80 bg-emerald-500/5 rounded-full blur-[140px] pointer-events-none animate-float" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Top Newsletter & Brand Banner */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 pb-14 border-b border-emerald-950/80 items-center">
           <div className="lg:col-span-6 space-y-3">
-            <div className="flex items-center gap-3">
-              <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-emerald-600 via-emerald-400 to-teal-300 p-0.5">
-                <div className="w-full h-full bg-[#05090f] rounded-[10px] flex items-center justify-center">
-                  <Network className="w-4 h-4 text-emerald-400" />
+            <div className="flex items-center gap-3 group">
+              <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-emerald-600 via-emerald-400 to-teal-300 p-0.5 group-hover:scale-110 transition-transform">
+                <div className="w-full h-full bg-[#04080e] rounded-[10px] flex items-center justify-center">
+                  <Network className="w-4 h-4 text-emerald-400 group-hover:rotate-12 transition-transform" />
                 </div>
               </div>
               <span className="text-2xl font-extrabold tracking-tight text-white">
@@ -83,7 +83,7 @@ export const Footer = ({ onShowToast }) => {
 
           {/* Newsletter subscription form */}
           <div className="lg:col-span-6">
-            <div className="p-5 rounded-2xl bg-[#09121d] border border-emerald-950">
+            <div className="p-5 rounded-2xl bg-[#09121d] border border-emerald-950 hover:border-emerald-800 transition-colors">
               <h4 className="text-sm font-bold text-white mb-1">
                 Stay updated with autonomous workflow innovations
               </h4>
@@ -97,18 +97,18 @@ export const Footer = ({ onShowToast }) => {
                   value={emailInput}
                   onChange={(e) => setEmailInput(e.target.value)}
                   placeholder="Enter your work email address..."
-                  className="flex-1 px-4 py-2.5 rounded-xl bg-[#060b13] border border-emerald-950 text-sm text-white placeholder-slate-400 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500"
+                  className="flex-1 px-4 py-2.5 rounded-xl bg-[#060b13] border border-emerald-950 text-sm text-white placeholder-slate-400 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-all"
                 />
                 <button
                   type="submit"
-                  className="px-5 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-sm font-bold text-slate-950 flex items-center justify-center gap-2 transition-colors cursor-pointer shrink-0"
+                  className="shimmer-trigger px-5 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-sm font-bold text-slate-950 flex items-center justify-center gap-2 transition-all hover:scale-105 active:scale-95 cursor-pointer shrink-0"
                 >
                   <span>Subscribe</span>
                   <Send className="w-3.5 h-3.5" />
                 </button>
               </form>
               {isSubscribed && (
-                <div className="mt-2 text-xs text-emerald-400 flex items-center gap-1.5">
+                <div className="mt-2 text-xs text-emerald-400 flex items-center gap-1.5 animate-in fade-in slide-in-from-top-1">
                   <CheckCircle className="w-3.5 h-3.5" />
                   <span>You're subscribed! Check your inbox for confirmation.</span>
                 </div>
@@ -130,7 +130,7 @@ export const Footer = ({ onShowToast }) => {
                   <li key={link.name}>
                     <a
                       href={link.href}
-                      className="text-xs text-slate-400 hover:text-emerald-300 transition-colors"
+                      className="text-xs text-slate-400 hover:text-emerald-300 transition-colors inline-block hover:translate-x-1 duration-200"
                     >
                       {link.name}
                     </a>
@@ -163,8 +163,11 @@ export const Footer = ({ onShowToast }) => {
                 <span>548 Market St, Suite 392, San Francisco, CA</span>
               </div>
               <div className="pt-2">
-                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#080f1a] border border-emerald-950 text-[11px] text-emerald-400 font-medium">
-                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                <div className="inline-flex items-center gap-2.5 px-3 py-1.5 rounded-full bg-[#080f1a] border border-emerald-950 text-[11px] text-emerald-400 font-medium hover:border-emerald-700 transition-colors">
+                  <span className="relative flex h-2 w-2">
+                    <span className="animate-ping-slow absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400"></span>
+                  </span>
                   <span>All Systems Operational (99.98%)</span>
                 </div>
               </div>
@@ -178,14 +181,14 @@ export const Footer = ({ onShowToast }) => {
             © {new Date().getFullYear()} AetherFlow Technologies, Inc. All rights reserved.
           </p>
 
-          {/* Social Media Links with SVG Icons */}
+          {/* Social Media Links with SVG Icons with bouncy hover */}
           <div className="flex items-center gap-3 text-slate-400">
             {/* X / Twitter */}
             <a
               href="https://x.com"
               target="_blank"
               rel="noreferrer"
-              className="p-2.5 rounded-lg bg-[#09121d] hover:text-emerald-300 hover:bg-[#0e1c2d] transition-colors"
+              className="p-2.5 rounded-lg bg-[#09121d] hover:text-emerald-300 hover:bg-[#0e1c2d] hover:-translate-y-1 hover:scale-110 transition-all duration-200"
               aria-label="Twitter / X"
             >
               <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
@@ -197,7 +200,7 @@ export const Footer = ({ onShowToast }) => {
               href="https://github.com"
               target="_blank"
               rel="noreferrer"
-              className="p-2.5 rounded-lg bg-[#09121d] hover:text-emerald-300 hover:bg-[#0e1c2d] transition-colors"
+              className="p-2.5 rounded-lg bg-[#09121d] hover:text-emerald-300 hover:bg-[#0e1c2d] hover:-translate-y-1 hover:scale-110 transition-all duration-200"
               aria-label="GitHub"
             >
               <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
@@ -209,7 +212,7 @@ export const Footer = ({ onShowToast }) => {
               href="https://linkedin.com"
               target="_blank"
               rel="noreferrer"
-              className="p-2.5 rounded-lg bg-[#09121d] hover:text-emerald-300 hover:bg-[#0e1c2d] transition-colors"
+              className="p-2.5 rounded-lg bg-[#09121d] hover:text-emerald-300 hover:bg-[#0e1c2d] hover:-translate-y-1 hover:scale-110 transition-all duration-200"
               aria-label="LinkedIn"
             >
               <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
@@ -221,7 +224,7 @@ export const Footer = ({ onShowToast }) => {
               href="https://discord.com"
               target="_blank"
               rel="noreferrer"
-              className="p-2.5 rounded-lg bg-[#09121d] hover:text-emerald-300 hover:bg-[#0e1c2d] transition-colors"
+              className="p-2.5 rounded-lg bg-[#09121d] hover:text-emerald-300 hover:bg-[#0e1c2d] hover:-translate-y-1 hover:scale-110 transition-all duration-200"
               aria-label="Discord"
             >
               <MessageSquare className="w-4 h-4" />

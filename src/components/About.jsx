@@ -60,16 +60,16 @@ export const About = ({ onShowToast }) => {
   ];
 
   return (
-    <section id="about" className="py-24 relative overflow-hidden bg-[#060b11] border-t border-emerald-950/60">
-      {/* Decorative background glow */}
-      <div className="absolute top-1/2 left-0 w-96 h-96 bg-emerald-500/8 rounded-full blur-[140px] pointer-events-none" />
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-teal-500/8 rounded-full blur-[140px] pointer-events-none" />
+    <section id="about" className="py-24 relative overflow-hidden bg-[#05090f] border-t border-emerald-950/60">
+      {/* Decorative ambient glowing auras */}
+      <div className="absolute top-1/2 left-0 w-96 h-96 bg-emerald-500/8 rounded-full blur-[140px] pointer-events-none animate-float" />
+      <div className="absolute bottom-0 right-0 w-96 h-96 bg-teal-500/8 rounded-full blur-[140px] pointer-events-none animate-float-reverse" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-xs font-semibold text-emerald-400 mb-4">
-            <Network className="w-3.5 h-3.5" />
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-xs font-semibold text-emerald-400 mb-4 animate-pulse">
+            <Network className="w-3.5 h-3.5 animate-spin-slow" />
             <span>THE AETHERFLOW MATRIX</span>
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-tight">
@@ -80,7 +80,7 @@ export const About = ({ onShowToast }) => {
           </p>
         </div>
 
-        {/* Highlight Stats Grid */}
+        {/* Highlight Stats Grid with dynamic card elevation and micro-interaction */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
           {stats.map((stat, idx) => (
             <div
@@ -89,24 +89,26 @@ export const About = ({ onShowToast }) => {
                 setSelectedStat(idx);
                 onShowToast(stat.label, stat.detail);
               }}
-              className="p-6 rounded-2xl bg-[#09121d] border border-emerald-950/80 hover:border-emerald-500/50 hover:bg-[#0c1827] transition-all duration-300 group cursor-pointer shadow-lg hover:shadow-emerald-500/10"
+              className="p-6 rounded-2xl bg-[#09121d] border border-emerald-950/80 hover:border-emerald-400 hover:bg-[#0c1827] transition-all duration-300 hover:-translate-y-2 group cursor-pointer shadow-lg hover:shadow-emerald-500/20"
             >
               <div className="flex items-center justify-between mb-3">
-                <span className="text-3xl sm:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-white via-emerald-200 to-emerald-400 font-mono">
+                <span className="text-3xl sm:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-white via-emerald-200 to-emerald-400 font-mono group-hover:scale-105 transition-transform inline-block">
                   {stat.value}
                 </span>
-                <span className="p-1.5 rounded-lg bg-emerald-500/10 text-emerald-400 group-hover:scale-110 transition-transform">
+                <span className="p-2 rounded-xl bg-emerald-500/10 text-emerald-400 group-hover:bg-emerald-500 group-hover:text-slate-950 group-hover:rotate-45 group-hover:scale-110 transition-all duration-300">
                   <ArrowUpRight className="w-4 h-4" />
                 </span>
               </div>
-              <h3 className="text-sm font-bold text-white mb-1.5">{stat.label}</h3>
+              <h3 className="text-sm font-bold text-white mb-1.5 group-hover:text-emerald-300 transition-colors">{stat.label}</h3>
               <p className="text-xs text-slate-400 leading-relaxed">{stat.detail}</p>
             </div>
           ))}
         </div>
 
         {/* Interactive Comparison Table */}
-        <div className="rounded-3xl border border-emerald-950/80 bg-[#080f1a]/80 backdrop-blur-xl p-6 sm:p-10 shadow-2xl">
+        <div className="rounded-3xl border border-emerald-950/80 bg-[#080f1a]/85 backdrop-blur-xl p-6 sm:p-10 shadow-2xl relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-80 h-80 bg-emerald-500/5 rounded-full blur-[100px] pointer-events-none" />
+
           <div className="text-center max-w-2xl mx-auto mb-10">
             <h3 className="text-2xl font-bold text-white">The Paradigm Shift</h3>
             <p className="text-sm text-slate-400 mt-2">
@@ -118,10 +120,10 @@ export const About = ({ onShowToast }) => {
             {comparisons.map((item, index) => (
               <div
                 key={index}
-                className="grid grid-cols-1 lg:grid-cols-12 gap-4 p-4 sm:p-5 rounded-2xl bg-[#060b13] border border-emerald-950/60 hover:border-emerald-800 transition-colors items-center"
+                className="grid grid-cols-1 lg:grid-cols-12 gap-4 p-4 sm:p-5 rounded-2xl bg-[#060b13] border border-emerald-950/60 hover:border-emerald-500/50 hover:bg-[#070e17] transition-all duration-300 hover:translate-x-1 items-center group"
               >
                 <div className="lg:col-span-3">
-                  <span className="text-sm font-bold text-emerald-300">{item.feature}</span>
+                  <span className="text-sm font-bold text-emerald-300 group-hover:text-white transition-colors">{item.feature}</span>
                 </div>
 
                 <div className="lg:col-span-4 p-3 rounded-xl bg-rose-950/20 border border-rose-900/30 flex items-start gap-2.5">
@@ -134,7 +136,7 @@ export const About = ({ onShowToast }) => {
                   </div>
                 </div>
 
-                <div className="lg:col-span-5 p-3 rounded-xl bg-emerald-950/30 border border-emerald-500/30 flex items-start gap-2.5">
+                <div className="lg:col-span-5 p-3 rounded-xl bg-emerald-950/30 border border-emerald-500/30 flex items-start gap-2.5 group-hover:border-emerald-400/60 transition-colors">
                   <div className="p-1 rounded-md bg-emerald-500/20 text-emerald-400 shrink-0 mt-0.5">
                     <Check className="w-3.5 h-3.5" />
                   </div>

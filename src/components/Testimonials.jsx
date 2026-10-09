@@ -85,14 +85,14 @@ export const Testimonials = ({ onShowToast }) => {
     : testimonials.filter((t) => t.roleCategory === activeFilter);
 
   return (
-    <section id="testimonials" className="py-24 relative overflow-hidden bg-[#060b11]">
+    <section id="testimonials" className="py-24 relative overflow-hidden bg-[#05090f]">
       {/* Background radial glow */}
-      <div className="absolute top-1/2 right-1/4 w-96 h-96 bg-emerald-500/8 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute top-1/2 right-1/4 w-96 h-96 bg-emerald-500/8 rounded-full blur-[140px] pointer-events-none animate-float" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-12">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-xs font-semibold text-emerald-400 mb-4">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-xs font-semibold text-emerald-400 mb-4 animate-pulse">
             <Sparkles className="w-3.5 h-3.5" />
             <span>CUSTOMER STORIES</span>
           </div>
@@ -109,10 +109,10 @@ export const Testimonials = ({ onShowToast }) => {
               <button
                 key={tab.id}
                 onClick={() => setActiveFilter(tab.id)}
-                className={`px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all duration-200 cursor-pointer ${
+                className={`px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all duration-300 cursor-pointer ${
                   activeFilter === tab.id
-                    ? 'bg-emerald-500 text-slate-950 font-bold shadow-lg shadow-emerald-500/25'
-                    : 'bg-[#09121d] text-slate-400 hover:text-white hover:bg-[#0d1a29] border border-emerald-950'
+                    ? 'bg-emerald-500 text-slate-950 font-bold shadow-lg shadow-emerald-500/25 scale-105'
+                    : 'bg-[#09121d] text-slate-400 hover:text-white hover:bg-[#0d1a29] border border-emerald-950 hover:scale-102'
                 }`}
               >
                 {tab.label}
@@ -121,34 +121,35 @@ export const Testimonials = ({ onShowToast }) => {
           </div>
         </div>
 
-        {/* Testimonials Grid */}
+        {/* Testimonials Grid with floating elevation & hover transitions */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredTestimonials.map((item) => (
             <div
               key={item.id}
-              className="p-6 sm:p-7 rounded-2xl bg-[#080f1a]/80 border border-emerald-950 hover:border-emerald-500/40 hover:bg-[#0c1827] transition-all duration-300 flex flex-col justify-between group shadow-xl backdrop-blur-sm"
+              className="p-6 sm:p-7 rounded-2xl bg-[#080f1a]/85 border border-emerald-950 hover:border-emerald-400 hover:bg-[#0c1827] transition-all duration-300 hover:-translate-y-2 flex flex-col justify-between group shadow-xl hover:shadow-emerald-500/15 backdrop-blur-sm cursor-pointer"
+              onClick={() => onShowToast(item.name, `${item.name} (${item.company}): "${item.quote}"`)}
             >
               <div>
-                {/* Rating stars & Quote Icon */}
+                {/* Rating stars & Quote Icon with micro hover bounce */}
                 <div className="flex items-center justify-between mb-4">
                   <div className="flex items-center gap-1">
                     {[...Array(item.rating)].map((_, i) => (
-                      <Star key={i} className="w-4 h-4 fill-emerald-400 text-emerald-400" />
+                      <Star key={i} className="w-4 h-4 fill-emerald-400 text-emerald-400 group-hover:scale-110 transition-transform" />
                     ))}
                   </div>
-                  <Quote className="w-6 h-6 text-emerald-500/30 group-hover:text-emerald-400 transition-colors" />
+                  <Quote className="w-6 h-6 text-emerald-500/30 group-hover:text-emerald-400 group-hover:rotate-12 transition-all duration-300" />
                 </div>
 
                 {/* Quote Text */}
-                <p className="text-sm sm:text-base text-slate-200 leading-relaxed italic mb-6">
+                <p className="text-sm sm:text-base text-slate-200 leading-relaxed italic mb-6 group-hover:text-white transition-colors">
                   "{item.quote}"
                 </p>
               </div>
 
               <div>
                 {/* Quantifiable Impact Badge */}
-                <div className="mb-5 p-2.5 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-xs font-semibold text-emerald-300 flex items-center gap-2">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
+                <div className="mb-5 p-2.5 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-xs font-semibold text-emerald-300 flex items-center gap-2 group-hover:border-emerald-400/50 transition-colors">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 animate-pulse" />
                   <span>{item.impact}</span>
                 </div>
 
@@ -157,7 +158,7 @@ export const Testimonials = ({ onShowToast }) => {
                   <img
                     src={item.avatar}
                     alt={item.name}
-                    className="w-11 h-11 rounded-full object-cover border-2 border-emerald-500/40"
+                    className="w-11 h-11 rounded-full object-cover border-2 border-emerald-500/40 group-hover:border-emerald-400 group-hover:scale-105 transition-all"
                   />
                   <div>
                     <h4 className="text-sm font-bold text-white group-hover:text-emerald-300 transition-colors">
@@ -173,15 +174,15 @@ export const Testimonials = ({ onShowToast }) => {
           ))}
         </div>
 
-        {/* Bottom Social Proof Bar */}
-        <div className="mt-16 p-8 rounded-3xl bg-gradient-to-r from-emerald-950/30 via-[#080f1a] to-teal-950/30 border border-emerald-950 text-center flex flex-col sm:flex-row items-center justify-between gap-6">
+        {/* Bottom Social Proof Bar with glowing hover border */}
+        <div className="mt-16 p-8 rounded-3xl bg-gradient-to-r from-emerald-950/30 via-[#080f1a] to-teal-950/30 border border-emerald-950 hover:border-emerald-700 transition-all text-center flex flex-col sm:flex-row items-center justify-between gap-6 shadow-2xl">
           <div className="text-left">
             <h4 className="text-lg font-bold text-white">Join 10,000+ happy engineers</h4>
             <p className="text-xs text-slate-400 mt-1">Read in-depth case studies with verified metrics.</p>
           </div>
           <button
             onClick={() => onShowToast('Case Studies', 'Opening verified enterprise customer case studies...')}
-            className="px-5 py-2.5 rounded-xl bg-[#0d1a29] hover:bg-[#122438] text-sm font-semibold text-emerald-300 border border-emerald-900/80 transition-colors cursor-pointer"
+            className="shimmer-trigger px-5 py-2.5 rounded-xl bg-[#0d1a29] hover:bg-[#122438] text-sm font-semibold text-emerald-300 border border-emerald-900/80 hover:border-emerald-500 transition-all hover:scale-105 active:scale-95 cursor-pointer"
           >
             Explore Customer Case Studies →
           </button>

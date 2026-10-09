@@ -89,15 +89,15 @@ export const HowItWorks = ({ onShowToast, onOpenAuthModal }) => {
   const CurrentIcon = currentStepData.icon;
 
   return (
-    <section id="how-it-works" className="py-24 relative overflow-hidden bg-[#060b11] border-t border-emerald-950/60">
+    <section id="how-it-works" className="py-24 relative overflow-hidden bg-[#05090f] border-t border-emerald-950/60">
       {/* Background accents */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-emerald-500/5 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-emerald-500/5 rounded-full blur-[140px] pointer-events-none animate-aurora-glow" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-xs font-semibold text-emerald-400 mb-4">
-            <Network className="w-3.5 h-3.5" />
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-xs font-semibold text-emerald-400 mb-4 animate-pulse">
+            <Network className="w-3.5 h-3.5 animate-spin-slow" />
             <span>HOW IT WORKS</span>
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-tight">
@@ -108,7 +108,7 @@ export const HowItWorks = ({ onShowToast, onOpenAuthModal }) => {
           </p>
         </div>
 
-        {/* Step Navigation Cards */}
+        {/* Step Navigation Cards with Spring animations */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
           {steps.map((s, idx) => {
             const StepIcon = s.icon;
@@ -120,21 +120,23 @@ export const HowItWorks = ({ onShowToast, onOpenAuthModal }) => {
                   setActiveStep(idx);
                   onShowToast(`Step ${s.step}`, s.title);
                 }}
-                className={`text-left p-5 rounded-2xl border transition-all duration-300 relative cursor-pointer ${
+                className={`text-left p-5 rounded-2xl border transition-all duration-300 relative cursor-pointer group ${
                   isActive
-                    ? 'bg-[#0f1d2b] border-emerald-400 shadow-xl shadow-emerald-500/15 -translate-y-1'
-                    : 'bg-[#09121d] border-emerald-950 hover:border-emerald-800'
+                    ? 'bg-[#0f1d2b] border-emerald-400 shadow-xl shadow-emerald-500/20 -translate-y-2'
+                    : 'bg-[#09121d] border-emerald-950 hover:border-emerald-800 hover:-translate-y-1'
                 }`}
               >
                 <div className="flex items-center justify-between mb-3">
-                  <span className={`text-xs font-mono font-bold px-2 py-0.5 rounded-md ${
-                    isActive ? 'bg-emerald-500 text-slate-950 font-bold' : 'bg-[#0d1a29] text-slate-400'
+                  <span className={`text-xs font-mono font-bold px-2 py-0.5 rounded-md transition-all ${
+                    isActive ? 'bg-emerald-500 text-slate-950 font-bold scale-105' : 'bg-[#0d1a29] text-slate-400'
                   }`}>
                     STEP {s.step}
                   </span>
-                  <StepIcon className={`w-5 h-5 ${isActive ? 'text-emerald-400' : 'text-slate-400'}`} />
+                  <StepIcon className={`w-5 h-5 transition-transform duration-300 ${
+                    isActive ? 'text-emerald-400 scale-110 rotate-6' : 'text-slate-400 group-hover:text-emerald-300'
+                  }`} />
                 </div>
-                <h3 className={`text-base font-bold mb-1.5 line-clamp-1 ${isActive ? 'text-white' : 'text-slate-300'}`}>
+                <h3 className={`text-base font-bold mb-1.5 line-clamp-1 transition-colors ${isActive ? 'text-white' : 'text-slate-300 group-hover:text-white'}`}>
                   {s.title}
                 </h3>
                 <p className="text-xs text-slate-400 line-clamp-2 leading-relaxed">
@@ -146,11 +148,11 @@ export const HowItWorks = ({ onShowToast, onOpenAuthModal }) => {
         </div>
 
         {/* Interactive Deep-Dive Showcase for Active Step */}
-        <div className="rounded-3xl border border-emerald-950 bg-[#080f1a]/95 backdrop-blur-xl p-6 sm:p-10 shadow-2xl">
+        <div className="rounded-3xl border border-emerald-950 bg-[#080f1a]/95 backdrop-blur-xl p-6 sm:p-10 shadow-2xl relative overflow-hidden">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             {/* Left Column: Description & Highlights */}
             <div className="lg:col-span-5 space-y-4">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 text-xs font-semibold text-emerald-400 border border-emerald-500/20">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 text-xs font-semibold text-emerald-400 border border-emerald-500/20 animate-pulse">
                 <span>{currentStepData.badge}</span>
               </div>
               <h3 className="text-2xl sm:text-3xl font-extrabold text-white leading-tight">
@@ -163,14 +165,14 @@ export const HowItWorks = ({ onShowToast, onOpenAuthModal }) => {
               <div className="pt-4 flex items-center gap-3">
                 <button
                   onClick={() => onOpenAuthModal(`Start Step ${currentStepData.step}`)}
-                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-bold text-slate-950 bg-emerald-400 hover:bg-emerald-300 transition-colors shadow-lg shadow-emerald-500/20 cursor-pointer"
+                  className="shimmer-trigger inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-bold text-slate-950 bg-emerald-400 hover:bg-emerald-300 transition-all hover:-translate-y-0.5 active:scale-95 shadow-lg shadow-emerald-500/20 cursor-pointer"
                 >
                   <span>Experience This Step</span>
                   <ArrowRight className="w-4 h-4" />
                 </button>
                 <button
                   onClick={() => setActiveStep((prev) => (prev + 1) % steps.length)}
-                  className="px-4 py-2.5 rounded-xl text-sm font-medium text-slate-300 hover:text-white bg-[#0d1a29] hover:bg-[#122438] transition-colors cursor-pointer border border-emerald-950"
+                  className="px-4 py-2.5 rounded-xl text-sm font-medium text-slate-300 hover:text-white bg-[#0d1a29] hover:bg-[#122438] hover:border-emerald-700 transition-all cursor-pointer border border-emerald-950 active:scale-95"
                 >
                   Next Step →
                 </button>
@@ -179,24 +181,25 @@ export const HowItWorks = ({ onShowToast, onOpenAuthModal }) => {
 
             {/* Right Column: Step Visual Mockup */}
             <div className="lg:col-span-7">
-              <div className="rounded-2xl border border-emerald-950 bg-[#060b13] p-5 sm:p-6 shadow-inner">
+              <div className="rounded-2xl border border-emerald-950 bg-[#060b13] p-5 sm:p-6 shadow-inner animate-in fade-in zoom-in-95 duration-200">
                 <div className="flex items-center justify-between pb-4 border-b border-emerald-950 mb-5">
                   <div className="flex items-center gap-2">
-                    <CurrentIcon className="w-4 h-4 text-emerald-400" />
+                    <CurrentIcon className="w-4 h-4 text-emerald-400 animate-pulse" />
                     <span className="text-sm font-bold text-white">{currentStepData.preview.title}</span>
                   </div>
-                  <span className="text-xs font-mono text-emerald-400">
-                    Live System Simulation
+                  <span className="text-xs font-mono text-emerald-400 flex items-center gap-1.5">
+                    <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+                    Live Simulation
                   </span>
                 </div>
 
-                {/* Conditional Visuals for each Step */}
+                {/* Conditional Visuals for each Step with animated components */}
                 {activeStep === 0 && (
                   <div className="space-y-3">
                     {currentStepData.preview.content.map((item, i) => (
-                      <div key={i} className="flex items-center justify-between p-3 rounded-xl bg-[#09121d] border border-emerald-950">
+                      <div key={i} className="flex items-center justify-between p-3 rounded-xl bg-[#09121d] border border-emerald-950 hover:border-emerald-600 transition-all hover:translate-x-1">
                         <div className="flex items-center gap-3">
-                          <div className="w-2.5 h-2.5 rounded-full bg-emerald-400"></div>
+                          <div className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></div>
                           <span className="text-sm font-medium text-slate-200">{item.name}</span>
                         </div>
                         <div className="flex items-center gap-4">
@@ -213,7 +216,7 @@ export const HowItWorks = ({ onShowToast, onOpenAuthModal }) => {
                 {activeStep === 1 && (
                   <div className="space-y-3">
                     {currentStepData.preview.content.map((item, i) => (
-                      <div key={i} className="p-3.5 rounded-xl bg-[#09121d] border border-emerald-950 flex items-center justify-between">
+                      <div key={i} className="p-3.5 rounded-xl bg-[#09121d] border border-emerald-950 flex items-center justify-between hover:border-emerald-600 transition-all hover:translate-x-1">
                         <div className="flex items-center gap-3">
                           <ShieldAlert className="w-4 h-4 text-amber-400" />
                           <span className="text-sm font-medium text-slate-200">{item.rule}</span>
@@ -229,7 +232,7 @@ export const HowItWorks = ({ onShowToast, onOpenAuthModal }) => {
                 {activeStep === 2 && (
                   <div className="space-y-2.5 font-mono text-xs">
                     {currentStepData.preview.log.map((line, i) => (
-                      <div key={i} className="p-2.5 rounded-lg bg-[#09121d] border border-emerald-950 text-slate-300">
+                      <div key={i} className="p-2.5 rounded-lg bg-[#09121d] border border-emerald-950 text-slate-300 hover:text-emerald-300 transition-colors">
                         {line}
                       </div>
                     ))}
@@ -239,9 +242,9 @@ export const HowItWorks = ({ onShowToast, onOpenAuthModal }) => {
                 {activeStep === 3 && (
                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                     {currentStepData.preview.metrics.map((metric, i) => (
-                      <div key={i} className="p-4 rounded-xl bg-[#09121d] border border-emerald-950 text-center">
+                      <div key={i} className="p-4 rounded-xl bg-[#09121d] border border-emerald-950 text-center hover:border-emerald-500/50 hover:scale-105 transition-all">
                         <span className="text-xs text-slate-400 block mb-1">{metric.label}</span>
-                        <span className="text-2xl font-bold text-white block">{metric.value}</span>
+                        <span className="text-2xl font-bold text-white block font-mono">{metric.value}</span>
                         <span className="text-xs font-semibold text-emerald-400 block mt-1">{metric.change}</span>
                       </div>
                     ))}

@@ -74,7 +74,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#060b11] text-slate-100 flex flex-col font-sans selection:bg-emerald-500 selection:text-slate-950 relative">
+    <div className="min-h-screen bg-[#05090f] text-slate-100 flex flex-col font-sans selection:bg-emerald-500 selection:text-slate-950 relative">
       {/* 1. Navbar */}
       <Navbar
         onOpenAuthModal={handleOpenAuthModal}
@@ -118,14 +118,14 @@ export default function App() {
       {/* 8. Footer */}
       <Footer onShowToast={showToast} />
 
-      {/* Back to Top Floating Button */}
+      {/* Back to Top Floating Button with Bouncing Pulse Glow */}
       {showBackToTop && (
         <button
           onClick={scrollToTop}
-          className="fixed bottom-6 left-6 z-40 p-3 rounded-full bg-[#0b1420]/90 border border-emerald-950 text-emerald-400 hover:text-white hover:bg-emerald-950/60 shadow-xl backdrop-blur-md transition-all duration-300 hover:-translate-y-1 cursor-pointer"
+          className="fixed bottom-6 left-6 z-40 p-3.5 rounded-full bg-[#08111d]/90 border border-emerald-500/40 text-emerald-400 hover:text-slate-950 hover:bg-emerald-400 shadow-xl shadow-emerald-500/20 backdrop-blur-md transition-all duration-300 hover:scale-110 active:scale-95 animate-float cursor-pointer group"
           aria-label="Scroll back to top"
         >
-          <ArrowUp className="w-5 h-5 text-emerald-400" />
+          <ArrowUp className="w-5 h-5 group-hover:-translate-y-0.5 transition-transform" />
         </button>
       )}
 
@@ -153,7 +153,7 @@ export default function App() {
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                 placeholder="Alex Morgan"
-                className="w-full px-3.5 py-2.5 rounded-xl bg-[#060b13] border border-emerald-950 text-sm text-white focus:outline-none focus:border-emerald-500"
+                className="w-full px-3.5 py-2.5 rounded-xl bg-[#060b13] border border-emerald-950 text-sm text-white focus:outline-none focus:border-emerald-500 transition-colors"
               />
             </div>
 
@@ -167,7 +167,7 @@ export default function App() {
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                 placeholder="alex@company.com"
-                className="w-full px-3.5 py-2.5 rounded-xl bg-[#060b13] border border-emerald-950 text-sm text-white focus:outline-none focus:border-emerald-500"
+                className="w-full px-3.5 py-2.5 rounded-xl bg-[#060b13] border border-emerald-950 text-sm text-white focus:outline-none focus:border-emerald-500 transition-colors"
               />
             </div>
 
@@ -180,7 +180,7 @@ export default function App() {
                 value={formData.company}
                 onChange={(e) => setFormData({ ...formData, company: e.target.value })}
                 placeholder="Acme Corp"
-                className="w-full px-3.5 py-2.5 rounded-xl bg-[#060b13] border border-emerald-950 text-sm text-white focus:outline-none focus:border-emerald-500"
+                className="w-full px-3.5 py-2.5 rounded-xl bg-[#060b13] border border-emerald-950 text-sm text-white focus:outline-none focus:border-emerald-500 transition-colors"
               />
             </div>
 
@@ -188,14 +188,17 @@ export default function App() {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full py-3 px-4 rounded-xl text-sm font-bold text-slate-950 bg-emerald-400 hover:bg-emerald-300 disabled:opacity-50 transition-colors flex items-center justify-center gap-2 cursor-pointer shadow-lg shadow-emerald-500/20"
+                className="shimmer-trigger w-full py-3 px-4 rounded-xl text-sm font-bold text-slate-950 bg-emerald-400 hover:bg-emerald-300 disabled:opacity-50 transition-all hover:scale-102 active:scale-95 flex items-center justify-center gap-2 cursor-pointer shadow-lg shadow-emerald-500/25"
               >
                 {isSubmitting ? (
-                  <span>Provisioning Workspace...</span>
+                  <span className="flex items-center gap-2">
+                    <span className="w-4 h-4 border-2 border-slate-950 border-t-transparent rounded-full animate-spin" />
+                    <span>Provisioning Workspace...</span>
+                  </span>
                 ) : (
                   <>
                     <span>Confirm & Launch Workspace</span>
-                    <Sparkles className="w-4 h-4" />
+                    <Sparkles className="w-4 h-4 animate-spin-slow" />
                   </>
                 )}
               </button>
@@ -216,8 +219,8 @@ export default function App() {
       >
         <div className="space-y-4">
           <div className="relative aspect-video rounded-xl bg-[#060b13] border border-emerald-950 overflow-hidden flex flex-col items-center justify-center p-6 text-center group">
-            <div className="w-16 h-16 rounded-full bg-emerald-500/10 text-emerald-400 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform border border-emerald-500/30">
-              <Play className="w-8 h-8 fill-emerald-400 text-emerald-400 translate-x-0.5" />
+            <div className="w-16 h-16 rounded-full bg-emerald-500/10 text-emerald-400 flex items-center justify-center mb-3 group-hover:scale-115 transition-all duration-300 border border-emerald-500/30 group-hover:bg-emerald-500/20 group-hover:shadow-lg group-hover:shadow-emerald-500/20">
+              <Play className="w-8 h-8 fill-emerald-400 text-emerald-400 translate-x-0.5 group-hover:scale-110 transition-transform" />
             </div>
             <h4 className="text-base font-bold text-white">Interactive Video Walkthrough</h4>
             <p className="text-xs text-slate-400 max-w-sm mt-1">
@@ -227,19 +230,19 @@ export default function App() {
 
           <div className="p-4 rounded-xl bg-[#060b13] border border-emerald-950 text-xs text-slate-300 space-y-2">
             <div className="font-semibold text-white flex items-center gap-1.5">
-              <Sparkles className="w-3.5 h-3.5 text-emerald-400" />
+              <Sparkles className="w-3.5 h-3.5 text-emerald-400 animate-pulse" />
               <span>Key Highlights Covered in Demo:</span>
             </div>
             <div className="flex items-center gap-2 text-slate-400">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
               <span>Visual DAG node compilation & live simulation</span>
             </div>
             <div className="flex items-center gap-2 text-slate-400">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
               <span>1.5ms deterministic runtime execution across edge clusters</span>
             </div>
             <div className="flex items-center gap-2 text-slate-400">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
               <span>Self-healing rollback triggered within 8 seconds of failure</span>
             </div>
           </div>
@@ -256,7 +259,7 @@ export default function App() {
                 setDemoModalOpen(false);
                 handleOpenAuthModal('Get Started After Demo');
               }}
-              className="px-4 py-2 rounded-xl text-xs font-bold text-slate-950 bg-emerald-400 hover:bg-emerald-300 transition-colors"
+              className="shimmer-trigger px-4 py-2 rounded-xl text-xs font-bold text-slate-950 bg-emerald-400 hover:bg-emerald-300 hover:scale-105 active:scale-95 transition-all"
             >
               Start Free Trial Now
             </button>
