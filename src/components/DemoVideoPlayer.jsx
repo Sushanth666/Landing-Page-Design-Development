@@ -13,11 +13,16 @@ import {
   ChevronRight
 } from 'lucide-react';
 
-export const DemoVideoPlayer = ({ onOpenAuthModal }) => {
+export const DemoVideoPlayer = ({ 
+  onOpenAuthModal, 
+  initialProgress = 0, 
+  initialChapter = 0, 
+  onProgressUpdate 
+}) => {
   const [isPlaying, setIsPlaying] = useState(true);
-  const [progress, setProgress] = useState(15);
+  const [progress, setProgress] = useState(initialProgress);
   const [isMuted, setIsMuted] = useState(false);
-  const [activeChapter, setActiveChapter] = useState(0);
+  const [activeChapter, setActiveChapter] = useState(initialChapter);
 
   const chapters = [
     {
@@ -53,30 +58,35 @@ export const DemoVideoPlayer = ({ onOpenAuthModal }) => {
       setProgress((prev) => {
         if (prev >= 100) {
           setIsPlaying(false);
+          onProgressUpdate?.(100, 3);
           return 100;
         }
         const next = prev + 1;
-        // Update chapter based on progress
-        if (next >= 80) setActiveChapter(3);
-        else if (next >= 55) setActiveChapter(2);
-        else if (next >= 25) setActiveChapter(1);
-        else setActiveChapter(0);
+        let nextChapter = 0;
+        if (next >= 80) nextChapter = 3;
+        else if (next >= 55) nextChapter = 2;
+        else if (next >= 25) nextChapter = 1;
+        else nextChapter = 0;
+        setActiveChapter(nextChapter);
+        onProgressUpdate?.(next, nextChapter);
         return next;
       });
     }, 700);
     return () => clearInterval(interval);
-  }, [isPlaying]);
+  }, [isPlaying, onProgressUpdate]);
 
   const handleSeek = (newProgress, chapterIdx) => {
     setProgress(newProgress);
     setActiveChapter(chapterIdx);
     setIsPlaying(true);
+    onProgressUpdate?.(newProgress, chapterIdx);
   };
 
   const handleRestart = () => {
     setProgress(0);
     setActiveChapter(0);
     setIsPlaying(true);
+    onProgressUpdate?.(0, 0);
   };
 
   const formatTime = (pct) => {

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { About } from './components/About';
@@ -20,6 +20,26 @@ export default function App() {
   const [authModalAction, setAuthModalAction] = useState('Explore Platform');
   const [demoModalOpen, setDemoModalOpen] = useState(false);
   const [showBackToTop, setShowBackToTop] = useState(false);
+
+  // Video playback memory & 2-second auto-reset logic
+  const lastVideoClosedRef = useRef(null);
+  const [savedVideoState, setSavedVideoState] = useState({ progress: 0, chapter: 0 });
+  const [videoKey, setVideoKey] = useState(0);
+
+  const handleOpenDemoModal = () => {
+    const now = Date.now();
+    // If closed and opened after 2 seconds -> reset video to beginning
+    if (lastVideoClosedRef.current && (now - lastVideoClosedRef.current >= 2000)) {
+      setSavedVideoState({ progress: 0, chapter: 0 });
+      setVideoKey((k) => k + 1);
+    }
+    setDemoModalOpen(true);
+  };
+
+  const handleCloseDemoModal = () => {
+    lastVideoClosedRef.current = Date.now();
+    setDemoModalOpen(false);
+  };
 
   // Form states for modal
   const [formData, setFormData] = useState({ name: '', email: '', company: '' });
@@ -87,7 +107,7 @@ export default function App() {
       {/* 1. Navbar */}
       <Navbar
         onOpenAuthModal={handleOpenAuthModal}
-        onOpenDemoModal={() => setDemoModalOpen(true)}
+        onOpenDemoModal={handleOpenDemoModal}
       />
 
       {/* Main Page Content */}
@@ -95,7 +115,7 @@ export default function App() {
         {/* 2. Hero Section */}
         <Hero
           onOpenAuthModal={handleOpenAuthModal}
-          onOpenDemoModal={() => setDemoModalOpen(true)}
+          onOpenDemoModal={handleOpenDemoModal}
           onShowToast={showToast}
         />
 
@@ -224,13 +244,19 @@ export default function App() {
       {/* Interactive Demo Video Walkthrough Modal with Real Playable Video Player */}
       <Modal
         isOpen={demoModalOpen}
-        onClose={() => setDemoModalOpen(false)}
+        onClose={handleCloseDemoModal}
         title="AetherFlow 2.5 Architecture Walkthrough"
         maxWidth="max-w-3xl"
       >
         <div className="space-y-4">
-          {/* Playable Video Player */}
-          <DemoVideoPlayer onOpenAuthModal={handleOpenAuthModal} />
+          {/* Playable Video Player with 2-second Auto-Reset Memory */}
+          <DemoVideoPlayer 
+            key={videoKey}
+            initialProgress={savedVideoState.progress}
+            initialChapter={savedVideoState.chapter}
+            onProgressUpdate={(p, ch) => setSavedVideoState({ progress: p, chapter: ch })}
+            onOpenAuthModal={handleOpenAuthModal} 
+          />
 
           <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-3 border-t border-emerald-950">
             <span className="text-xs text-slate-400">
@@ -238,14 +264,14 @@ export default function App() {
             </span>
             <div className="flex items-center gap-3">
               <button
-                onClick={() => setDemoModalOpen(false)}
+                onClick={handleCloseDemoModal}
                 className="px-4 py-2 rounded-xl text-xs font-semibold text-slate-300 hover:text-white bg-[#0d1a29] hover:bg-[#122438] transition-colors cursor-pointer"
               >
                 Close Player
               </button>
               <button
                 onClick={() => {
-                  setDemoModalOpen(false);
+                  handleCloseDemoModal();
                   handleOpenAuthModal('Get Started After Demo');
                 }}
                 className="shimmer-trigger btn-magnetic px-4 py-2 rounded-xl text-xs font-bold text-slate-950 bg-emerald-400 hover:bg-emerald-300 transition-all cursor-pointer shadow-md"
