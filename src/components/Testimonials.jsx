@@ -12,7 +12,7 @@ export const Testimonials = ({ onShowToast }) => {
       role: 'VP of Engineering',
       company: 'Veloce Cloud',
       avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80',
-      quote: 'PulseAI shaved 18 hours off our weekly deployment cycles. The autonomous PR review agent catches nuanced edge-case memory leaks that even senior engineers missed.',
+      quote: 'AetherFlow shaved 18 hours off our weekly deployment cycles. The autonomous PR review agent catches nuanced edge-case memory leaks that even senior engineers missed.',
       rating: 5,
       impact: '74% reduction in PR review lag',
     },
@@ -23,7 +23,7 @@ export const Testimonials = ({ onShowToast }) => {
       role: 'Co-founder & CTO',
       company: 'Nexus FinTech',
       avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80',
-      quote: 'Our engineering team grew from 10 to 60 without having to hire dedicated release managers. PulseAI handles coordination effortlessly across 4 timezones.',
+      quote: 'Our engineering team grew from 10 to 60 without having to hire dedicated release managers. AetherFlow handles coordination effortlessly across 4 timezones.',
       rating: 5,
       impact: 'Saved $180k/year in ops overhead',
     },
@@ -56,7 +56,7 @@ export const Testimonials = ({ onShowToast }) => {
       role: 'CEO & Founder',
       company: 'StackMatrix',
       avatar: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=150&q=80',
-      quote: 'PulseAI is our secret weapon. As a lean startup competing with legacy enterprises, our shipping cadence feels superhuman.',
+      quote: 'AetherFlow is our secret weapon. As a lean startup competing with legacy enterprises, our shipping cadence feels superhuman.',
       rating: 5,
       impact: 'Raised Series A with 3x market speed',
     },
@@ -67,7 +67,7 @@ export const Testimonials = ({ onShowToast }) => {
       role: 'Staff Product Ops Lead',
       company: 'Nordic Wave',
       avatar: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=150&q=80',
-      quote: 'No more stale Jira tickets or confusion over sprint priorities. PulseAI continuously reconciles the truth between Git commits and roadmaps.',
+      quote: 'No more stale Jira tickets or confusion over sprint priorities. AetherFlow continuously reconciles the truth between Git commits and roadmaps.',
       rating: 5,
       impact: '100% roadmap alignment across teams',
     },
@@ -100,7 +100,7 @@ export const Testimonials = ({ onShowToast }) => {
             Loved by Builders, Trusted by Leaders
           </h2>
           <p className="mt-4 text-base sm:text-lg text-slate-300 leading-relaxed">
-            Discover how high-growth startups and established tech leaders utilize PulseAI to accelerate delivery without burning out their teams.
+            Discover how high-growth startups and established tech leaders utilize AetherFlow to accelerate delivery without burning out their teams.
           </p>
 
           {/* Role Filter Tabs */}

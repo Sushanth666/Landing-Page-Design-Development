@@ -103,7 +103,7 @@ export const HowItWorks = ({ onShowToast, onOpenAuthModal }) => {
             From Setup to Autonomous Delivery in Four Simple Steps
           </h2>
           <p className="mt-4 text-base sm:text-lg text-slate-300 leading-relaxed">
-            No endless configuration scripts or complicated machine learning pipelines. PulseAI integrates seamlessly into your existing habits.
+            No endless configuration scripts or complicated machine learning pipelines. AetherFlow integrates seamlessly into your existing habits.
           </p>
         </div>
 

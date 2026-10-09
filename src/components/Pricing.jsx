@@ -78,8 +78,8 @@ export const Pricing = ({ onOpenAuthModal, onShowToast }) => {
       a: 'Yes! We provide a 14-day fully featured free trial with zero credit card required upfront. You can test all capabilities with your actual team stack.',
     },
     {
-      q: 'How does PulseAI handle codebase privacy and security?',
-      a: 'PulseAI operates on zero-retention principles. Your source code and internal data are never used to train public models and are processed inside isolated encrypted enclaves.',
+      q: 'How does AetherFlow handle codebase privacy and security?',
+      a: 'AetherFlow operates on zero-retention principles. Your source code and internal data are never used to train public models and are processed inside isolated encrypted enclaves.',
     },
     {
       q: 'What happens if we exceed our monthly executions?',

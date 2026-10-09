@@ -48,7 +48,7 @@ export const Footer = ({ onShowToast }) => {
       { name: 'Open Source SDKs', href: '#' },
     ],
     Company: [
-      { name: 'About PulseAI', href: '#about' },
+      { name: 'About AetherFlow', href: '#about' },
       { name: 'Careers (We are hiring!)', href: '#' },
       { name: 'Security & Trust Center', href: '#' },
       { name: 'Privacy Policy', href: '#' },
@@ -72,7 +72,7 @@ export const Footer = ({ onShowToast }) => {
                 </div>
               </div>
               <span className="text-2xl font-extrabold tracking-tight text-white">
-                Pulse<span className="text-indigo-400">AI</span>
+                Aether<span className="text-indigo-400">Flow</span>
               </span>
             </div>
             <p className="text-sm text-slate-300 max-w-md leading-relaxed">
@@ -147,8 +147,8 @@ export const Footer = ({ onShowToast }) => {
             <div className="space-y-3 text-xs text-slate-400">
               <div className="flex items-start gap-2.5">
                 <Mail className="w-4 h-4 text-indigo-400 shrink-0 mt-0.5" />
-                <a href="mailto:support@pulseai.dev" className="hover:text-white transition-colors">
-                  support@pulseai.dev
+                <a href="mailto:support@aetherflow.dev" className="hover:text-white transition-colors">
+                  support@aetherflow.dev
                 </a>
               </div>
               <div className="flex items-start gap-2.5">
@@ -174,7 +174,7 @@ export const Footer = ({ onShowToast }) => {
         {/* Bottom Social Icons and Legal Credits */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-xs text-slate-400">
-            © {new Date().getFullYear()} PulseAI Technologies, Inc. All rights reserved.
+            © {new Date().getFullYear()} AetherFlow Technologies, Inc. All rights reserved.
           </p>
 
           {/* Social Media Links with SVG Icons */}

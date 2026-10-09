@@ -70,13 +70,13 @@ export const About = ({ onShowToast }) => {
         <div className="text-center max-w-3xl mx-auto mb-16">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-xs font-semibold text-indigo-400 mb-4">
             <Sparkles className="w-3.5 h-3.5" />
-            <span>ABOUT PULSEAI</span>
+            <span>ABOUT AETHERFLOW</span>
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-tight">
             Designed for Modern Teams That Refuse to Move Slowly
           </h2>
           <p className="mt-4 text-base sm:text-lg text-slate-300 leading-relaxed">
-            Every day, engineering and product teams waste up to 40% of their bandwidth wrangling disconnected tools, resolving sync conflicts, and handling repetitive operational tasks. PulseAI gives you an intelligent autonomous layer that harmonizes your workflows and drives high-velocity execution.
+            Every day, engineering and product teams waste up to 40% of their bandwidth wrangling disconnected tools, resolving sync conflicts, and handling repetitive operational tasks. AetherFlow gives you an intelligent autonomous layer that harmonizes your workflows and drives high-velocity execution.
           </p>
         </div>
 
@@ -110,7 +110,7 @@ export const About = ({ onShowToast }) => {
           <div className="text-center max-w-2xl mx-auto mb-10">
             <h3 className="text-2xl font-bold text-white">The Paradigm Shift</h3>
             <p className="text-sm text-slate-400 mt-2">
-              See how PulseAI compares to traditional manual workflows and fragmented toolchains.
+              See how AetherFlow compares to traditional manual workflows and fragmented toolchains.
             </p>
           </div>
 
@@ -139,7 +139,7 @@ export const About = ({ onShowToast }) => {
                     <Check className="w-3.5 h-3.5" />
                   </div>
                   <div>
-                    <span className="text-xs font-semibold text-emerald-300 block mb-0.5">With PulseAI</span>
+                    <span className="text-xs font-semibold text-emerald-300 block mb-0.5">With AetherFlow</span>
                     <span className="text-xs text-slate-200">{item.pulse}</span>
                   </div>
                 </div>

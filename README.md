@@ -1,4 +1,4 @@
-# ⚡ PulseAI — Modern SaaS Landing Page
+# ⚡ AetherFlow — Modern SaaS Landing Page
 
 A modern, high-converting, and fully responsive landing page built with **React.js** (pure JavaScript/JSX, zero TypeScript) and **Tailwind CSS**.
 

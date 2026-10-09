@@ -48,14 +48,14 @@ export const Hero = ({ onOpenAuthModal, onOpenDemoModal, onShowToast }) => {
         {/* Top Announcement Badge */}
         <div className="flex justify-center mb-6">
           <button
-            onClick={() => onShowToast('Feature Announcement', 'PulseAI 2.5 introduces Autonomous Multi-Agent Workflows & SOC2 Type II validation!')}
+            onClick={() => onShowToast('Feature Announcement', 'AetherFlow 2.5 introduces Autonomous Multi-Agent Workflows & SOC2 Type II validation!')}
             className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-slate-900/90 border border-indigo-500/30 text-xs sm:text-sm text-slate-300 hover:text-white hover:border-indigo-400 hover:bg-slate-850 transition-all duration-300 shadow-lg shadow-indigo-500/10 group cursor-pointer"
           >
             <span className="flex h-2 w-2 relative">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-indigo-500"></span>
             </span>
-            <span className="font-semibold text-indigo-300">PulseAI 2.5 Live:</span>
+            <span className="font-semibold text-indigo-300">AetherFlow 2.5 Live:</span>
             <span>Autonomous Multi-Agent Workflow Engine</span>
             <ArrowRight className="w-3.5 h-3.5 text-indigo-400 group-hover:translate-x-1 transition-transform" />
           </button>
@@ -71,7 +71,7 @@ export const Hero = ({ onOpenAuthModal, onOpenDemoModal, onShowToast }) => {
           </h1>
 
           <p className="mt-6 text-lg sm:text-xl text-slate-300 leading-relaxed max-w-2xl mx-auto font-normal">
-            PulseAI continuously orchestrates your team’s cross-platform workflows, analyzes operational bottlenecks, and executes multi-step automations with enterprise-grade precision.
+            AetherFlow continuously orchestrates your team’s cross-platform workflows, analyzes operational bottlenecks, and executes multi-step automations with enterprise-grade precision.
           </p>
 
           {/* Action Buttons */}
@@ -124,7 +124,7 @@ export const Hero = ({ onOpenAuthModal, onOpenDemoModal, onShowToast }) => {
                 <div className="w-3 h-3 rounded-full bg-emerald-500/80" />
                 <span className="ml-3 text-xs font-mono text-slate-400 flex items-center gap-1.5">
                   <Terminal className="w-3.5 h-3.5 text-indigo-400" />
-                  pulseai.cloud/live-workspace
+                  aetherflow.cloud/live-workspace
                 </span>
               </div>
 

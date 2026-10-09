@@ -140,7 +140,7 @@ export default function App() {
       >
         <div className="space-y-4">
           <p className="text-sm text-slate-300 leading-relaxed">
-            Begin your 14-day free trial of PulseAI with full access to our autonomous agent mesh and stack connectors.
+            Begin your 14-day free trial of AetherFlow with full access to our autonomous agent mesh and stack connectors.
           </p>
 
           <form onSubmit={handleAuthSubmit} className="space-y-3.5 pt-2">
@@ -203,7 +203,7 @@ export default function App() {
           </form>
 
           <p className="text-[11px] text-center text-slate-400 pt-2 border-t border-slate-800">
-            🔒 By continuing, you agree to PulseAI's Terms of Service and Privacy Policy. No credit card required.
+            🔒 By continuing, you agree to AetherFlow's Terms of Service and Privacy Policy. No credit card required.
           </p>
         </div>
       </Modal>
@@ -212,7 +212,7 @@ export default function App() {
       <Modal
         isOpen={demoModalOpen}
         onClose={() => setDemoModalOpen(false)}
-        title="PulseAI 2.5 Architecture Walkthrough"
+        title="AetherFlow 2.5 Architecture Walkthrough"
       >
         <div className="space-y-4">
           <div className="relative aspect-video rounded-xl bg-slate-950 border border-slate-800 overflow-hidden flex flex-col items-center justify-center p-6 text-center group">
