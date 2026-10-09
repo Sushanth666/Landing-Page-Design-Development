@@ -14,6 +14,7 @@ import {
   Cpu,
   Layers
 } from 'lucide-react';
+import { TiltCard } from './TiltCard';
 
 export const Features = ({ onShowToast, onOpenAuthModal }) => {
   const [activeCategory, setActiveCategory] = useState('all');
@@ -118,10 +119,10 @@ export const Features = ({ onShowToast, onOpenAuthModal }) => {
               <button
                 key={cat.id}
                 onClick={() => setActiveCategory(cat.id)}
-                className={`px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all duration-300 cursor-pointer ${
+                className={`btn-magnetic px-4 py-2 rounded-full text-xs sm:text-sm font-semibold cursor-pointer ${
                   activeCategory === cat.id
                     ? 'bg-emerald-500 text-slate-950 font-bold shadow-lg shadow-emerald-500/25 scale-105'
-                    : 'bg-[#09121d] text-slate-400 hover:text-white hover:bg-[#0d1a29] border border-emerald-950 hover:scale-102'
+                    : 'bg-[#09121d] text-slate-400 hover:text-white hover:bg-[#0d1a29] border border-emerald-950'
                 }`}
               >
                 {cat.label}
@@ -130,14 +131,16 @@ export const Features = ({ onShowToast, onOpenAuthModal }) => {
           </div>
         </div>
 
-        {/* Bento Grid Feature Cards with dynamic animations */}
+        {/* Bento Grid Feature Cards with 3D TiltCards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredFeatures.map((feature) => {
             const Icon = feature.icon;
             return (
-              <div
+              <TiltCard
                 key={feature.id}
-                className="group relative rounded-2xl bg-[#080f1a]/90 border border-emerald-950 hover:border-emerald-400 p-6 sm:p-7 flex flex-col justify-between transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-emerald-500/20 backdrop-blur-sm cursor-pointer"
+                maxTilt={10}
+                scale={1.03}
+                className="group rounded-2xl bg-[#080f1a]/90 border border-emerald-950 hover:border-emerald-400 p-6 sm:p-7 flex flex-col justify-between shadow-xl hover:shadow-2xl hover:shadow-emerald-500/20 backdrop-blur-sm cursor-pointer"
                 onClick={() => {
                   onShowToast(feature.title, `Inspecting architecture specs for ${feature.title}...`);
                   onOpenAuthModal(`Explore ${feature.title}`);
@@ -145,7 +148,7 @@ export const Features = ({ onShowToast, onOpenAuthModal }) => {
               >
                 <div>
                   <div className="flex items-center justify-between mb-5">
-                    <div className="w-12 h-12 rounded-xl bg-[#0d1a29] border border-emerald-900/60 flex items-center justify-center text-emerald-400 group-hover:bg-emerald-500 group-hover:text-slate-950 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 shadow-md">
+                    <div className="w-12 h-12 rounded-xl bg-[#0d1a29] border border-emerald-900/60 flex items-center justify-center text-emerald-400 group-hover:bg-emerald-500 group-hover:text-slate-950 spring-icon shadow-md">
                       <Icon className="w-6 h-6" />
                     </div>
                     <span className="text-[11px] font-semibold tracking-wide uppercase px-2.5 py-1 rounded-md bg-[#0d1a29] text-emerald-300 border border-emerald-900/60 group-hover:border-emerald-500/40 transition-colors">
@@ -167,12 +170,12 @@ export const Features = ({ onShowToast, onOpenAuthModal }) => {
                     {feature.metrics}
                   </span>
 
-                  <span className="text-xs font-bold text-emerald-400 group-hover:text-emerald-300 flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                  <span className="text-xs font-bold text-emerald-400 group-hover:text-emerald-300 flex items-center gap-1 group-hover:translate-x-1.5 transition-transform">
                     <span>Inspect</span>
                     <ArrowRight className="w-3.5 h-3.5" />
                   </span>
                 </div>
-              </div>
+              </TiltCard>
             );
           })}
         </div>

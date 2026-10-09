@@ -9,6 +9,7 @@ import {
   Layers, 
   ArrowUpRight 
 } from 'lucide-react';
+import { TiltCard } from './TiltCard';
 
 export const About = ({ onShowToast }) => {
   const [selectedStat, setSelectedStat] = useState(null);
@@ -80,28 +81,30 @@ export const About = ({ onShowToast }) => {
           </p>
         </div>
 
-        {/* Highlight Stats Grid with dynamic card elevation and micro-interaction */}
+        {/* Highlight Stats Grid with 3D TiltCards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
           {stats.map((stat, idx) => (
-            <div
+            <TiltCard
               key={idx}
+              maxTilt={12}
+              scale={1.04}
               onClick={() => {
                 setSelectedStat(idx);
                 onShowToast(stat.label, stat.detail);
               }}
-              className="p-6 rounded-2xl bg-[#09121d] border border-emerald-950/80 hover:border-emerald-400 hover:bg-[#0c1827] transition-all duration-300 hover:-translate-y-2 group cursor-pointer shadow-lg hover:shadow-emerald-500/20"
+              className="p-6 rounded-2xl bg-[#09121d] border border-emerald-950/80 hover:border-emerald-400 cursor-pointer shadow-lg hover:shadow-emerald-500/20 group"
             >
               <div className="flex items-center justify-between mb-3">
-                <span className="text-3xl sm:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-white via-emerald-200 to-emerald-400 font-mono group-hover:scale-105 transition-transform inline-block">
+                <span className="text-3xl sm:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-white via-emerald-200 to-emerald-400 font-mono inline-block">
                   {stat.value}
                 </span>
-                <span className="p-2 rounded-xl bg-emerald-500/10 text-emerald-400 group-hover:bg-emerald-500 group-hover:text-slate-950 group-hover:rotate-45 group-hover:scale-110 transition-all duration-300">
+                <span className="p-2 rounded-xl bg-emerald-500/10 text-emerald-400 group-hover:bg-emerald-500 group-hover:text-slate-950 spring-icon">
                   <ArrowUpRight className="w-4 h-4" />
                 </span>
               </div>
               <h3 className="text-sm font-bold text-white mb-1.5 group-hover:text-emerald-300 transition-colors">{stat.label}</h3>
               <p className="text-xs text-slate-400 leading-relaxed">{stat.detail}</p>
-            </div>
+            </TiltCard>
           ))}
         </div>
 
@@ -120,7 +123,7 @@ export const About = ({ onShowToast }) => {
             {comparisons.map((item, index) => (
               <div
                 key={index}
-                className="grid grid-cols-1 lg:grid-cols-12 gap-4 p-4 sm:p-5 rounded-2xl bg-[#060b13] border border-emerald-950/60 hover:border-emerald-500/50 hover:bg-[#070e17] transition-all duration-300 hover:translate-x-1 items-center group"
+                className="grid grid-cols-1 lg:grid-cols-12 gap-4 p-4 sm:p-5 rounded-2xl bg-[#060b13] border border-emerald-950/60 hover:border-emerald-500/50 hover:bg-[#070e17] transition-all duration-300 hover:translate-x-1.5 items-center group cursor-default"
               >
                 <div className="lg:col-span-3">
                   <span className="text-sm font-bold text-emerald-300 group-hover:text-white transition-colors">{item.feature}</span>
@@ -137,7 +140,7 @@ export const About = ({ onShowToast }) => {
                 </div>
 
                 <div className="lg:col-span-5 p-3 rounded-xl bg-emerald-950/30 border border-emerald-500/30 flex items-start gap-2.5 group-hover:border-emerald-400/60 transition-colors">
-                  <div className="p-1 rounded-md bg-emerald-500/20 text-emerald-400 shrink-0 mt-0.5">
+                  <div className="p-1 rounded-md bg-emerald-500/20 text-emerald-400 shrink-0 mt-0.5 spring-icon">
                     <Check className="w-3.5 h-3.5" />
                   </div>
                   <div>

@@ -13,6 +13,7 @@ import {
   RefreshCw,
   Sparkles
 } from 'lucide-react';
+import { TiltCard } from './TiltCard';
 
 export const Hero = ({ onOpenAuthModal, onOpenDemoModal, onShowToast }) => {
   const [activeNode, setActiveNode] = useState('ml');
@@ -116,11 +117,11 @@ export const Hero = ({ onOpenAuthModal, onOpenDemoModal, onShowToast }) => {
       <div className="absolute inset-0 bg-matrix-grid opacity-75 -z-20 pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Top Announcement Pill with Beacon Ping & Hover Spring */}
+        {/* Top Announcement Pill with Beacon Ping & Kinetic Pop */}
         <div className="flex justify-center mb-6">
           <button
             onClick={() => onShowToast('AetherFlow AI Matrix', 'Next-Gen Node Graph Automation engine deployed across all clusters.')}
-            className="shimmer-trigger inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-[#0a1420]/90 border border-emerald-500/30 text-xs sm:text-sm text-slate-300 hover:text-white hover:border-emerald-400 hover:bg-[#0e1d2f] transition-all duration-300 shadow-lg shadow-emerald-500/10 hover:-translate-y-0.5 group cursor-pointer"
+            className="shimmer-trigger spring-pop inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-[#0a1420]/90 border border-emerald-500/30 text-xs sm:text-sm text-slate-300 hover:text-white hover:border-emerald-400 hover:bg-[#0e1d2f] transition-all duration-300 shadow-lg shadow-emerald-500/10 group cursor-pointer"
           >
             <span className="flex h-2.5 w-2.5 relative">
               <span className="animate-ping-slow absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
@@ -145,19 +146,19 @@ export const Hero = ({ onOpenAuthModal, onOpenDemoModal, onShowToast }) => {
             Orchestrate complex engineering workflows, deploy self-learning agent meshes, and monitor end-to-end data pipelines with deterministic 1.5ms processing speeds.
           </p>
 
-          {/* Dual CTAs with Shimmer and Pop Interaction */}
+          {/* Dual CTAs with Shimmer and Magnetic Button Physics */}
           <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
             <button
               onClick={() => onOpenAuthModal('Explore Platform')}
-              className="shimmer-trigger w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-xl text-base font-bold text-slate-950 bg-gradient-to-r from-emerald-400 via-emerald-300 to-teal-300 hover:from-emerald-300 hover:to-teal-200 shadow-xl shadow-emerald-500/25 hover:shadow-emerald-500/40 hover:-translate-y-1 active:translate-y-0 active:scale-95 transition-all duration-200 cursor-pointer"
+              className="shimmer-trigger btn-magnetic w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-xl text-base font-bold text-slate-950 bg-gradient-to-r from-emerald-400 via-emerald-300 to-teal-300 hover:from-emerald-300 hover:to-teal-200 shadow-xl shadow-emerald-500/25 hover:shadow-emerald-500/50 cursor-pointer"
             >
               <span>Explore Platform</span>
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform" />
             </button>
 
             <button
               onClick={onOpenDemoModal}
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-7 py-4 rounded-xl text-base font-semibold text-slate-200 bg-[#09121d]/85 border border-emerald-900/80 hover:bg-[#0d1c2d] hover:text-white hover:border-emerald-500/50 hover:-translate-y-1 active:translate-y-0 active:scale-95 backdrop-blur-md transition-all duration-200 cursor-pointer"
+              className="btn-magnetic w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-7 py-4 rounded-xl text-base font-semibold text-slate-200 bg-[#09121d]/85 border border-emerald-900/80 hover:bg-[#0d1c2d] hover:text-white hover:border-emerald-500/50 backdrop-blur-md cursor-pointer"
             >
               <Play className="w-4 h-4 text-emerald-400 fill-emerald-400/30" />
               <span>Watch Interactive Demo</span>
@@ -166,22 +167,22 @@ export const Hero = ({ onOpenAuthModal, onOpenDemoModal, onShowToast }) => {
 
           {/* Trust Highlights */}
           <div className="mt-6 flex flex-wrap items-center justify-center gap-6 text-xs text-slate-400">
-            <div className="flex items-center gap-1.5 hover:text-slate-200 transition-colors">
+            <div className="flex items-center gap-1.5 hover:text-slate-200 transition-colors cursor-default">
               <CheckCircle className="w-4 h-4 text-emerald-400" />
               <span>No credit card required</span>
             </div>
-            <div className="flex items-center gap-1.5 hover:text-slate-200 transition-colors">
+            <div className="flex items-center gap-1.5 hover:text-slate-200 transition-colors cursor-default">
               <CheckCircle className="w-4 h-4 text-emerald-400" />
               <span>1.5ms median latency</span>
             </div>
-            <div className="flex items-center gap-1.5 hover:text-slate-200 transition-colors">
+            <div className="flex items-center gap-1.5 hover:text-slate-200 transition-colors cursor-default">
               <CheckCircle className="w-4 h-4 text-emerald-400" />
               <span>SOC2 Type II & GDPR certified</span>
             </div>
           </div>
         </div>
 
-        {/* Hero Showcase: Interactive DAG Workflow Canvas with Radar Scanner & Animated Flow */}
+        {/* Hero Showcase: Interactive DAG Workflow Canvas with 3D Tilt Cards */}
         <div className="mt-14 relative max-w-5xl mx-auto">
           {/* Animated Pulsing Outer Glowing Border */}
           <div className="absolute -inset-1.5 bg-gradient-to-r from-emerald-500/30 via-teal-500/20 to-emerald-400/30 rounded-3xl blur-xl opacity-80 animate-pulse transition duration-1000 -z-10" />
@@ -207,10 +208,10 @@ export const Hero = ({ onOpenAuthModal, onOpenDemoModal, onShowToast }) => {
                 <button
                   onClick={handleRunSimulation}
                   disabled={isSimulating}
-                  className={`shimmer-trigger inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+                  className={`shimmer-trigger btn-magnetic inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold cursor-pointer ${
                     isSimulating
                       ? 'bg-emerald-500/30 text-emerald-300 border border-emerald-400'
-                      : 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 hover:bg-emerald-500/30 hover:scale-105 active:scale-95'
+                      : 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 hover:bg-emerald-500/30'
                   }`}
                 >
                   <RefreshCw className={`w-3.5 h-3.5 ${isSimulating ? 'animate-spin' : ''}`} />
@@ -245,66 +246,62 @@ export const Hero = ({ onOpenAuthModal, onOpenDemoModal, onShowToast }) => {
                   
                   {/* Curve 1: Ingest to ML */}
                   <path
-                    id="path1"
                     d="M 170 120 C 230 120, 270 120, 330 120"
                     fill="none"
                     stroke="url(#emeraldGradient)"
                     strokeWidth="2.5"
                     className="animate-flow-dash"
                   />
-                  {/* Energy packet traveling along curve 1 */}
                   <circle r="4" fill="#34d399" filter="url(#glowPacket)">
                     <animateMotion dur="2s" repeatCount="indefinite" path="M 170 120 C 230 120, 270 120, 330 120" />
                   </circle>
 
                   {/* Curve 2: ML to Deploy */}
                   <path
-                    id="path2"
                     d="M 470 120 C 530 120, 570 120, 630 120"
                     fill="none"
                     stroke="url(#emeraldGradient)"
                     strokeWidth="2.5"
                     className="animate-flow-dash"
                   />
-                  {/* Energy packet traveling along curve 2 */}
                   <circle r="4" fill="#34d399" filter="url(#glowPacket)">
                     <animateMotion dur="2.2s" begin="0.4s" repeatCount="indefinite" path="M 470 120 C 530 120, 570 120, 630 120" />
                   </circle>
 
                   {/* Curve 3: Deploy to Analytics */}
                   <path
-                    id="path3"
                     d="M 770 120 C 820 120, 830 120, 860 120"
                     fill="none"
                     stroke="url(#emeraldGradient)"
                     strokeWidth="2.5"
                     className="animate-flow-dash"
                   />
-                  {/* Energy packet traveling along curve 3 */}
                   <circle r="4" fill="#34d399" filter="url(#glowPacket)">
                     <animateMotion dur="1.8s" begin="0.8s" repeatCount="indefinite" path="M 770 120 C 820 120, 830 120, 860 120" />
                   </circle>
                 </svg>
 
-                {/* Nodes Horizontal Flow Container */}
+                {/* Nodes Horizontal Flow Container with 3D TiltCards */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 relative z-20">
                   {/* Node 1: Ingestion */}
-                  <div
+                  <TiltCard
+                    maxTilt={12}
+                    scale={1.04}
                     onClick={() => {
                       setActiveNode('ingest');
                       onShowToast('Node Selected', 'Inspecting Data Ingestion Kafka stream telemetry.');
                     }}
-                    className={`p-4 rounded-2xl border transition-all duration-300 cursor-pointer relative group ${
+                    className={`p-4 rounded-2xl border cursor-pointer relative group ${
                       activeNode === 'ingest' || simStep === 'ingest'
-                        ? 'bg-[#0f1d2b] border-emerald-400 shadow-xl shadow-emerald-500/25 -translate-y-1.5'
-                        : 'bg-[#0b1420]/80 border-emerald-950 hover:border-emerald-800 hover:-translate-y-1'
+                        ? 'bg-[#0f1d2b] border-emerald-400 shadow-xl shadow-emerald-500/25'
+                        : 'bg-[#0b1420]/90 border-emerald-950 hover:border-emerald-700'
                     }`}
                   >
                     {(activeNode === 'ingest' || simStep === 'ingest') && (
                       <span className="absolute -inset-0.5 rounded-2xl border border-emerald-400 animate-ping-slow pointer-events-none opacity-50" />
                     )}
                     <div className="flex items-center justify-between mb-3">
-                      <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 group-hover:rotate-12 transition-transform">
+                      <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 spring-icon">
                         <Database className="w-5 h-5" />
                       </div>
                       <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-300 border border-emerald-500/30">
@@ -317,25 +314,27 @@ export const Hero = ({ onOpenAuthModal, onOpenDemoModal, onShowToast }) => {
                       <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
                       <span>Active</span>
                     </div>
-                  </div>
+                  </TiltCard>
 
                   {/* Node 2: ML Training / Agent Mesh */}
-                  <div
+                  <TiltCard
+                    maxTilt={12}
+                    scale={1.04}
                     onClick={() => {
                       setActiveNode('ml');
                       onShowToast('Node Selected', 'Inspecting ML Autonomous Agent Mesh execution.');
                     }}
-                    className={`p-4 rounded-2xl border transition-all duration-300 cursor-pointer relative group ${
+                    className={`p-4 rounded-2xl border cursor-pointer relative group ${
                       activeNode === 'ml' || simStep === 'ml'
-                        ? 'bg-[#0f1d2b] border-emerald-400 shadow-xl shadow-emerald-500/25 -translate-y-1.5'
-                        : 'bg-[#0b1420]/80 border-emerald-950 hover:border-emerald-800 hover:-translate-y-1'
+                        ? 'bg-[#0f1d2b] border-emerald-400 shadow-xl shadow-emerald-500/25'
+                        : 'bg-[#0b1420]/90 border-emerald-950 hover:border-emerald-700'
                     }`}
                   >
                     {(activeNode === 'ml' || simStep === 'ml') && (
                       <span className="absolute -inset-0.5 rounded-2xl border border-emerald-400 animate-ping-slow pointer-events-none opacity-50" />
                     )}
                     <div className="flex items-center justify-between mb-3">
-                      <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 group-hover:rotate-12 transition-transform">
+                      <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 spring-icon">
                         <Cpu className="w-5 h-5" />
                       </div>
                       <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-300 border border-emerald-500/30">
@@ -348,25 +347,27 @@ export const Hero = ({ onOpenAuthModal, onOpenDemoModal, onShowToast }) => {
                       <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
                       <span>Inferencing</span>
                     </div>
-                  </div>
+                  </TiltCard>
 
                   {/* Node 3: Model Deployment */}
-                  <div
+                  <TiltCard
+                    maxTilt={12}
+                    scale={1.04}
                     onClick={() => {
                       setActiveNode('deploy');
                       onShowToast('Node Selected', 'Inspecting Model Deployment Edge Cluster.');
                     }}
-                    className={`p-4 rounded-2xl border transition-all duration-300 cursor-pointer relative group ${
+                    className={`p-4 rounded-2xl border cursor-pointer relative group ${
                       activeNode === 'deploy' || simStep === 'deploy'
-                        ? 'bg-[#0f1d2b] border-emerald-400 shadow-xl shadow-emerald-500/25 -translate-y-1.5'
-                        : 'bg-[#0b1420]/80 border-emerald-950 hover:border-emerald-800 hover:-translate-y-1'
+                        ? 'bg-[#0f1d2b] border-emerald-400 shadow-xl shadow-emerald-500/25'
+                        : 'bg-[#0b1420]/90 border-emerald-950 hover:border-emerald-700'
                     }`}
                   >
                     {(activeNode === 'deploy' || simStep === 'deploy') && (
                       <span className="absolute -inset-0.5 rounded-2xl border border-emerald-400 animate-ping-slow pointer-events-none opacity-50" />
                     )}
                     <div className="flex items-center justify-between mb-3">
-                      <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 group-hover:rotate-12 transition-transform">
+                      <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 spring-icon">
                         <Cloud className="w-5 h-5" />
                       </div>
                       <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-300 border border-emerald-500/30">
@@ -379,25 +380,27 @@ export const Hero = ({ onOpenAuthModal, onOpenDemoModal, onShowToast }) => {
                       <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
                       <span>Live Sync</span>
                     </div>
-                  </div>
+                  </TiltCard>
 
                   {/* Node 4: Real-time Analytics */}
-                  <div
+                  <TiltCard
+                    maxTilt={12}
+                    scale={1.04}
                     onClick={() => {
                       setActiveNode('analytics');
                       onShowToast('Node Selected', 'Inspecting Real-Time Telemetry & SLA health.');
                     }}
-                    className={`p-4 rounded-2xl border transition-all duration-300 cursor-pointer relative group ${
+                    className={`p-4 rounded-2xl border cursor-pointer relative group ${
                       activeNode === 'analytics' || simStep === 'analytics'
-                        ? 'bg-[#0f1d2b] border-emerald-400 shadow-xl shadow-emerald-500/25 -translate-y-1.5'
-                        : 'bg-[#0b1420]/80 border-emerald-950 hover:border-emerald-800 hover:-translate-y-1'
+                        ? 'bg-[#0f1d2b] border-emerald-400 shadow-xl shadow-emerald-500/25'
+                        : 'bg-[#0b1420]/90 border-emerald-950 hover:border-emerald-700'
                     }`}
                   >
                     {(activeNode === 'analytics' || simStep === 'analytics') && (
                       <span className="absolute -inset-0.5 rounded-2xl border border-emerald-400 animate-ping-slow pointer-events-none opacity-50" />
                     )}
                     <div className="flex items-center justify-between mb-3">
-                      <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 group-hover:rotate-12 transition-transform">
+                      <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 spring-icon">
                         <BarChart3 className="w-5 h-5" />
                       </div>
                       <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-300 border border-emerald-500/30">
@@ -410,7 +413,7 @@ export const Hero = ({ onOpenAuthModal, onOpenDemoModal, onShowToast }) => {
                       <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
                       <span>Operational</span>
                     </div>
-                  </div>
+                  </TiltCard>
                 </div>
               </div>
 
@@ -437,19 +440,19 @@ export const Hero = ({ onOpenAuthModal, onOpenDemoModal, onShowToast }) => {
 
               {/* Live Metric Cards with Dynamic Hover Elevation & Subtle Glow */}
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6">
-                <div className="p-4 rounded-xl bg-[#09121d] border border-emerald-950 hover:border-emerald-500/40 hover:-translate-y-1 transition-all duration-300 cursor-default group">
+                <div className="p-4 rounded-xl bg-[#09121d] border border-emerald-950 hover:border-emerald-500/40 spring-pop cursor-default group">
                   <span className="text-xs text-slate-400 block mb-1 group-hover:text-slate-200">Model Accuracy</span>
                   <span className="text-2xl font-extrabold text-white font-mono group-hover:text-emerald-300 transition-colors">98.2%</span>
                   <span className="text-[11px] text-emerald-400 block mt-1">↑ +2.4% benchmark</span>
                 </div>
 
-                <div className="p-4 rounded-xl bg-[#09121d] border border-emerald-950 hover:border-emerald-500/40 hover:-translate-y-1 transition-all duration-300 cursor-default group">
+                <div className="p-4 rounded-xl bg-[#09121d] border border-emerald-950 hover:border-emerald-500/40 spring-pop cursor-default group">
                   <span className="text-xs text-slate-400 block mb-1 group-hover:text-slate-200">Processing Speed</span>
                   <span className="text-2xl font-extrabold text-emerald-400 font-mono group-hover:text-emerald-300 transition-colors">1.5ms</span>
                   <span className="text-[11px] text-emerald-300 block mt-1">Sub-millisecond P50</span>
                 </div>
 
-                <div className="p-4 rounded-xl bg-[#09121d] border border-emerald-950 hover:border-emerald-500/40 hover:-translate-y-1 transition-all duration-300 cursor-default group">
+                <div className="p-4 rounded-xl bg-[#09121d] border border-emerald-950 hover:border-emerald-500/40 spring-pop cursor-default group">
                   <span className="text-xs text-slate-400 block mb-1 group-hover:text-slate-200">Tasks Automating</span>
                   <span className="text-2xl font-extrabold text-white font-mono group-hover:text-emerald-300 transition-colors">
                     {liveThroughput}+
@@ -457,7 +460,7 @@ export const Hero = ({ onOpenAuthModal, onOpenDemoModal, onShowToast }) => {
                   <span className="text-[11px] text-emerald-400 block mt-1">Active concurrent DAGs</span>
                 </div>
 
-                <div className="p-4 rounded-xl bg-[#09121d] border border-emerald-950 hover:border-emerald-500/40 hover:-translate-y-1 transition-all duration-300 cursor-default group">
+                <div className="p-4 rounded-xl bg-[#09121d] border border-emerald-950 hover:border-emerald-500/40 spring-pop cursor-default group">
                   <span className="text-xs text-slate-400 block mb-1 group-hover:text-slate-200">Data Handled</span>
                   <span className="text-2xl font-extrabold text-white font-mono group-hover:text-emerald-300 transition-colors">2.1 TB</span>
                   <span className="text-[11px] text-emerald-400 block mt-1">Zero data leaks</span>
@@ -467,7 +470,7 @@ export const Hero = ({ onOpenAuthModal, onOpenDemoModal, onShowToast }) => {
           </div>
         </div>
 
-        {/* Social Proof Brand Logobar with hover bounce */}
+        {/* Social Proof Brand Logobar with bouncy hover scale */}
         <div className="mt-16 text-center">
           <p className="text-xs uppercase tracking-widest text-emerald-500/80 font-semibold mb-6">
             Powering autonomous engineering teams at high-growth organizations
@@ -476,7 +479,7 @@ export const Hero = ({ onOpenAuthModal, onOpenDemoModal, onShowToast }) => {
             {partnerLogos.map((partner) => (
               <div 
                 key={partner.name}
-                className="flex items-center gap-2 text-slate-400 hover:text-emerald-300 hover:scale-110 transition-all duration-200 cursor-default"
+                className="flex items-center gap-2 text-slate-400 hover:text-emerald-300 spring-pop cursor-default"
               >
                 <span className="text-lg font-bold">{partner.symbol}</span>
                 <span className="text-sm font-semibold tracking-wider">{partner.name}</span>

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Check, Sparkles, Zap, Shield, ArrowRight, HelpCircle } from 'lucide-react';
+import { TiltCard } from './TiltCard';
 
 export const Pricing = ({ onOpenAuthModal, onShowToast }) => {
   const [isAnnual, setIsAnnual] = useState(true);
@@ -43,7 +44,7 @@ export const Pricing = ({ onOpenAuthModal, onShowToast }) => {
         'Priority 24/7 Slack & email support',
       ],
       ctaText: 'Start 14-Day Pro Trial',
-      ctaStyle: 'shimmer-trigger bg-gradient-to-r from-emerald-400 via-emerald-300 to-teal-300 hover:from-emerald-300 hover:to-teal-200 text-slate-950 font-bold shadow-lg shadow-emerald-500/25 hover:shadow-emerald-500/40 hover:-translate-y-0.5',
+      ctaStyle: 'shimmer-trigger bg-gradient-to-r from-emerald-400 via-emerald-300 to-teal-300 hover:from-emerald-300 hover:to-teal-200 text-slate-950 font-bold shadow-lg shadow-emerald-500/25',
     },
     {
       id: 'enterprise',
@@ -110,7 +111,7 @@ export const Pricing = ({ onOpenAuthModal, onShowToast }) => {
           <div className="mt-8 inline-flex items-center gap-3 p-1.5 rounded-full bg-[#080f1a] border border-emerald-950 shadow-inner">
             <button
               onClick={() => setIsAnnual(false)}
-              className={`px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all duration-300 cursor-pointer ${
+              className={`btn-magnetic px-4 py-2 rounded-full text-xs sm:text-sm font-semibold cursor-pointer ${
                 !isAnnual ? 'bg-emerald-500 text-slate-950 font-bold shadow-md scale-105' : 'text-slate-400 hover:text-slate-200'
               }`}
             >
@@ -118,7 +119,7 @@ export const Pricing = ({ onOpenAuthModal, onShowToast }) => {
             </button>
             <button
               onClick={() => setIsAnnual(true)}
-              className={`px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all duration-300 flex items-center gap-2 cursor-pointer ${
+              className={`btn-magnetic px-4 py-2 rounded-full text-xs sm:text-sm font-semibold flex items-center gap-2 cursor-pointer ${
                 isAnnual ? 'bg-emerald-500 text-slate-950 font-bold shadow-md scale-105' : 'text-slate-400 hover:text-slate-200'
               }`}
             >
@@ -130,22 +131,24 @@ export const Pricing = ({ onOpenAuthModal, onShowToast }) => {
           </div>
         </div>
 
-        {/* Pricing Cards with animated border and physical hover lift */}
+        {/* Pricing Cards with 3D TiltCards */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch mb-20">
           {plans.map((plan) => {
             const price = isAnnual ? plan.priceAnnual : plan.priceMonthly;
             return (
-              <div
+              <TiltCard
                 key={plan.id}
-                className={`relative rounded-3xl p-8 flex flex-col justify-between transition-all duration-500 hover:-translate-y-2 ${
+                maxTilt={8}
+                scale={1.02}
+                className={`rounded-3xl p-8 flex flex-col justify-between ${
                   plan.popular
                     ? 'bg-[#091422] border-2 border-emerald-400 shadow-2xl shadow-emerald-500/20 lg:-translate-y-2 animate-border-pulse'
-                    : 'bg-[#080f1a]/80 border border-emerald-950 hover:border-emerald-600'
+                    : 'bg-[#080f1a]/85 border border-emerald-950 hover:border-emerald-600 shadow-xl'
                 }`}
               >
                 {/* Popular Ribbon */}
                 {plan.popular && (
-                  <div className="absolute -top-3.5 left-1/2 -translate-x-1/2">
+                  <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 z-20">
                     <span className="shimmer-trigger px-4 py-1 rounded-full text-xs font-bold tracking-wide uppercase bg-gradient-to-r from-emerald-400 to-teal-300 text-slate-950 shadow-md">
                       {plan.badge}
                     </span>
@@ -183,7 +186,7 @@ export const Pricing = ({ onOpenAuthModal, onShowToast }) => {
                     </p>
                     {plan.features.map((feature, idx) => (
                       <div key={idx} className="flex items-start gap-3 text-xs sm:text-sm text-slate-300 group">
-                        <div className="p-0.5 rounded-full bg-emerald-500/20 text-emerald-400 shrink-0 mt-0.5 group-hover:scale-125 transition-transform">
+                        <div className="p-0.5 rounded-full bg-emerald-500/20 text-emerald-400 shrink-0 mt-0.5 spring-icon">
                           <Check className="w-3.5 h-3.5" />
                         </div>
                         <span className="group-hover:text-white transition-colors">{feature}</span>
@@ -199,16 +202,16 @@ export const Pricing = ({ onOpenAuthModal, onShowToast }) => {
                       onShowToast('Selected Plan', `You chose the ${plan.name} (${isAnnual ? 'Annual' : 'Monthly'}) plan.`);
                       onOpenAuthModal(`Subscribe to ${plan.name}`);
                     }}
-                    className={`w-full py-3.5 px-6 rounded-xl text-sm font-semibold flex items-center justify-center gap-2 transition-all duration-300 active:scale-95 cursor-pointer ${plan.ctaStyle}`}
+                    className={`btn-magnetic w-full py-3.5 px-6 rounded-xl text-sm font-semibold flex items-center justify-center gap-2 cursor-pointer ${plan.ctaStyle}`}
                   >
                     <span>{plan.ctaText}</span>
-                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform" />
                   </button>
                   <p className="text-[11px] text-center text-slate-400 mt-2">
                     {plan.priceMonthly === 0 ? 'Instant setup • No card required' : '14-day free trial • Cancel anytime'}
                   </p>
                 </div>
-              </div>
+              </TiltCard>
             );
           })}
         </div>

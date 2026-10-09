@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Star, Quote, CheckCircle2, Sparkles } from 'lucide-react';
+import { TiltCard } from './TiltCard';
 
 export const Testimonials = ({ onShowToast }) => {
   const [activeFilter, setActiveFilter] = useState('all');
@@ -109,10 +110,10 @@ export const Testimonials = ({ onShowToast }) => {
               <button
                 key={tab.id}
                 onClick={() => setActiveFilter(tab.id)}
-                className={`px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all duration-300 cursor-pointer ${
+                className={`btn-magnetic px-4 py-2 rounded-full text-xs sm:text-sm font-semibold cursor-pointer ${
                   activeFilter === tab.id
                     ? 'bg-emerald-500 text-slate-950 font-bold shadow-lg shadow-emerald-500/25 scale-105'
-                    : 'bg-[#09121d] text-slate-400 hover:text-white hover:bg-[#0d1a29] border border-emerald-950 hover:scale-102'
+                    : 'bg-[#09121d] text-slate-400 hover:text-white hover:bg-[#0d1a29] border border-emerald-950'
                 }`}
               >
                 {tab.label}
@@ -121,12 +122,14 @@ export const Testimonials = ({ onShowToast }) => {
           </div>
         </div>
 
-        {/* Testimonials Grid with floating elevation & hover transitions */}
+        {/* Testimonials Grid with 3D TiltCards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredTestimonials.map((item) => (
-            <div
+            <TiltCard
               key={item.id}
-              className="p-6 sm:p-7 rounded-2xl bg-[#080f1a]/85 border border-emerald-950 hover:border-emerald-400 hover:bg-[#0c1827] transition-all duration-300 hover:-translate-y-2 flex flex-col justify-between group shadow-xl hover:shadow-emerald-500/15 backdrop-blur-sm cursor-pointer"
+              maxTilt={9}
+              scale={1.03}
+              className="p-6 sm:p-7 rounded-2xl bg-[#080f1a]/85 border border-emerald-950 hover:border-emerald-400 flex flex-col justify-between group shadow-xl hover:shadow-emerald-500/15 backdrop-blur-sm cursor-pointer"
               onClick={() => onShowToast(item.name, `${item.name} (${item.company}): "${item.quote}"`)}
             >
               <div>
@@ -134,10 +137,10 @@ export const Testimonials = ({ onShowToast }) => {
                 <div className="flex items-center justify-between mb-4">
                   <div className="flex items-center gap-1">
                     {[...Array(item.rating)].map((_, i) => (
-                      <Star key={i} className="w-4 h-4 fill-emerald-400 text-emerald-400 group-hover:scale-110 transition-transform" />
+                      <Star key={i} className="w-4 h-4 fill-emerald-400 text-emerald-400 spring-icon" />
                     ))}
                   </div>
-                  <Quote className="w-6 h-6 text-emerald-500/30 group-hover:text-emerald-400 group-hover:rotate-12 transition-all duration-300" />
+                  <Quote className="w-6 h-6 text-emerald-500/30 group-hover:text-emerald-400 spring-icon" />
                 </div>
 
                 {/* Quote Text */}
@@ -158,7 +161,7 @@ export const Testimonials = ({ onShowToast }) => {
                   <img
                     src={item.avatar}
                     alt={item.name}
-                    className="w-11 h-11 rounded-full object-cover border-2 border-emerald-500/40 group-hover:border-emerald-400 group-hover:scale-105 transition-all"
+                    className="w-11 h-11 rounded-full object-cover border-2 border-emerald-500/40 group-hover:border-emerald-400 spring-icon"
                   />
                   <div>
                     <h4 className="text-sm font-bold text-white group-hover:text-emerald-300 transition-colors">
@@ -170,7 +173,7 @@ export const Testimonials = ({ onShowToast }) => {
                   </div>
                 </div>
               </div>
-            </div>
+            </TiltCard>
           ))}
         </div>
 
@@ -182,7 +185,7 @@ export const Testimonials = ({ onShowToast }) => {
           </div>
           <button
             onClick={() => onShowToast('Case Studies', 'Opening verified enterprise customer case studies...')}
-            className="shimmer-trigger px-5 py-2.5 rounded-xl bg-[#0d1a29] hover:bg-[#122438] text-sm font-semibold text-emerald-300 border border-emerald-900/80 hover:border-emerald-500 transition-all hover:scale-105 active:scale-95 cursor-pointer"
+            className="shimmer-trigger btn-magnetic px-5 py-2.5 rounded-xl bg-[#0d1a29] hover:bg-[#122438] text-sm font-semibold text-emerald-300 border border-emerald-900/80 hover:border-emerald-500 cursor-pointer"
           >
             Explore Customer Case Studies →
           </button>
