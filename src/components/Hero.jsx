@@ -11,15 +11,19 @@ import {
   Zap, 
   Network,
   RefreshCw,
-  Sparkles
+  Sparkles,
+  Box,
+  Layers
 } from 'lucide-react';
 import { TiltCard } from './TiltCard';
+import { Canvas3D } from './Canvas3D';
 
 export const Hero = ({ onOpenAuthModal, onOpenDemoModal, onShowToast }) => {
   const [activeNode, setActiveNode] = useState('ml');
   const [isSimulating, setIsSimulating] = useState(false);
   const [simStep, setSimStep] = useState(null);
   const [liveThroughput, setLiveThroughput] = useState(452);
+  const [is3DIsometric, setIs3DIsometric] = useState(false);
 
   // Live counter animation
   useEffect(() => {
@@ -110,13 +114,18 @@ export const Hero = ({ onOpenAuthModal, onOpenDemoModal, onShowToast }) => {
 
   return (
     <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden bg-[#05090f]">
+      {/* 3D Interactive Canvas Neural Lattice Background */}
+      <div className="absolute inset-0 z-0 overflow-hidden flex items-center justify-center opacity-70 pointer-events-none">
+        <Canvas3D className="w-full h-full max-w-6xl max-h-[750px]" />
+      </div>
+
       {/* Aurora Emerald & Teal Ambient Glowing Blobs */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[550px] bg-emerald-500/12 rounded-full blur-[160px] pointer-events-none -z-10 animate-aurora-glow" />
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[850px] h-[550px] bg-emerald-500/10 rounded-full blur-[170px] pointer-events-none -z-10 animate-aurora-glow" />
       <div className="absolute top-1/3 left-1/4 w-[450px] h-[450px] bg-teal-500/10 rounded-full blur-[140px] pointer-events-none -z-10 animate-float" />
       <div className="absolute top-1/2 right-1/4 w-[420px] h-[420px] bg-emerald-600/10 rounded-full blur-[150px] pointer-events-none -z-10 animate-float-reverse" />
       <div className="absolute inset-0 bg-matrix-grid opacity-75 -z-20 pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Top Announcement Pill with Beacon Ping & Kinetic Pop */}
         <div className="flex justify-center mb-6">
           <button
@@ -128,7 +137,7 @@ export const Hero = ({ onOpenAuthModal, onOpenDemoModal, onShowToast }) => {
               <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-400"></span>
             </span>
             <span className="font-bold text-emerald-400">AetherFlow Matrix v2.5:</span>
-            <span>Interactive Node-Graph Workflow Engine</span>
+            <span>Interactive 3D Node-Graph Workflow Engine</span>
             <ArrowRight className="w-3.5 h-3.5 text-emerald-400 group-hover:translate-x-1 transition-transform" />
           </button>
         </div>
@@ -182,16 +191,28 @@ export const Hero = ({ onOpenAuthModal, onOpenDemoModal, onShowToast }) => {
           </div>
         </div>
 
-        {/* Hero Showcase: Interactive DAG Workflow Canvas with 3D Tilt Cards */}
+        {/* Hero Showcase: Interactive DAG Workflow Canvas with 3D Isometric View Mode */}
         <div className="mt-14 relative max-w-5xl mx-auto">
           {/* Animated Pulsing Outer Glowing Border */}
           <div className="absolute -inset-1.5 bg-gradient-to-r from-emerald-500/30 via-teal-500/20 to-emerald-400/30 rounded-3xl blur-xl opacity-80 animate-pulse transition duration-1000 -z-10" />
 
-          <div className="rounded-2xl border border-emerald-900/80 bg-[#080f1a]/95 shadow-2xl backdrop-blur-xl overflow-hidden relative">
+          <div 
+            style={{
+              transform: is3DIsometric 
+                ? 'perspective(1400px) rotateX(16deg) rotateY(-4deg) rotateZ(1deg) scale(0.98)' 
+                : 'perspective(1400px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(1)',
+              transition: 'transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.6s ease',
+              transformStyle: 'preserve-3d',
+              boxShadow: is3DIsometric 
+                ? '0 35px 60px -15px rgba(0, 0, 0, 0.9), 0 0 50px -5px rgba(16, 185, 129, 0.4)' 
+                : '0 25px 50px -12px rgba(0, 0, 0, 0.5)',
+            }}
+            className="rounded-2xl border border-emerald-900/80 bg-[#080f1a]/95 shadow-2xl backdrop-blur-xl overflow-hidden relative will-change-transform"
+          >
             {/* Radar scanner sweep line effect */}
             <div className="absolute inset-x-0 h-24 bg-gradient-to-b from-transparent via-emerald-400/8 to-transparent pointer-events-none animate-radar-sweep -z-0" />
 
-            {/* Canvas Header / Controls */}
+            {/* Canvas Header / Controls with 3D Perspective Toggle */}
             <div className="flex items-center justify-between px-5 py-3.5 border-b border-emerald-950/80 bg-[#060b13] relative z-10">
               <div className="flex items-center gap-2">
                 <div className="w-3 h-3 rounded-full bg-rose-500/80 hover:scale-125 transition-transform cursor-pointer" />
@@ -203,8 +224,26 @@ export const Hero = ({ onOpenAuthModal, onOpenDemoModal, onShowToast }) => {
                 </span>
               </div>
 
-              {/* Action Buttons */}
+              {/* Action Buttons: 3D Toggle + Simulation */}
               <div className="flex items-center gap-2">
+                {/* 3D Perspective Mode Switch */}
+                <button
+                  onClick={() => {
+                    const nextMode = !is3DIsometric;
+                    setIs3DIsometric(nextMode);
+                    onShowToast('Perspective Toggled', nextMode ? 'Switched to 3D Isometric View Mode 🧊' : 'Switched to 2D Plan View');
+                  }}
+                  className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
+                    is3DIsometric
+                      ? 'bg-emerald-500 text-slate-950 font-bold shadow-md shadow-emerald-500/30'
+                      : 'bg-[#0d1a29] text-slate-300 hover:text-white border border-emerald-950 hover:border-emerald-700'
+                  }`}
+                  title="Toggle 3D Isometric Perspective"
+                >
+                  <Box className={`w-3.5 h-3.5 ${is3DIsometric ? 'rotate-12 scale-110' : ''}`} />
+                  <span>{is3DIsometric ? '3D Isometric Active' : 'Toggle 3D View'}</span>
+                </button>
+
                 <button
                   onClick={handleRunSimulation}
                   disabled={isSimulating}
@@ -281,12 +320,12 @@ export const Hero = ({ onOpenAuthModal, onOpenDemoModal, onShowToast }) => {
                   </circle>
                 </svg>
 
-                {/* Nodes Horizontal Flow Container with 3D TiltCards */}
+                {/* Nodes Horizontal Flow Container with True 3D Z-Depth Layering */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 relative z-20">
                   {/* Node 1: Ingestion */}
                   <TiltCard
-                    maxTilt={12}
-                    scale={1.04}
+                    maxTilt={14}
+                    scale={1.05}
                     onClick={() => {
                       setActiveNode('ingest');
                       onShowToast('Node Selected', 'Inspecting Data Ingestion Kafka stream telemetry.');
@@ -300,17 +339,17 @@ export const Hero = ({ onOpenAuthModal, onOpenDemoModal, onShowToast }) => {
                     {(activeNode === 'ingest' || simStep === 'ingest') && (
                       <span className="absolute -inset-0.5 rounded-2xl border border-emerald-400 animate-ping-slow pointer-events-none opacity-50" />
                     )}
-                    <div className="flex items-center justify-between mb-3">
-                      <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 spring-icon">
+                    <div style={{ transform: 'translateZ(30px)' }} className="flex items-center justify-between mb-3 transition-transform">
+                      <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 spring-icon shadow-inner">
                         <Database className="w-5 h-5" />
                       </div>
                       <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-300 border border-emerald-500/30">
                         0.8ms
                       </span>
                     </div>
-                    <h4 className="text-sm font-bold text-white mb-1 group-hover:text-emerald-300 transition-colors">Data Ingestion</h4>
-                    <p className="text-xs text-slate-400">Streaming CDC pipeline</p>
-                    <div className="mt-3 flex items-center gap-1.5 text-[11px] text-emerald-400 font-semibold">
+                    <h4 style={{ transform: 'translateZ(20px)' }} className="text-sm font-bold text-white mb-1 group-hover:text-emerald-300 transition-colors">Data Ingestion</h4>
+                    <p style={{ transform: 'translateZ(15px)' }} className="text-xs text-slate-400">Streaming CDC pipeline</p>
+                    <div style={{ transform: 'translateZ(25px)' }} className="mt-3 flex items-center gap-1.5 text-[11px] text-emerald-400 font-semibold">
                       <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
                       <span>Active</span>
                     </div>
@@ -318,8 +357,8 @@ export const Hero = ({ onOpenAuthModal, onOpenDemoModal, onShowToast }) => {
 
                   {/* Node 2: ML Training / Agent Mesh */}
                   <TiltCard
-                    maxTilt={12}
-                    scale={1.04}
+                    maxTilt={14}
+                    scale={1.05}
                     onClick={() => {
                       setActiveNode('ml');
                       onShowToast('Node Selected', 'Inspecting ML Autonomous Agent Mesh execution.');
@@ -333,17 +372,17 @@ export const Hero = ({ onOpenAuthModal, onOpenDemoModal, onShowToast }) => {
                     {(activeNode === 'ml' || simStep === 'ml') && (
                       <span className="absolute -inset-0.5 rounded-2xl border border-emerald-400 animate-ping-slow pointer-events-none opacity-50" />
                     )}
-                    <div className="flex items-center justify-between mb-3">
-                      <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 spring-icon">
+                    <div style={{ transform: 'translateZ(30px)' }} className="flex items-center justify-between mb-3 transition-transform">
+                      <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 spring-icon shadow-inner">
                         <Cpu className="w-5 h-5" />
                       </div>
                       <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-300 border border-emerald-500/30">
                         1.5ms
                       </span>
                     </div>
-                    <h4 className="text-sm font-bold text-white mb-1 group-hover:text-emerald-300 transition-colors">ML Agent Mesh</h4>
-                    <p className="text-xs text-slate-400">Autonomous reasoning</p>
-                    <div className="mt-3 flex items-center gap-1.5 text-[11px] text-emerald-400 font-semibold">
+                    <h4 style={{ transform: 'translateZ(20px)' }} className="text-sm font-bold text-white mb-1 group-hover:text-emerald-300 transition-colors">ML Agent Mesh</h4>
+                    <p style={{ transform: 'translateZ(15px)' }} className="text-xs text-slate-400">Autonomous reasoning</p>
+                    <div style={{ transform: 'translateZ(25px)' }} className="mt-3 flex items-center gap-1.5 text-[11px] text-emerald-400 font-semibold">
                       <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
                       <span>Inferencing</span>
                     </div>
@@ -351,8 +390,8 @@ export const Hero = ({ onOpenAuthModal, onOpenDemoModal, onShowToast }) => {
 
                   {/* Node 3: Model Deployment */}
                   <TiltCard
-                    maxTilt={12}
-                    scale={1.04}
+                    maxTilt={14}
+                    scale={1.05}
                     onClick={() => {
                       setActiveNode('deploy');
                       onShowToast('Node Selected', 'Inspecting Model Deployment Edge Cluster.');
@@ -366,17 +405,17 @@ export const Hero = ({ onOpenAuthModal, onOpenDemoModal, onShowToast }) => {
                     {(activeNode === 'deploy' || simStep === 'deploy') && (
                       <span className="absolute -inset-0.5 rounded-2xl border border-emerald-400 animate-ping-slow pointer-events-none opacity-50" />
                     )}
-                    <div className="flex items-center justify-between mb-3">
-                      <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 spring-icon">
+                    <div style={{ transform: 'translateZ(30px)' }} className="flex items-center justify-between mb-3 transition-transform">
+                      <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 spring-icon shadow-inner">
                         <Cloud className="w-5 h-5" />
                       </div>
                       <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-300 border border-emerald-500/30">
                         1.2ms
                       </span>
                     </div>
-                    <h4 className="text-sm font-bold text-white mb-1 group-hover:text-emerald-300 transition-colors">Deployment Node</h4>
-                    <p className="text-xs text-slate-400">32 edge regions</p>
-                    <div className="mt-3 flex items-center gap-1.5 text-[11px] text-emerald-400 font-semibold">
+                    <h4 style={{ transform: 'translateZ(20px)' }} className="text-sm font-bold text-white mb-1 group-hover:text-emerald-300 transition-colors">Deployment Node</h4>
+                    <p style={{ transform: 'translateZ(15px)' }} className="text-xs text-slate-400">32 edge regions</p>
+                    <div style={{ transform: 'translateZ(25px)' }} className="mt-3 flex items-center gap-1.5 text-[11px] text-emerald-400 font-semibold">
                       <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
                       <span>Live Sync</span>
                     </div>
@@ -384,8 +423,8 @@ export const Hero = ({ onOpenAuthModal, onOpenDemoModal, onShowToast }) => {
 
                   {/* Node 4: Real-time Analytics */}
                   <TiltCard
-                    maxTilt={12}
-                    scale={1.04}
+                    maxTilt={14}
+                    scale={1.05}
                     onClick={() => {
                       setActiveNode('analytics');
                       onShowToast('Node Selected', 'Inspecting Real-Time Telemetry & SLA health.');
@@ -399,17 +438,17 @@ export const Hero = ({ onOpenAuthModal, onOpenDemoModal, onShowToast }) => {
                     {(activeNode === 'analytics' || simStep === 'analytics') && (
                       <span className="absolute -inset-0.5 rounded-2xl border border-emerald-400 animate-ping-slow pointer-events-none opacity-50" />
                     )}
-                    <div className="flex items-center justify-between mb-3">
-                      <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 spring-icon">
+                    <div style={{ transform: 'translateZ(30px)' }} className="flex items-center justify-between mb-3 transition-transform">
+                      <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 spring-icon shadow-inner">
                         <BarChart3 className="w-5 h-5" />
                       </div>
                       <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-300 border border-emerald-500/30">
                         0.4ms
                       </span>
                     </div>
-                    <h4 className="text-sm font-bold text-white mb-1 group-hover:text-emerald-300 transition-colors">Real-time Insight</h4>
-                    <p className="text-xs text-slate-400">Predictive auditing</p>
-                    <div className="mt-3 flex items-center gap-1.5 text-[11px] text-emerald-400 font-semibold">
+                    <h4 style={{ transform: 'translateZ(20px)' }} className="text-sm font-bold text-white mb-1 group-hover:text-emerald-300 transition-colors">Real-time Insight</h4>
+                    <p style={{ transform: 'translateZ(15px)' }} className="text-xs text-slate-400">Predictive auditing</p>
+                    <div style={{ transform: 'translateZ(25px)' }} className="mt-3 flex items-center gap-1.5 text-[11px] text-emerald-400 font-semibold">
                       <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
                       <span>Operational</span>
                     </div>
