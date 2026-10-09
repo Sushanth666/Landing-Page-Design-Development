@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Sparkles, Menu, X, ArrowRight, Network } from 'lucide-react';
+import { Sparkles, Menu, X, ArrowRight } from 'lucide-react';
+import { BrandLogo } from './BrandLogo';
 
 export const Navbar = ({ onOpenAuthModal, onOpenDemoModal }) => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -32,25 +33,9 @@ export const Navbar = ({ onOpenAuthModal, onOpenDemoModal }) => {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
-          {/* Logo with rotating ambient halo & glow */}
-          <a href="#" className="flex items-center gap-3 group focus:outline-none">
-            <div className="relative">
-              {/* Spinning background glow halo */}
-              <div className="absolute -inset-1 bg-gradient-to-r from-emerald-500 via-teal-400 to-emerald-600 rounded-2xl blur-md opacity-40 group-hover:opacity-80 transition-opacity duration-500 animate-spin-slow" />
-              <div className="relative w-10 h-10 rounded-xl bg-gradient-to-tr from-emerald-600 via-emerald-400 to-teal-300 p-0.5 shadow-lg shadow-emerald-500/25 group-hover:scale-105 transition-transform duration-300">
-                <div className="w-full h-full bg-[#080d14] rounded-[10px] flex items-center justify-center">
-                  <Network className="w-5 h-5 text-emerald-400 group-hover:text-emerald-300 group-hover:rotate-12 transition-all duration-300" />
-                </div>
-              </div>
-            </div>
-            <div className="flex flex-col">
-              <span className="text-xl font-extrabold tracking-tight text-white flex items-center gap-1.5">
-                Aether<span className="text-emerald-400 group-hover:text-emerald-300 transition-colors">Flow</span>
-                <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 animate-pulse">
-                  AI Matrix
-                </span>
-              </span>
-            </div>
+          {/* Official Animated Brand Logo with moving orbiting satellite & glowing halo */}
+          <a href="#" className="focus:outline-none">
+            <BrandLogo size="md" />
           </a>
 
           {/* Desktop Navigation Links with animated hover pill */}

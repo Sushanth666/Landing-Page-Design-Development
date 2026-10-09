@@ -226,6 +226,24 @@
   animation: borderGlowPulse 2.6s ease-in-out infinite;
 }
 
+/* 12. Orbiting Satellite for Logo */
+@keyframes orbitSpin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-orbit {
+  animation: orbitSpin 3.8s linear infinite;
+}
+
+.animate-orbit-reverse {
+  animation: orbitSpin 5s linear infinite reverse;
+}
+
 /* ══════════════════════════════════════════════════════════════
    PATTERNS & SCROLLBAR
    ══════════════════════════════════════════════════════════════ */

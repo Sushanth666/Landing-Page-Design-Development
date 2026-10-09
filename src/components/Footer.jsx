@@ -5,10 +5,10 @@ import {
   Mail, 
   Phone, 
   MapPin, 
-  CheckCircle,
-  MessageSquare,
-  Network
+  CheckCircle, 
+  MessageSquare 
 } from 'lucide-react';
+import { BrandLogo } from './BrandLogo';
 
 export const Footer = ({ onShowToast }) => {
   const [emailInput, setEmailInput] = useState('');
@@ -66,17 +66,8 @@ export const Footer = ({ onShowToast }) => {
         {/* Top Newsletter & Brand Banner */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 pb-14 border-b border-emerald-950/80 items-center">
           <div className="lg:col-span-6 space-y-3">
-            <div className="flex items-center gap-3 group">
-              <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-emerald-600 via-emerald-400 to-teal-300 p-0.5 group-hover:scale-110 transition-transform">
-                <div className="w-full h-full bg-[#04080e] rounded-[10px] flex items-center justify-center">
-                  <Network className="w-4 h-4 text-emerald-400 group-hover:rotate-12 transition-transform" />
-                </div>
-              </div>
-              <span className="text-2xl font-extrabold tracking-tight text-white">
-                Aether<span className="text-emerald-400">Flow</span>
-              </span>
-            </div>
-            <p className="text-sm text-slate-300 max-w-md leading-relaxed">
+            <BrandLogo size="lg" showBadge={false} />
+            <p className="text-sm text-slate-300 max-w-md leading-relaxed pt-2">
               The intelligent workflow orchestration platform empowering high-performance teams to automate complex engineering operations and ship with fearless velocity.
             </p>
           </div>
