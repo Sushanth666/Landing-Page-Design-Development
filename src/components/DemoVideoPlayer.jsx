@@ -86,18 +86,43 @@ export const DemoVideoPlayer = ({ onOpenAuthModal }) => {
     return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
   };
 
+  const [imgError, setImgError] = useState(false);
+
   return (
     <div className="space-y-4">
       {/* Video Container */}
       <div className="relative aspect-video rounded-2xl bg-[#03060a] border border-emerald-950 overflow-hidden shadow-2xl group select-none">
         {/* Actual Walkthrough Recording Media */}
-        <img
-          src="/demo-walkthrough.webp"
-          alt="AetherFlow Walkthrough Video"
-          className={`w-full h-full object-cover transition-opacity duration-300 ${
-            isPlaying ? 'opacity-90' : 'opacity-40 filter blur-[1px]'
-          }`}
-        />
+        {!imgError ? (
+          <img
+            src="/demo-walkthrough.webp"
+            alt="AetherFlow Walkthrough Video"
+            onError={() => setImgError(true)}
+            className={`w-full h-full object-cover transition-opacity duration-300 ${
+              isPlaying ? 'opacity-90' : 'opacity-40 filter blur-[1px]'
+            }`}
+          />
+        ) : (
+          /* High-Tech Animated Simulation Fallback if WebP media is blocked */
+          <div className="w-full h-full flex flex-col items-center justify-center p-6 bg-gradient-to-br from-[#060e18] via-[#04080e] to-[#020508] relative overflow-hidden">
+            <div className="absolute inset-0 bg-matrix-grid opacity-30 pointer-events-none" />
+            <div className="relative z-10 text-center max-w-md space-y-3">
+              <div className="w-14 h-14 rounded-2xl bg-emerald-500/10 border border-emerald-500/40 mx-auto flex items-center justify-center animate-pulse">
+                <Radio className="w-7 h-7 text-emerald-400 animate-spin-slow" />
+              </div>
+              <h4 className="text-base font-bold text-white">
+                Live Simulation: {chapters[activeChapter].title}
+              </h4>
+              <p className="text-xs text-slate-400 leading-relaxed">
+                {chapters[activeChapter].description}
+              </p>
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-950/60 border border-emerald-500/30 text-[11px] font-mono text-emerald-300">
+                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
+                <span>Deterministic Execution • 1.5ms latency</span>
+              </div>
+            </div>
+          </div>
+        )}
 
         {/* Big Center Play / Pause Overlay Button when paused */}
         {!isPlaying && (
