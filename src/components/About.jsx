@@ -61,7 +61,7 @@ export const About = ({ onShowToast }) => {
   ];
 
   return (
-    <section id="about" className="py-24 relative overflow-hidden bg-[#05090f] border-t border-emerald-950/60">
+    <section id="about" className="py-24 relative overflow-hidden bg-[#05090f]/70 border-t border-emerald-950/60">
       {/* Decorative ambient glowing auras */}
       <div className="absolute top-1/2 left-0 w-96 h-96 bg-emerald-500/8 rounded-full blur-[140px] pointer-events-none animate-float" />
       <div className="absolute bottom-0 right-0 w-96 h-96 bg-teal-500/8 rounded-full blur-[140px] pointer-events-none animate-float-reverse" />

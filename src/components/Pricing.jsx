@@ -89,7 +89,7 @@ export const Pricing = ({ onOpenAuthModal, onShowToast }) => {
   ];
 
   return (
-    <section id="pricing" className="py-24 relative overflow-hidden bg-[#05090f] border-t border-emerald-950/60">
+    <section id="pricing" className="py-24 relative overflow-hidden bg-[#05090f]/75 border-t border-emerald-950/60">
       {/* Background accents */}
       <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[700px] h-[500px] bg-emerald-500/8 rounded-full blur-[160px] pointer-events-none animate-aurora-glow" />
 

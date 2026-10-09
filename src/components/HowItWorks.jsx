@@ -89,7 +89,7 @@ export const HowItWorks = ({ onShowToast, onOpenAuthModal }) => {
   const CurrentIcon = currentStepData.icon;
 
   return (
-    <section id="how-it-works" className="py-24 relative overflow-hidden bg-[#05090f] border-t border-emerald-950/60">
+    <section id="how-it-works" className="py-24 relative overflow-hidden bg-[#05090f]/75 border-t border-emerald-950/60">
       {/* Background accents */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-emerald-500/5 rounded-full blur-[140px] pointer-events-none animate-aurora-glow" />
 

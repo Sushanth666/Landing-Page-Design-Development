@@ -10,6 +10,7 @@ import { Footer } from './components/Footer';
 import { ToastContainer } from './components/Toast';
 import { Modal } from './components/Modal';
 import { DemoVideoPlayer } from './components/DemoVideoPlayer';
+import { Canvas3D } from './components/Canvas3D';
 import { ArrowUp, Play, CheckCircle, Sparkles, Send } from 'lucide-react';
 
 export default function App() {
@@ -76,6 +77,9 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-[#05090f] text-slate-100 flex flex-col font-sans selection:bg-emerald-500 selection:text-slate-950 relative">
+      {/* Global 3D Neural Particle Lattice & Connecting Links across the entire project */}
+      <Canvas3D isGlobal={true} />
+
       {/* 1. Navbar */}
       <Navbar
         onOpenAuthModal={handleOpenAuthModal}

@@ -113,11 +113,7 @@ export const Hero = ({ onOpenAuthModal, onOpenDemoModal, onShowToast }) => {
   const currentNode = nodes[activeNode];
 
   return (
-    <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden bg-[#05090f]">
-      {/* 3D Interactive Canvas Neural Lattice Background */}
-      <div className="absolute inset-0 z-0 overflow-hidden flex items-center justify-center opacity-70 pointer-events-none">
-        <Canvas3D className="w-full h-full max-w-6xl max-h-[750px]" />
-      </div>
+    <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden bg-transparent">
 
       {/* Aurora Emerald & Teal Ambient Glowing Blobs */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[850px] h-[550px] bg-emerald-500/10 rounded-full blur-[170px] pointer-events-none -z-10 animate-aurora-glow" />

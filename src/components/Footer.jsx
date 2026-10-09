@@ -58,7 +58,7 @@ export const Footer = ({ onShowToast }) => {
   };
 
   return (
-    <footer className="bg-[#04080e] border-t border-emerald-950/80 pt-16 pb-12 relative overflow-hidden">
+    <footer className="bg-[#04080e]/80 border-t border-emerald-950/80 pt-16 pb-12 relative overflow-hidden">
       {/* Background accents */}
       <div className="absolute top-0 right-1/3 w-80 h-80 bg-emerald-500/5 rounded-full blur-[140px] pointer-events-none animate-float" />
 

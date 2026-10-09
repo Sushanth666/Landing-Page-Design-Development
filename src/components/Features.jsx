@@ -94,7 +94,7 @@ export const Features = ({ onShowToast, onOpenAuthModal }) => {
     : features.filter((f) => f.category === activeCategory);
 
   return (
-    <section id="features" className="py-24 relative overflow-hidden bg-[#05090f]">
+    <section id="features" className="py-24 relative overflow-hidden bg-[#05090f]/70 border-t border-emerald-950/40">
       {/* Background glow */}
       <div className="absolute top-1/3 right-1/4 w-96 h-96 bg-emerald-500/8 rounded-full blur-[140px] pointer-events-none animate-float" />
       <div className="absolute bottom-1/4 left-1/3 w-80 h-80 bg-teal-500/8 rounded-full blur-[130px] pointer-events-none animate-float-reverse" />
