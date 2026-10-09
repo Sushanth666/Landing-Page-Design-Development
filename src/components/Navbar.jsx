@@ -56,14 +56,8 @@ export const Navbar = ({ onOpenAuthModal, onOpenDemoModal }) => {
             ))}
           </nav>
 
-          {/* Desktop CTA Buttons with Shimmer & Glow */}
-          <div className="hidden md:flex items-center gap-3">
-            <button
-              onClick={onOpenDemoModal}
-              className="text-sm font-medium text-slate-300 hover:text-emerald-300 px-3.5 py-2 rounded-xl hover:bg-emerald-950/40 border border-transparent hover:border-emerald-900/50 transition-all duration-200 cursor-pointer active:scale-95"
-            >
-              Watch Demo
-            </button>
+          {/* Desktop Primary CTA Button */}
+          <div className="hidden md:flex items-center">
             <button
               onClick={() => onOpenAuthModal('Explore Platform')}
               className="shimmer-trigger relative group inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold text-sm text-slate-950 bg-gradient-to-r from-emerald-400 via-emerald-300 to-teal-300 hover:from-emerald-300 hover:to-teal-200 shadow-lg shadow-emerald-500/25 hover:shadow-emerald-500/50 hover:-translate-y-0.5 active:translate-y-0 active:scale-95 transition-all duration-200 cursor-pointer"
@@ -100,15 +94,6 @@ export const Navbar = ({ onOpenAuthModal, onOpenDemoModal }) => {
                 </a>
               ))}
               <div className="pt-4 mt-2 border-t border-emerald-950 flex flex-col gap-2.5">
-                <button
-                  onClick={() => {
-                    setMobileMenuOpen(false);
-                    onOpenDemoModal();
-                  }}
-                  className="w-full py-2.5 text-sm font-semibold text-slate-300 hover:text-white bg-[#0d1a29] rounded-xl border border-emerald-950 transition-colors"
-                >
-                  Watch Demo
-                </button>
                 <button
                   onClick={() => {
                     setMobileMenuOpen(false);
