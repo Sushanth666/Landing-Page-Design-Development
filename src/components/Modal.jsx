@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { X } from 'lucide-react';
 
-export const Modal = ({ isOpen, onClose, title, children }) => {
+export const Modal = ({ isOpen, onClose, title, maxWidth = 'max-w-lg', children }) => {
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === 'Escape' && isOpen) {
@@ -31,18 +31,20 @@ export const Modal = ({ isOpen, onClose, title, children }) => {
       />
 
       {/* Modal Dialog */}
-      <div className="relative w-full max-w-lg bg-[#09121e] border border-emerald-950 rounded-2xl shadow-2xl overflow-hidden z-10 animate-in fade-in zoom-in-95 duration-200">
-        <div className="flex items-center justify-between px-6 py-5 border-b border-emerald-950 bg-[#060b13]">
-          <h3 className="text-lg font-bold text-white tracking-tight">{title}</h3>
+      <div className={`relative w-full ${maxWidth} bg-[#09121e] border border-emerald-950 rounded-2xl shadow-2xl overflow-hidden z-10 animate-in fade-in zoom-in-95 duration-200`}>
+        <div className="flex items-center justify-between px-6 py-4 border-b border-emerald-950 bg-[#060b13]">
+          <h3 className="text-base sm:text-lg font-bold text-white tracking-tight flex items-center gap-2">
+            <span>{title}</span>
+          </h3>
           <button
             onClick={onClose}
-            className="text-slate-400 hover:text-white p-1 rounded-lg hover:bg-emerald-950/40 transition-colors"
+            className="text-slate-400 hover:text-white p-1 rounded-lg hover:bg-emerald-950/40 transition-colors cursor-pointer"
             aria-label="Close modal"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
-        <div className="p-6">
+        <div className="p-5 sm:p-6 max-h-[85vh] overflow-y-auto">
           {children}
         </div>
       </div>

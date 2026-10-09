@@ -9,6 +9,7 @@ import { Pricing } from './components/Pricing';
 import { Footer } from './components/Footer';
 import { ToastContainer } from './components/Toast';
 import { Modal } from './components/Modal';
+import { DemoVideoPlayer } from './components/DemoVideoPlayer';
 import { ArrowUp, Play, CheckCircle, Sparkles, Send } from 'lucide-react';
 
 export default function App() {
@@ -137,6 +138,7 @@ export default function App() {
         isOpen={authModalOpen}
         onClose={() => setAuthModalOpen(false)}
         title={authModalAction}
+        maxWidth="max-w-lg"
       >
         <div className="space-y-4">
           <p className="text-sm text-slate-300 leading-relaxed">
@@ -188,7 +190,7 @@ export default function App() {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="shimmer-trigger w-full py-3 px-4 rounded-xl text-sm font-bold text-slate-950 bg-emerald-400 hover:bg-emerald-300 disabled:opacity-50 transition-all hover:scale-102 active:scale-95 flex items-center justify-center gap-2 cursor-pointer shadow-lg shadow-emerald-500/25"
+                className="shimmer-trigger btn-magnetic w-full py-3 px-4 rounded-xl text-sm font-bold text-slate-950 bg-emerald-400 hover:bg-emerald-300 disabled:opacity-50 transition-all flex items-center justify-center gap-2 cursor-pointer shadow-lg shadow-emerald-500/25"
               >
                 {isSubmitting ? (
                   <span className="flex items-center gap-2">
@@ -211,58 +213,38 @@ export default function App() {
         </div>
       </Modal>
 
-      {/* Interactive Demo Video Walkthrough Modal */}
+      {/* Interactive Demo Video Walkthrough Modal with Real Playable Video Player */}
       <Modal
         isOpen={demoModalOpen}
         onClose={() => setDemoModalOpen(false)}
         title="AetherFlow 2.5 Architecture Walkthrough"
+        maxWidth="max-w-3xl"
       >
         <div className="space-y-4">
-          <div className="relative aspect-video rounded-xl bg-[#060b13] border border-emerald-950 overflow-hidden flex flex-col items-center justify-center p-6 text-center group">
-            <div className="w-16 h-16 rounded-full bg-emerald-500/10 text-emerald-400 flex items-center justify-center mb-3 group-hover:scale-115 transition-all duration-300 border border-emerald-500/30 group-hover:bg-emerald-500/20 group-hover:shadow-lg group-hover:shadow-emerald-500/20">
-              <Play className="w-8 h-8 fill-emerald-400 text-emerald-400 translate-x-0.5 group-hover:scale-110 transition-transform" />
-            </div>
-            <h4 className="text-base font-bold text-white">Interactive Video Walkthrough</h4>
-            <p className="text-xs text-slate-400 max-w-sm mt-1">
-              Explore how autonomous agent swarms review PRs, diagnose telemetry anomalies, and synchronize cross-functional teams in under 3 minutes.
-            </p>
-          </div>
+          {/* Playable Video Player */}
+          <DemoVideoPlayer onOpenAuthModal={handleOpenAuthModal} />
 
-          <div className="p-4 rounded-xl bg-[#060b13] border border-emerald-950 text-xs text-slate-300 space-y-2">
-            <div className="font-semibold text-white flex items-center gap-1.5">
-              <Sparkles className="w-3.5 h-3.5 text-emerald-400 animate-pulse" />
-              <span>Key Highlights Covered in Demo:</span>
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-3 border-t border-emerald-950">
+            <span className="text-xs text-slate-400">
+              Interactive 1080p preview • Continuous real-time pipeline recording
+            </span>
+            <div className="flex items-center gap-3">
+              <button
+                onClick={() => setDemoModalOpen(false)}
+                className="px-4 py-2 rounded-xl text-xs font-semibold text-slate-300 hover:text-white bg-[#0d1a29] hover:bg-[#122438] transition-colors cursor-pointer"
+              >
+                Close Player
+              </button>
+              <button
+                onClick={() => {
+                  setDemoModalOpen(false);
+                  handleOpenAuthModal('Get Started After Demo');
+                }}
+                className="shimmer-trigger btn-magnetic px-4 py-2 rounded-xl text-xs font-bold text-slate-950 bg-emerald-400 hover:bg-emerald-300 transition-all cursor-pointer shadow-md"
+              >
+                Start Free Trial Now
+              </button>
             </div>
-            <div className="flex items-center gap-2 text-slate-400">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-              <span>Visual DAG node compilation & live simulation</span>
-            </div>
-            <div className="flex items-center gap-2 text-slate-400">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-              <span>1.5ms deterministic runtime execution across edge clusters</span>
-            </div>
-            <div className="flex items-center gap-2 text-slate-400">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-              <span>Self-healing rollback triggered within 8 seconds of failure</span>
-            </div>
-          </div>
-
-          <div className="flex justify-end gap-3 pt-2">
-            <button
-              onClick={() => setDemoModalOpen(false)}
-              className="px-4 py-2 rounded-xl text-xs font-semibold text-slate-300 hover:text-white bg-[#0d1a29] hover:bg-[#122438] transition-colors"
-            >
-              Close
-            </button>
-            <button
-              onClick={() => {
-                setDemoModalOpen(false);
-                handleOpenAuthModal('Get Started After Demo');
-              }}
-              className="shimmer-trigger px-4 py-2 rounded-xl text-xs font-bold text-slate-950 bg-emerald-400 hover:bg-emerald-300 hover:scale-105 active:scale-95 transition-all"
-            >
-              Start Free Trial Now
-            </button>
           </div>
         </div>
       </Modal>
