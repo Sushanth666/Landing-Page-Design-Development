@@ -14,7 +14,7 @@ import { ArrowUp, Play, CheckCircle, Sparkles, Send } from 'lucide-react';
 export default function App() {
   const [toasts, setToasts] = useState([]);
   const [authModalOpen, setAuthModalOpen] = useState(false);
-  const [authModalAction, setAuthModalAction] = useState('Get Started');
+  const [authModalAction, setAuthModalAction] = useState('Explore Platform');
   const [demoModalOpen, setDemoModalOpen] = useState(false);
   const [showBackToTop, setShowBackToTop] = useState(false);
 
@@ -45,7 +45,7 @@ export default function App() {
     setToasts((prev) => prev.filter((t) => t.id !== id));
   };
 
-  const handleOpenAuthModal = (actionName = 'Get Started') => {
+  const handleOpenAuthModal = (actionName = 'Explore Platform') => {
     setAuthModalAction(actionName);
     setAuthModalOpen(true);
   };
@@ -61,8 +61,8 @@ export default function App() {
       setIsSubmitting(false);
       setAuthModalOpen(false);
       showToast(
-        'Workspace Created!',
-        `Welcome aboard, ${formData.name || 'Engineer'}! We sent activation details to ${formData.email}.`,
+        'Workspace Provisioned!',
+        `Welcome to AetherFlow, ${formData.name || 'Engineer'}! Activation details dispatched to ${formData.email}.`,
         'success'
       );
       setFormData({ name: '', email: '', company: '' });
@@ -74,7 +74,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col font-sans selection:bg-indigo-500 selection:text-white relative">
+    <div className="min-h-screen bg-[#060b11] text-slate-100 flex flex-col font-sans selection:bg-emerald-500 selection:text-slate-950 relative">
       {/* 1. Navbar */}
       <Navbar
         onOpenAuthModal={handleOpenAuthModal}
@@ -122,10 +122,10 @@ export default function App() {
       {showBackToTop && (
         <button
           onClick={scrollToTop}
-          className="fixed bottom-6 left-6 z-40 p-3 rounded-full bg-slate-900/90 border border-slate-700/80 text-slate-300 hover:text-white hover:bg-slate-800 shadow-xl backdrop-blur-md transition-all duration-300 hover:-translate-y-1 cursor-pointer"
+          className="fixed bottom-6 left-6 z-40 p-3 rounded-full bg-[#0b1420]/90 border border-emerald-950 text-emerald-400 hover:text-white hover:bg-emerald-950/60 shadow-xl backdrop-blur-md transition-all duration-300 hover:-translate-y-1 cursor-pointer"
           aria-label="Scroll back to top"
         >
-          <ArrowUp className="w-5 h-5 text-indigo-400" />
+          <ArrowUp className="w-5 h-5 text-emerald-400" />
         </button>
       )}
 
@@ -145,7 +145,7 @@ export default function App() {
 
           <form onSubmit={handleAuthSubmit} className="space-y-3.5 pt-2">
             <div>
-              <label className="block text-xs font-semibold text-slate-300 mb-1">
+              <label className="block text-xs font-semibold text-emerald-300 mb-1">
                 Full Name
               </label>
               <input
@@ -153,12 +153,12 @@ export default function App() {
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                 placeholder="Alex Morgan"
-                className="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-slate-700 text-sm text-white focus:outline-none focus:border-indigo-500"
+                className="w-full px-3.5 py-2.5 rounded-xl bg-[#060b13] border border-emerald-950 text-sm text-white focus:outline-none focus:border-emerald-500"
               />
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-slate-300 mb-1">
+              <label className="block text-xs font-semibold text-emerald-300 mb-1">
                 Work Email *
               </label>
               <input
@@ -167,12 +167,12 @@ export default function App() {
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                 placeholder="alex@company.com"
-                className="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-slate-700 text-sm text-white focus:outline-none focus:border-indigo-500"
+                className="w-full px-3.5 py-2.5 rounded-xl bg-[#060b13] border border-emerald-950 text-sm text-white focus:outline-none focus:border-emerald-500"
               />
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-slate-300 mb-1">
+              <label className="block text-xs font-semibold text-emerald-300 mb-1">
                 Company / Team Name
               </label>
               <input
@@ -180,7 +180,7 @@ export default function App() {
                 value={formData.company}
                 onChange={(e) => setFormData({ ...formData, company: e.target.value })}
                 placeholder="Acme Corp"
-                className="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-slate-700 text-sm text-white focus:outline-none focus:border-indigo-500"
+                className="w-full px-3.5 py-2.5 rounded-xl bg-[#060b13] border border-emerald-950 text-sm text-white focus:outline-none focus:border-emerald-500"
               />
             </div>
 
@@ -188,7 +188,7 @@ export default function App() {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full py-3 px-4 rounded-xl text-sm font-semibold text-white bg-indigo-600 hover:bg-indigo-500 disabled:opacity-50 transition-colors flex items-center justify-center gap-2 cursor-pointer shadow-lg shadow-indigo-600/30"
+                className="w-full py-3 px-4 rounded-xl text-sm font-bold text-slate-950 bg-emerald-400 hover:bg-emerald-300 disabled:opacity-50 transition-colors flex items-center justify-center gap-2 cursor-pointer shadow-lg shadow-emerald-500/20"
               >
                 {isSubmitting ? (
                   <span>Provisioning Workspace...</span>
@@ -202,7 +202,7 @@ export default function App() {
             </div>
           </form>
 
-          <p className="text-[11px] text-center text-slate-400 pt-2 border-t border-slate-800">
+          <p className="text-[11px] text-center text-slate-400 pt-2 border-t border-emerald-950">
             🔒 By continuing, you agree to AetherFlow's Terms of Service and Privacy Policy. No credit card required.
           </p>
         </div>
@@ -215,9 +215,9 @@ export default function App() {
         title="AetherFlow 2.5 Architecture Walkthrough"
       >
         <div className="space-y-4">
-          <div className="relative aspect-video rounded-xl bg-slate-950 border border-slate-800 overflow-hidden flex flex-col items-center justify-center p-6 text-center group">
-            <div className="w-16 h-16 rounded-full bg-indigo-600/20 text-indigo-400 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
-              <Play className="w-8 h-8 fill-indigo-400 text-indigo-400 translate-x-0.5" />
+          <div className="relative aspect-video rounded-xl bg-[#060b13] border border-emerald-950 overflow-hidden flex flex-col items-center justify-center p-6 text-center group">
+            <div className="w-16 h-16 rounded-full bg-emerald-500/10 text-emerald-400 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform border border-emerald-500/30">
+              <Play className="w-8 h-8 fill-emerald-400 text-emerald-400 translate-x-0.5" />
             </div>
             <h4 className="text-base font-bold text-white">Interactive Video Walkthrough</h4>
             <p className="text-xs text-slate-400 max-w-sm mt-1">
@@ -225,21 +225,21 @@ export default function App() {
             </p>
           </div>
 
-          <div className="p-4 rounded-xl bg-slate-950 border border-slate-800 text-xs text-slate-300 space-y-2">
+          <div className="p-4 rounded-xl bg-[#060b13] border border-emerald-950 text-xs text-slate-300 space-y-2">
             <div className="font-semibold text-white flex items-center gap-1.5">
-              <Sparkles className="w-3.5 h-3.5 text-indigo-400" />
+              <Sparkles className="w-3.5 h-3.5 text-emerald-400" />
               <span>Key Highlights Covered in Demo:</span>
             </div>
             <div className="flex items-center gap-2 text-slate-400">
-              <span className="w-1.5 h-1.5 rounded-full bg-indigo-400"></span>
-              <span>1-click OAuth repository connection & zero-config indexing</span>
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+              <span>Visual DAG node compilation & live simulation</span>
             </div>
             <div className="flex items-center gap-2 text-slate-400">
-              <span className="w-1.5 h-1.5 rounded-full bg-indigo-400"></span>
-              <span>Live code review agent spotting AST memory leaks</span>
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+              <span>1.5ms deterministic runtime execution across edge clusters</span>
             </div>
             <div className="flex items-center gap-2 text-slate-400">
-              <span className="w-1.5 h-1.5 rounded-full bg-indigo-400"></span>
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
               <span>Self-healing rollback triggered within 8 seconds of failure</span>
             </div>
           </div>
@@ -247,7 +247,7 @@ export default function App() {
           <div className="flex justify-end gap-3 pt-2">
             <button
               onClick={() => setDemoModalOpen(false)}
-              className="px-4 py-2 rounded-xl text-xs font-semibold text-slate-300 hover:text-white bg-slate-800 hover:bg-slate-700 transition-colors"
+              className="px-4 py-2 rounded-xl text-xs font-semibold text-slate-300 hover:text-white bg-[#0d1a29] hover:bg-[#122438] transition-colors"
             >
               Close
             </button>
@@ -256,7 +256,7 @@ export default function App() {
                 setDemoModalOpen(false);
                 handleOpenAuthModal('Get Started After Demo');
               }}
-              className="px-4 py-2 rounded-xl text-xs font-semibold text-white bg-indigo-600 hover:bg-indigo-500 transition-colors"
+              className="px-4 py-2 rounded-xl text-xs font-bold text-slate-950 bg-emerald-400 hover:bg-emerald-300 transition-colors"
             >
               Start Free Trial Now
             </button>

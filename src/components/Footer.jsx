@@ -6,7 +6,8 @@ import {
   Phone, 
   MapPin, 
   CheckCircle,
-  MessageSquare
+  MessageSquare,
+  Network
 } from 'lucide-react';
 
 export const Footer = ({ onShowToast }) => {
@@ -27,10 +28,10 @@ export const Footer = ({ onShowToast }) => {
   const footerLinks = {
     Product: [
       { name: 'Autonomous Agent Mesh', href: '#features' },
-      { name: 'Pipeline Telemetry', href: '#features' },
+      { name: 'Visual DAG Workflow Canvas', href: '#features' },
+      { name: 'Real-Time Data Streams', href: '#features' },
       { name: '200+ Stack Connectors', href: '#features' },
-      { name: 'Self-Healing Runbooks', href: '#features' },
-      { name: 'Enterprise Security', href: '#about' },
+      { name: 'Zero-Trust Security', href: '#about' },
       { name: 'Release Changelog v2.5', href: '#' },
     ],
     Solutions: [
@@ -42,7 +43,7 @@ export const Footer = ({ onShowToast }) => {
     ],
     Resources: [
       { name: 'API & Webhook Docs', href: '#' },
-      { name: 'Architecture Blueprints', href: '#' },
+      { name: 'DAG Architecture Blueprints', href: '#' },
       { name: 'Developer Discord Community', href: '#' },
       { name: 'System Status (99.98%)', href: '#' },
       { name: 'Open Source SDKs', href: '#' },
@@ -57,22 +58,22 @@ export const Footer = ({ onShowToast }) => {
   };
 
   return (
-    <footer className="bg-slate-950 border-t border-slate-800/80 pt-16 pb-12 relative overflow-hidden">
+    <footer className="bg-[#05090f] border-t border-emerald-950/80 pt-16 pb-12 relative overflow-hidden">
       {/* Background accents */}
-      <div className="absolute top-0 right-1/3 w-80 h-80 bg-indigo-500/5 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute top-0 right-1/3 w-80 h-80 bg-emerald-500/5 rounded-full blur-[140px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Top Newsletter & Brand Banner */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 pb-14 border-b border-slate-800/80 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 pb-14 border-b border-emerald-950/80 items-center">
           <div className="lg:col-span-6 space-y-3">
             <div className="flex items-center gap-3">
-              <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-indigo-600 via-indigo-500 to-cyan-400 p-0.5">
-                <div className="w-full h-full bg-slate-950 rounded-[10px] flex items-center justify-center">
-                  <Sparkles className="w-4 h-4 text-indigo-400" />
+              <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-emerald-600 via-emerald-400 to-teal-300 p-0.5">
+                <div className="w-full h-full bg-[#05090f] rounded-[10px] flex items-center justify-center">
+                  <Network className="w-4 h-4 text-emerald-400" />
                 </div>
               </div>
               <span className="text-2xl font-extrabold tracking-tight text-white">
-                Aether<span className="text-indigo-400">Flow</span>
+                Aether<span className="text-emerald-400">Flow</span>
               </span>
             </div>
             <p className="text-sm text-slate-300 max-w-md leading-relaxed">
@@ -82,7 +83,7 @@ export const Footer = ({ onShowToast }) => {
 
           {/* Newsletter subscription form */}
           <div className="lg:col-span-6">
-            <div className="p-5 rounded-2xl bg-slate-900/80 border border-slate-800">
+            <div className="p-5 rounded-2xl bg-[#09121d] border border-emerald-950">
               <h4 className="text-sm font-bold text-white mb-1">
                 Stay updated with autonomous workflow innovations
               </h4>
@@ -96,11 +97,11 @@ export const Footer = ({ onShowToast }) => {
                   value={emailInput}
                   onChange={(e) => setEmailInput(e.target.value)}
                   placeholder="Enter your work email address..."
-                  className="flex-1 px-4 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-sm text-white placeholder-slate-400 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500"
+                  className="flex-1 px-4 py-2.5 rounded-xl bg-[#060b13] border border-emerald-950 text-sm text-white placeholder-slate-400 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500"
                 />
                 <button
                   type="submit"
-                  className="px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-sm font-semibold text-white flex items-center justify-center gap-2 transition-colors cursor-pointer shrink-0"
+                  className="px-5 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-sm font-bold text-slate-950 flex items-center justify-center gap-2 transition-colors cursor-pointer shrink-0"
                 >
                   <span>Subscribe</span>
                   <Send className="w-3.5 h-3.5" />
@@ -117,11 +118,11 @@ export const Footer = ({ onShowToast }) => {
         </div>
 
         {/* Middle Links & Contact Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 py-14 border-b border-slate-800/80">
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 py-14 border-b border-emerald-950/80">
           {/* 4 Category link columns */}
           {Object.entries(footerLinks).map(([category, links]) => (
             <div key={category}>
-              <h4 className="text-xs font-bold uppercase tracking-wider text-slate-300 mb-4">
+              <h4 className="text-xs font-bold uppercase tracking-wider text-emerald-400/90 mb-4">
                 {category}
               </h4>
               <ul className="space-y-2.5">
@@ -129,7 +130,7 @@ export const Footer = ({ onShowToast }) => {
                   <li key={link.name}>
                     <a
                       href={link.href}
-                      className="text-xs text-slate-400 hover:text-white transition-colors"
+                      className="text-xs text-slate-400 hover:text-emerald-300 transition-colors"
                     >
                       {link.name}
                     </a>
@@ -141,30 +142,30 @@ export const Footer = ({ onShowToast }) => {
 
           {/* Contact Information Column */}
           <div className="col-span-2 md:col-span-4 lg:col-span-1">
-            <h4 className="text-xs font-bold uppercase tracking-wider text-slate-300 mb-4">
+            <h4 className="text-xs font-bold uppercase tracking-wider text-emerald-400/90 mb-4">
               Get in Touch
             </h4>
             <div className="space-y-3 text-xs text-slate-400">
               <div className="flex items-start gap-2.5">
-                <Mail className="w-4 h-4 text-indigo-400 shrink-0 mt-0.5" />
-                <a href="mailto:support@aetherflow.dev" className="hover:text-white transition-colors">
+                <Mail className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                <a href="mailto:support@aetherflow.dev" className="hover:text-emerald-300 transition-colors">
                   support@aetherflow.dev
                 </a>
               </div>
               <div className="flex items-start gap-2.5">
-                <Phone className="w-4 h-4 text-indigo-400 shrink-0 mt-0.5" />
-                <a href="tel:+18884207857" className="hover:text-white transition-colors">
-                  +1 (888) 420-PULSE
+                <Phone className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                <a href="tel:+18884207857" className="hover:text-emerald-300 transition-colors">
+                  +1 (888) 420-FLOW
                 </a>
               </div>
               <div className="flex items-start gap-2.5">
-                <MapPin className="w-4 h-4 text-indigo-400 shrink-0 mt-0.5" />
+                <MapPin className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
                 <span>548 Market St, Suite 392, San Francisco, CA</span>
               </div>
               <div className="pt-2">
-                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-900 border border-slate-800 text-[11px] text-emerald-400">
+                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#080f1a] border border-emerald-950 text-[11px] text-emerald-400 font-medium">
                   <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                  <span>All Systems Operational</span>
+                  <span>All Systems Operational (99.98%)</span>
                 </div>
               </div>
             </div>
@@ -184,7 +185,7 @@ export const Footer = ({ onShowToast }) => {
               href="https://x.com"
               target="_blank"
               rel="noreferrer"
-              className="p-2.5 rounded-lg bg-slate-900 hover:text-white hover:bg-slate-800 transition-colors"
+              className="p-2.5 rounded-lg bg-[#09121d] hover:text-emerald-300 hover:bg-[#0e1c2d] transition-colors"
               aria-label="Twitter / X"
             >
               <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
@@ -196,7 +197,7 @@ export const Footer = ({ onShowToast }) => {
               href="https://github.com"
               target="_blank"
               rel="noreferrer"
-              className="p-2.5 rounded-lg bg-slate-900 hover:text-white hover:bg-slate-800 transition-colors"
+              className="p-2.5 rounded-lg bg-[#09121d] hover:text-emerald-300 hover:bg-[#0e1c2d] transition-colors"
               aria-label="GitHub"
             >
               <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
@@ -208,7 +209,7 @@ export const Footer = ({ onShowToast }) => {
               href="https://linkedin.com"
               target="_blank"
               rel="noreferrer"
-              className="p-2.5 rounded-lg bg-slate-900 hover:text-white hover:bg-slate-800 transition-colors"
+              className="p-2.5 rounded-lg bg-[#09121d] hover:text-emerald-300 hover:bg-[#0e1c2d] transition-colors"
               aria-label="LinkedIn"
             >
               <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
@@ -220,22 +221,10 @@ export const Footer = ({ onShowToast }) => {
               href="https://discord.com"
               target="_blank"
               rel="noreferrer"
-              className="p-2.5 rounded-lg bg-slate-900 hover:text-white hover:bg-slate-800 transition-colors"
+              className="p-2.5 rounded-lg bg-[#09121d] hover:text-emerald-300 hover:bg-[#0e1c2d] transition-colors"
               aria-label="Discord"
             >
               <MessageSquare className="w-4 h-4" />
-            </a>
-            {/* YouTube */}
-            <a
-              href="https://youtube.com"
-              target="_blank"
-              rel="noreferrer"
-              className="p-2.5 rounded-lg bg-slate-900 hover:text-white hover:bg-slate-800 transition-colors"
-              aria-label="YouTube"
-            >
-              <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
-                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
-              </svg>
             </a>
           </div>
         </div>

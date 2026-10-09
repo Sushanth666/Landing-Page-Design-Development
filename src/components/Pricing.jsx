@@ -22,7 +22,7 @@ export const Pricing = ({ onOpenAuthModal, onShowToast }) => {
         '7-day execution audit log',
       ],
       ctaText: 'Get Started Free',
-      ctaStyle: 'bg-slate-800 hover:bg-slate-700 text-white border border-slate-700',
+      ctaStyle: 'bg-[#0d1a29] hover:bg-[#122438] text-slate-200 border border-emerald-950',
     },
     {
       id: 'pro',
@@ -43,7 +43,7 @@ export const Pricing = ({ onOpenAuthModal, onShowToast }) => {
         'Priority 24/7 Slack & email support',
       ],
       ctaText: 'Start 14-Day Pro Trial',
-      ctaStyle: 'bg-gradient-to-r from-indigo-600 via-indigo-500 to-cyan-500 hover:from-indigo-500 hover:to-cyan-400 text-white shadow-lg shadow-indigo-500/30',
+      ctaStyle: 'bg-gradient-to-r from-emerald-400 via-emerald-300 to-teal-300 hover:from-emerald-300 hover:to-teal-200 text-slate-950 font-bold shadow-lg shadow-emerald-500/25',
     },
     {
       id: 'enterprise',
@@ -64,7 +64,7 @@ export const Pricing = ({ onOpenAuthModal, onShowToast }) => {
         'Dedicated solutions engineer & private Slack channel',
       ],
       ctaText: 'Contact Enterprise Sales',
-      ctaStyle: 'bg-slate-800 hover:bg-slate-750 text-white border border-slate-700 hover:border-slate-600',
+      ctaStyle: 'bg-[#0d1a29] hover:bg-[#122438] text-slate-200 border border-emerald-950 hover:border-emerald-800',
     },
   ];
 
@@ -88,14 +88,14 @@ export const Pricing = ({ onOpenAuthModal, onShowToast }) => {
   ];
 
   return (
-    <section id="pricing" className="py-24 relative overflow-hidden bg-slate-950/80 border-t border-slate-900">
+    <section id="pricing" className="py-24 relative overflow-hidden bg-[#060b11] border-t border-emerald-950/60">
       {/* Background accents */}
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[700px] h-[500px] bg-indigo-600/10 rounded-full blur-[160px] pointer-events-none" />
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[700px] h-[500px] bg-emerald-500/8 rounded-full blur-[160px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-14">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-xs font-semibold text-indigo-400 mb-4">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-xs font-semibold text-emerald-400 mb-4">
             <Sparkles className="w-3.5 h-3.5" />
             <span>TRANSPARENT PRICING</span>
           </div>
@@ -107,11 +107,11 @@ export const Pricing = ({ onOpenAuthModal, onShowToast }) => {
           </p>
 
           {/* Billing Switch Toggle */}
-          <div className="mt-8 inline-flex items-center gap-3 p-1.5 rounded-full bg-slate-900 border border-slate-800">
+          <div className="mt-8 inline-flex items-center gap-3 p-1.5 rounded-full bg-[#080f1a] border border-emerald-950">
             <button
               onClick={() => setIsAnnual(false)}
               className={`px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all duration-200 cursor-pointer ${
-                !isAnnual ? 'bg-indigo-600 text-white shadow-md' : 'text-slate-400 hover:text-slate-200'
+                !isAnnual ? 'bg-emerald-500 text-slate-950 font-bold shadow-md' : 'text-slate-400 hover:text-slate-200'
               }`}
             >
               Monthly Billing
@@ -119,11 +119,11 @@ export const Pricing = ({ onOpenAuthModal, onShowToast }) => {
             <button
               onClick={() => setIsAnnual(true)}
               className={`px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all duration-200 flex items-center gap-2 cursor-pointer ${
-                isAnnual ? 'bg-indigo-600 text-white shadow-md' : 'text-slate-400 hover:text-slate-200'
+                isAnnual ? 'bg-emerald-500 text-slate-950 font-bold shadow-md' : 'text-slate-400 hover:text-slate-200'
               }`}
             >
               <span>Annual Billing</span>
-              <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+              <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-[#060b13] text-emerald-300 border border-emerald-500/30">
                 Save 20%
               </span>
             </button>
@@ -139,14 +139,14 @@ export const Pricing = ({ onOpenAuthModal, onShowToast }) => {
                 key={plan.id}
                 className={`relative rounded-3xl p-8 flex flex-col justify-between transition-all duration-300 ${
                   plan.popular
-                    ? 'bg-slate-900 border-2 border-indigo-500 shadow-2xl shadow-indigo-500/20 lg:-translate-y-2'
-                    : 'bg-slate-900/60 border border-slate-800/80 hover:border-slate-700'
+                    ? 'bg-[#091422] border-2 border-emerald-400 shadow-2xl shadow-emerald-500/15 lg:-translate-y-2'
+                    : 'bg-[#080f1a]/80 border border-emerald-950 hover:border-emerald-800'
                 }`}
               >
                 {/* Popular Ribbon */}
                 {plan.popular && (
                   <div className="absolute -top-3.5 left-1/2 -translate-x-1/2">
-                    <span className="px-4 py-1 rounded-full text-xs font-bold tracking-wide uppercase bg-gradient-to-r from-indigo-500 to-cyan-500 text-white shadow-md">
+                    <span className="px-4 py-1 rounded-full text-xs font-bold tracking-wide uppercase bg-gradient-to-r from-emerald-400 to-teal-300 text-slate-950 shadow-md">
                       {plan.badge}
                     </span>
                   </div>
@@ -156,7 +156,7 @@ export const Pricing = ({ onOpenAuthModal, onShowToast }) => {
                   <div className="flex items-center justify-between mb-4">
                     <h3 className="text-xl font-bold text-white">{plan.name}</h3>
                     {!plan.popular && (
-                      <span className="text-xs font-semibold px-2.5 py-1 rounded-md bg-slate-800 text-slate-300 border border-slate-700/50">
+                      <span className="text-xs font-semibold px-2.5 py-1 rounded-md bg-[#0d1a29] text-emerald-300 border border-emerald-900/60">
                         {plan.badge}
                       </span>
                     )}
@@ -177,8 +177,8 @@ export const Pricing = ({ onOpenAuthModal, onShowToast }) => {
                   </div>
 
                   {/* Features List */}
-                  <div className="space-y-3 pt-6 border-t border-slate-800">
-                    <p className="text-xs font-bold uppercase tracking-wider text-slate-300 mb-3">
+                  <div className="space-y-3 pt-6 border-t border-emerald-950">
+                    <p className="text-xs font-bold uppercase tracking-wider text-emerald-400/80 mb-3">
                       Everything included:
                     </p>
                     {plan.features.map((feature, idx) => (
@@ -213,16 +213,16 @@ export const Pricing = ({ onOpenAuthModal, onShowToast }) => {
           })}
         </div>
 
-        {/* Embedded FAQ Accordion for Conversion Readiness */}
-        <div className="max-w-3xl mx-auto rounded-3xl border border-slate-800 bg-slate-900/60 p-6 sm:p-10">
+        {/* Embedded FAQ Accordion */}
+        <div className="max-w-3xl mx-auto rounded-3xl border border-emerald-950 bg-[#080f1a]/80 p-6 sm:p-10">
           <div className="flex items-center gap-3 mb-6">
-            <HelpCircle className="w-6 h-6 text-indigo-400" />
+            <HelpCircle className="w-6 h-6 text-emerald-400" />
             <h3 className="text-xl sm:text-2xl font-bold text-white">Frequently Asked Questions</h3>
           </div>
 
           <div className="space-y-4">
             {faqs.map((faq, i) => (
-              <div key={i} className="p-4 rounded-xl bg-slate-950/70 border border-slate-800">
+              <div key={i} className="p-4 rounded-xl bg-[#060b13] border border-emerald-950">
                 <h4 className="text-sm font-bold text-white mb-1.5">{faq.q}</h4>
                 <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">{faq.a}</p>
               </div>

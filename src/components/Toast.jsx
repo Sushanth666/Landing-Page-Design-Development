@@ -9,11 +9,11 @@ export const ToastContainer = ({ toasts, onDismiss }) => {
       {toasts.map((toast) => (
         <div
           key={toast.id}
-          className="pointer-events-auto flex items-start gap-3 p-4 rounded-xl bg-slate-900/95 border border-slate-700/80 shadow-2xl backdrop-blur-md transition-all duration-300 animate-in fade-in slide-in-from-bottom-3"
+          className="pointer-events-auto flex items-start gap-3 p-4 rounded-xl bg-[#08111d]/95 border border-emerald-900/60 shadow-2xl backdrop-blur-md transition-all duration-300 animate-in fade-in slide-in-from-bottom-3"
           role="alert"
         >
           {toast.type === 'success' && <CheckCircle2 className="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" />}
-          {toast.type === 'info' && <Info className="w-5 h-5 text-indigo-400 shrink-0 mt-0.5" />}
+          {toast.type === 'info' && <Info className="w-5 h-5 text-teal-400 shrink-0 mt-0.5" />}
           {toast.type === 'warning' && <AlertCircle className="w-5 h-5 text-amber-400 shrink-0 mt-0.5" />}
 
           <div className="flex-1 min-w-0">
