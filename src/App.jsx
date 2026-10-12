@@ -37,6 +37,7 @@ export default function App() {
         if (!isNaN(parsedId) && parsedId >= 1 && parsedId <= 8) {
           setSelectedFeatureId(parsedId);
           setCurrentView('feature-detail');
+          window.scrollTo({ top: 0, behavior: 'instant' });
         } else {
           const slugMap = {
             'autonomous-agents': 1,
@@ -54,14 +55,25 @@ export default function App() {
           if (slugMap[idPart]) {
             setSelectedFeatureId(slugMap[idPart]);
             setCurrentView('feature-detail');
+            window.scrollTo({ top: 0, behavior: 'instant' });
           }
         }
       } else if (hash === '#playground' || hash === '#studio' || hash === '#sandbox') {
         setCurrentView('playground');
+        window.scrollTo({ top: 0, behavior: 'instant' });
       } else if (hash === '#architecture' || hash === '#specs') {
         setCurrentView('architecture');
+        window.scrollTo({ top: 0, behavior: 'instant' });
       } else if (hash === '#home' || !hash || hash === '#features' || hash === '#about' || hash === '#pricing' || hash === '#testimonials' || hash === '#how-it-works') {
         setCurrentView('home');
+        if (hash && hash !== '#home') {
+          setTimeout(() => {
+            const targetEl = document.querySelector(hash);
+            if (targetEl) {
+              targetEl.scrollIntoView({ behavior: 'smooth' });
+            }
+          }, 60);
+        }
       }
     };
     handleHashChange();
@@ -255,7 +267,13 @@ export default function App() {
           </main>
 
           {/* 8. Footer */}
-          <Footer onShowToast={showToast} />
+          <Footer 
+            onShowToast={showToast}
+            onNavigateToFeature={handleNavigateToFeature}
+            onNavigateToArchitecture={handleNavigateToArchitecture}
+            onNavigateToPlayground={handleNavigateToPlayground}
+            onNavigateToHome={handleNavigateToHome}
+          />
         </>
       )}
 

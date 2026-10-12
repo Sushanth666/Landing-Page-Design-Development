@@ -5,13 +5,32 @@ import {
   Phone, 
   MapPin, 
   CheckCircle, 
-  MessageSquare 
+  MessageSquare,
+  ExternalLink,
+  ShieldCheck,
+  FileText,
+  Activity,
+  Briefcase,
+  Terminal,
+  Sparkles,
+  Server,
+  Zap,
+  Lock,
+  Globe
 } from 'lucide-react';
 import { BrandLogo } from '../ui/BrandLogo';
+import { Modal } from '../ui/Modal';
 
-export const Footer = ({ onShowToast }) => {
+export const Footer = ({ 
+  onShowToast,
+  onNavigateToFeature,
+  onNavigateToArchitecture,
+  onNavigateToPlayground,
+  onNavigateToHome
+}) => {
   const [emailInput, setEmailInput] = useState('');
   const [isSubscribed, setIsSubscribed] = useState(false);
+  const [activeModal, setActiveModal] = useState(null);
 
   const handleSubscribe = (e) => {
     e.preventDefault();
@@ -26,34 +45,90 @@ export const Footer = ({ onShowToast }) => {
 
   const footerLinks = {
     Product: [
-      { name: 'Autonomous Agent Mesh', href: '#features' },
-      { name: 'Visual DAG Workflow Canvas', href: '#features' },
-      { name: 'Real-Time Data Streams', href: '#features' },
-      { name: '200+ Stack Connectors', href: '#features' },
-      { name: 'Zero-Trust Security', href: '#about' },
-      { name: 'Release Changelog v2.5', href: '#' },
+      { name: 'Autonomous Agent Mesh', href: '#feature-1', type: 'feature', featureId: 1 },
+      { name: 'Visual DAG Workflow Canvas', href: '#playground', type: 'playground' },
+      { name: 'Real-Time Data Streams', href: '#feature-2', type: 'feature', featureId: 2 },
+      { name: '200+ Stack Connectors', href: '#feature-4', type: 'feature', featureId: 4 },
+      { name: 'Zero-Trust Security', href: '#feature-3', type: 'feature', featureId: 3 },
+      { name: 'Release Changelog v2.5', href: '#changelog', type: 'modal', modalId: 'changelog' },
     ],
     Solutions: [
-      { name: 'For Engineering Teams', href: '#' },
-      { name: 'For High-Velocity Startups', href: '#' },
-      { name: 'For Enterprise Operations', href: '#' },
-      { name: 'For DevOps & SREs', href: '#' },
-      { name: 'Customer Case Studies', href: '#testimonials' },
+      { name: 'For Engineering Teams', href: '#about', type: 'anchor' },
+      { name: 'For High-Velocity Startups', href: '#pricing', type: 'anchor' },
+      { name: 'For Enterprise Operations', href: '#architecture', type: 'architecture' },
+      { name: 'For DevOps & SREs', href: '#feature-7', type: 'feature', featureId: 7 },
+      { name: 'Customer Case Studies', href: '#testimonials', type: 'anchor' },
     ],
     Resources: [
-      { name: 'API & Webhook Docs', href: '#' },
-      { name: 'DAG Architecture Blueprints', href: '#' },
-      { name: 'Developer Discord Community', href: '#' },
-      { name: 'System Status (99.98%)', href: '#' },
-      { name: 'Open Source SDKs', href: '#' },
+      { name: 'API & Webhook Docs', href: '#docs', type: 'modal', modalId: 'docs' },
+      { name: 'DAG Architecture Blueprints', href: '#architecture', type: 'architecture' },
+      { name: 'Developer Discord Community', href: 'https://discord.gg/aetherflow', type: 'external' },
+      { name: 'System Status (99.98%)', href: '#status', type: 'modal', modalId: 'status' },
+      { name: 'Open Source SDKs', href: 'https://github.com/aetherflow', type: 'external' },
     ],
     Company: [
-      { name: 'About AetherFlow', href: '#about' },
-      { name: 'Careers (We are hiring!)', href: '#' },
-      { name: 'Security & Trust Center', href: '#' },
-      { name: 'Privacy Policy', href: '#' },
-      { name: 'Terms of Service', href: '#' },
+      { name: 'About AetherFlow', href: '#about', type: 'anchor' },
+      { name: 'Careers (We are hiring!)', href: '#careers', type: 'modal', modalId: 'careers' },
+      { name: 'Security & Trust Center', href: '#feature-3', type: 'feature', featureId: 3 },
+      { name: 'Privacy Policy', href: '#privacy', type: 'modal', modalId: 'privacy' },
+      { name: 'Terms of Service', href: '#terms', type: 'modal', modalId: 'terms' },
     ],
+  };
+
+  const handleLinkClick = (e, link) => {
+    if (link.type === 'modal') {
+      e.preventDefault();
+      setActiveModal(link.modalId);
+      return;
+    }
+
+    if (link.type === 'external') {
+      // Natural external link navigation with target="_blank"
+      return;
+    }
+
+    if (link.type === 'feature') {
+      e.preventDefault();
+      if (onNavigateToFeature) {
+        onNavigateToFeature(link.featureId);
+      } else {
+        window.location.hash = `#feature-${link.featureId}`;
+      }
+      return;
+    }
+
+    if (link.type === 'architecture') {
+      e.preventDefault();
+      if (onNavigateToArchitecture) {
+        onNavigateToArchitecture();
+      } else {
+        window.location.hash = '#architecture';
+      }
+      return;
+    }
+
+    if (link.type === 'playground') {
+      e.preventDefault();
+      if (onNavigateToPlayground) {
+        onNavigateToPlayground();
+      } else {
+        window.location.hash = '#playground';
+      }
+      return;
+    }
+
+    if (link.type === 'anchor') {
+      if (onNavigateToHome) {
+        onNavigateToHome();
+      }
+      const targetEl = document.querySelector(link.href);
+      if (targetEl) {
+        e.preventDefault();
+        targetEl.scrollIntoView({ behavior: 'smooth' });
+        window.history.pushState(null, '', link.href);
+      }
+      return;
+    }
   };
 
   return (
@@ -120,9 +195,15 @@ export const Footer = ({ onShowToast }) => {
                   <li key={link.name}>
                     <a
                       href={link.href}
-                      className="text-xs text-slate-400 hover:text-emerald-300 transition-colors inline-block hover:translate-x-1 duration-200"
+                      target={link.type === 'external' ? '_blank' : undefined}
+                      rel={link.type === 'external' ? 'noopener noreferrer' : undefined}
+                      onClick={(e) => handleLinkClick(e, link)}
+                      className="text-xs text-slate-400 hover:text-emerald-300 transition-colors inline-flex items-center gap-1.5 hover:translate-x-1 duration-200 cursor-pointer group"
                     >
-                      {link.name}
+                      <span className="group-hover:text-emerald-300 transition-colors">{link.name}</span>
+                      {link.type === 'external' && (
+                        <ExternalLink className="w-3 h-3 text-slate-500 group-hover:text-emerald-400 opacity-60 group-hover:opacity-100 transition-opacity shrink-0" />
+                      )}
                     </a>
                   </li>
                 ))}
@@ -138,28 +219,46 @@ export const Footer = ({ onShowToast }) => {
             <div className="space-y-3 text-xs text-slate-400">
               <div className="flex items-start gap-2.5">
                 <Mail className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
-                <a href="mailto:support@aetherflow.dev" className="hover:text-emerald-300 transition-colors">
+                <a 
+                  href="mailto:support@aetherflow.dev" 
+                  className="hover:text-emerald-300 transition-colors"
+                >
                   support@aetherflow.dev
                 </a>
               </div>
               <div className="flex items-start gap-2.5">
                 <Phone className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
-                <a href="tel:+18884207857" className="hover:text-emerald-300 transition-colors">
+                <a 
+                  href="tel:+18884207857" 
+                  className="hover:text-emerald-300 transition-colors"
+                >
                   +1 (888) 420-FLOW
                 </a>
               </div>
               <div className="flex items-start gap-2.5">
                 <MapPin className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
-                <span>548 Market St, Suite 392, San Francisco, CA</span>
+                <a 
+                  href="https://maps.google.com/?q=548+Market+St+Suite+392+San+Francisco+CA"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-emerald-300 transition-colors inline-flex items-center gap-1 group"
+                >
+                  <span>548 Market St, Suite 392, San Francisco, CA</span>
+                  <ExternalLink className="w-3 h-3 text-slate-500 group-hover:text-emerald-400 shrink-0" />
+                </a>
               </div>
               <div className="pt-2">
-                <div className="inline-flex items-center gap-2.5 px-3 py-1.5 rounded-full bg-[#080f1a] border border-emerald-950 text-[11px] text-emerald-400 font-medium hover:border-emerald-700 transition-colors">
+                <button
+                  type="button"
+                  onClick={() => setActiveModal('status')}
+                  className="inline-flex items-center gap-2.5 px-3 py-1.5 rounded-full bg-[#080f1a] border border-emerald-950 text-[11px] text-emerald-400 font-medium hover:border-emerald-700 hover:bg-emerald-950/30 transition-all cursor-pointer"
+                >
                   <span className="relative flex h-2 w-2">
                     <span className="animate-ping-slow absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                     <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400"></span>
                   </span>
                   <span className="font-glow">All Systems Operational (99.98%)</span>
-                </div>
+                </button>
               </div>
             </div>
           </div>
@@ -222,6 +321,200 @@ export const Footer = ({ onShowToast }) => {
           </div>
         </div>
       </div>
+
+      {/* Interactive Footer Informational Modals */}
+      <Modal
+        isOpen={!!activeModal}
+        onClose={() => setActiveModal(null)}
+        title={
+          activeModal === 'changelog' ? 'Release Changelog v2.5' :
+          activeModal === 'docs' ? 'Developer API & Webhook Docs' :
+          activeModal === 'status' ? 'Global System Status (99.98% SLA)' :
+          activeModal === 'careers' ? 'Careers at AetherFlow' :
+          activeModal === 'privacy' ? 'Privacy & Data Protection' :
+          activeModal === 'terms' ? 'Enterprise Terms of Service' :
+          'Information'
+        }
+        maxWidth="max-w-2xl"
+      >
+        {activeModal === 'changelog' && (
+          <div className="space-y-4 text-sm text-slate-300">
+            <div className="flex items-center gap-2 pb-2 border-b border-emerald-950">
+              <span className="px-2.5 py-1 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 text-xs font-mono font-bold">
+                v2.5.0 Current Release
+              </span>
+              <span className="text-xs text-slate-400">Deployed to 32 Global Regions</span>
+            </div>
+            <div className="space-y-3">
+              <div className="p-3 rounded-xl bg-[#060b13] border border-emerald-950">
+                <h5 className="font-semibold text-white flex items-center gap-2 text-xs">
+                  <Zap className="w-3.5 h-3.5 text-emerald-400" />
+                  Self-Healing Canary Rollbacks (Feature 7)
+                </h5>
+                <p className="text-xs text-slate-400 mt-1">
+                  Automated telemetry monitoring tracks latency drift and triggers zero-downtime rollbacks within 8 seconds of threshold breach.
+                </p>
+              </div>
+              <div className="p-3 rounded-xl bg-[#060b13] border border-emerald-950">
+                <h5 className="font-semibold text-white flex items-center gap-2 text-xs">
+                  <Sparkles className="w-3.5 h-3.5 text-teal-400" />
+                  Natural Language Workflow Synthesizer (Feature 8)
+                </h5>
+                <p className="text-xs text-slate-400 mt-1">
+                  Compiles human intent into stateful, verified DAG topologies with syntax guardrails and AST verification.
+                </p>
+              </div>
+              <div className="p-3 rounded-xl bg-[#060b13] border border-emerald-950">
+                <h5 className="font-semibold text-white flex items-center gap-2 text-xs">
+                  <Server className="w-3.5 h-3.5 text-cyan-400" />
+                  32 Distributed Edge Clusters
+                </h5>
+                <p className="text-xs text-slate-400 mt-1">
+                  Expanded global coverage with 1.5ms median execution latency across North America, Europe, and Asia-Pacific.
+                </p>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {activeModal === 'docs' && (
+          <div className="space-y-4 text-sm text-slate-300">
+            <p className="text-xs text-slate-300">
+              Integrate with AetherFlow programmatically via our high-performance REST, GraphQL, and Webhook APIs.
+            </p>
+            <div className="p-3 rounded-xl bg-[#040810] border border-emerald-950 font-mono text-xs text-emerald-300 overflow-x-auto">
+              <code>curl -X POST https://api.aetherflow.dev/v2/workflows/dispatch \<br />
+  &nbsp;&nbsp;-H "Authorization: Bearer af_live_secret_key" \<br />
+  &nbsp;&nbsp;-H "Content-Type: application/json" \<br />
+  &nbsp;&nbsp;-d '&#123;"workflowId":"wf_canary_pipeline","trigger":"git_push"&#125;'</code>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+              <a
+                href="/docs/AetherFlow_Complete_Functions_Reference.html"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-3 rounded-xl bg-[#060b13] border border-emerald-950 hover:border-emerald-500/50 transition-colors flex items-center justify-between group"
+              >
+                <div>
+                  <div className="text-xs font-bold text-white group-hover:text-emerald-300">Interactive HTML Docs</div>
+                  <div className="text-[11px] text-slate-400">Complete functions & API reference</div>
+                </div>
+                <ExternalLink className="w-4 h-4 text-emerald-400" />
+              </a>
+              <a
+                href="/docs/AetherFlow_Complete_Functions_Reference.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-3 rounded-xl bg-[#060b13] border border-emerald-950 hover:border-emerald-500/50 transition-colors flex items-center justify-between group"
+              >
+                <div>
+                  <div className="text-xs font-bold text-white group-hover:text-emerald-300">Download PDF Manual</div>
+                  <div className="text-[11px] text-slate-400">Printable technical specifications</div>
+                </div>
+                <ExternalLink className="w-4 h-4 text-emerald-400" />
+              </a>
+            </div>
+          </div>
+        )}
+
+        {activeModal === 'status' && (
+          <div className="space-y-4 text-sm text-slate-300">
+            <div className="flex items-center justify-between p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/30">
+              <div className="flex items-center gap-2">
+                <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping" />
+                <span className="font-bold text-emerald-300 text-xs">All Systems 100% Operational</span>
+              </div>
+              <span className="text-xs font-mono text-emerald-400">99.998% Uptime</span>
+            </div>
+            <div className="space-y-2">
+              {[
+                { name: 'Multi-Agent Mesh Core', status: 'Operational', latency: '1.2ms' },
+                { name: 'Telemetry Streaming Gateway', status: 'Operational', latency: '0.8ms' },
+                { name: 'US-East (N. Virginia)', status: 'Operational', latency: '1.1ms' },
+                { name: 'EU-Central (Frankfurt)', status: 'Operational', latency: '1.6ms' },
+                { name: 'AP-Southeast (Singapore)', status: 'Operational', latency: '1.9ms' },
+                { name: 'Zero-Trust Enclave Vault', status: 'Operational', latency: '< 0.5ms' },
+              ].map((svc) => (
+                <div key={svc.name} className="flex items-center justify-between px-3 py-2 rounded-lg bg-[#060b13] border border-emerald-950 text-xs">
+                  <span className="text-white font-medium">{svc.name}</span>
+                  <div className="flex items-center gap-3">
+                    <span className="text-slate-400 font-mono">{svc.latency}</span>
+                    <span className="text-emerald-400 font-semibold flex items-center gap-1">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                      {svc.status}
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {activeModal === 'careers' && (
+          <div className="space-y-4 text-sm text-slate-300">
+            <p className="text-xs text-slate-300 leading-relaxed">
+              We are building the autonomous workflow intelligence substrate for the next generation of software engineering. Join our globally distributed engineering team.
+            </p>
+            <div className="space-y-2.5">
+              {[
+                { title: 'Staff Distributed Systems Engineer', location: 'San Francisco / Remote', comp: '$240k – $320k • 0.8%' },
+                { title: 'AI Agent Mesh Compiler Engineer', location: 'New York / Remote', comp: '$220k – $300k • 0.6%' },
+                { title: 'Senior Site Reliability & Chaos Lead', location: 'Remote (Global)', comp: '$200k – $280k • 0.5%' },
+              ].map((job) => (
+                <div key={job.title} className="p-3 rounded-xl bg-[#060b13] border border-emerald-950 flex items-center justify-between">
+                  <div>
+                    <h5 className="font-bold text-white text-xs">{job.title}</h5>
+                    <p className="text-[11px] text-slate-400">{job.location} • {job.comp}</p>
+                  </div>
+                  <a
+                    href={`mailto:careers@aetherflow.dev?subject=Application:%20${encodeURIComponent(job.title)}`}
+                    className="px-3 py-1.5 rounded-lg bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 text-xs font-semibold hover:bg-emerald-500 hover:text-slate-950 transition-colors"
+                  >
+                    Apply
+                  </a>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {activeModal === 'privacy' && (
+          <div className="space-y-3.5 text-xs text-slate-300 leading-relaxed">
+            <div className="p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-300">
+              <strong>Zero Data Retention Guarantee:</strong> AetherFlow executes customer automation in ephemeral, hardware-isolated memory enclaves. We never persist source code, environment secrets, or payload payloads.
+            </div>
+            <div>
+              <h5 className="font-bold text-white mb-1">1. Cryptographic Isolation</h5>
+              <p className="text-slate-400">All agent communications are encrypted in transit via mTLS 1.3 with AES-256-GCM and ephemeral session keys rotated every 15 minutes.</p>
+            </div>
+            <div>
+              <h5 className="font-bold text-white mb-1">2. No AI Training on Customer Data</h5>
+              <p className="text-slate-400">Your inputs, PR summaries, and AST metadata are never fed into foundation models for training or fine-tuning.</p>
+            </div>
+            <div>
+              <h5 className="font-bold text-white mb-1">3. Enterprise Compliance</h5>
+              <p className="text-slate-400">Independently certified under SOC2 Type II, ISO/IEC 27001:2022, HIPAA, and GDPR Article 28 data processing addendums.</p>
+            </div>
+          </div>
+        )}
+
+        {activeModal === 'terms' && (
+          <div className="space-y-3.5 text-xs text-slate-300 leading-relaxed">
+            <div className="p-3 rounded-xl bg-[#060b13] border border-emerald-950">
+              <h5 className="font-bold text-white mb-1">99.98% Service Level Agreement (SLA)</h5>
+              <p className="text-slate-400">AetherFlow guarantees 99.98% monthly uptime for workflow orchestration endpoints with automated billing credits if SLA thresholds are not met.</p>
+            </div>
+            <div>
+              <h5 className="font-bold text-white mb-1">1. Customer Ownership</h5>
+              <p className="text-slate-400">Customers retain 100% ownership, intellectual property rights, and title to all workflows, custom actions, and orchestration scripts built on the platform.</p>
+            </div>
+            <div>
+              <h5 className="font-bold text-white mb-1">2. Acceptable Use</h5>
+              <p className="text-slate-400">The platform may not be utilized to execute unauthorized denial-of-service tests or malicious vulnerability scanning against third-party targets.</p>
+            </div>
+          </div>
+        )}
+      </Modal>
     </footer>
   );
 };
