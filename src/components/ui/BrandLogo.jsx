@@ -10,7 +10,7 @@ import { Network } from 'lucide-react';
  * - Rotating ambient aurora halo
  * - Kinetic hover and spring responsiveness
  */
-export const BrandLogo = ({ size = 'md', showText = true, showBadge = true, className = '' }) => {
+export const BrandLogo = ({ size = 'md', showText = true, showBadge = false, className = '' }) => {
   const sizeClasses = {
     sm: { box: 'w-8 h-8', icon: 'w-4 h-4', text: 'text-lg', orbit: 'w-11 h-11 -top-1.5 -left-1.5' },
     md: { box: 'w-10 h-10', icon: 'w-5 h-5', text: 'text-xl', orbit: 'w-14 h-14 -top-2 -left-2' },
@@ -51,11 +51,6 @@ export const BrandLogo = ({ size = 'md', showText = true, showBadge = true, clas
         <div className="flex flex-col">
           <span className={`${sizeClasses.text} font-extrabold tracking-tight text-white flex items-center gap-1.5`}>
             Aether<span className="font-aurora font-hover-expand">Flow</span>
-            {showBadge && (
-              <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 font-float font-glow">
-                AI Matrix
-              </span>
-            )}
           </span>
         </div>
       )}
