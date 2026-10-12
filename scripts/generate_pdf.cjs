@@ -1035,8 +1035,10 @@ document.<span class="function">getElementsByTagName</span>(<span class="string"
 </html>
 `;
 
-const htmlFilePath = path.resolve('AetherFlow_Complete_Functions_Reference.html');
-const pdfFilePath = path.resolve('AetherFlow_Complete_Functions_Reference.pdf');
+const docsDir = path.resolve(__dirname, '..', 'docs');
+if (!fs.existsSync(docsDir)) fs.mkdirSync(docsDir, { recursive: true });
+const htmlFilePath = path.resolve(docsDir, 'AetherFlow_Complete_Functions_Reference.html');
+const pdfFilePath = path.resolve(docsDir, 'AetherFlow_Complete_Functions_Reference.pdf');
 
 fs.writeFileSync(htmlFilePath, htmlContent, 'utf8');
 console.log('HTML reference document written to:', htmlFilePath);
@@ -1053,12 +1055,14 @@ try {
     const stats = fs.statSync(pdfFilePath);
     console.log(`SUCCESS: PDF created at ${pdfFilePath} (${(stats.size / 1024).toFixed(1)} KB)`);
     
-    // Also copy to secondary directory
-    const secondaryPdfPath = path.resolve('..', 'New folder (2)', 'AetherFlow_Complete_Functions_Reference.pdf');
-    const secondaryHtmlPath = path.resolve('..', 'New folder (2)', 'AetherFlow_Complete_Functions_Reference.html');
+    // Also copy to secondary directory docs
+    const secondaryDocsDir = path.resolve('..', 'New folder (2)', 'docs');
+    if (!fs.existsSync(secondaryDocsDir)) fs.mkdirSync(secondaryDocsDir, { recursive: true });
+    const secondaryPdfPath = path.resolve(secondaryDocsDir, 'AetherFlow_Complete_Functions_Reference.pdf');
+    const secondaryHtmlPath = path.resolve(secondaryDocsDir, 'AetherFlow_Complete_Functions_Reference.html');
     fs.copyFileSync(pdfFilePath, secondaryPdfPath);
     fs.copyFileSync(htmlFilePath, secondaryHtmlPath);
-    console.log('SUCCESS: Copied PDF & HTML to New folder (2) directory.');
+    console.log('SUCCESS: Copied PDF & HTML to New folder (2)/docs directory.');
   } else {
     console.error('ERROR: PDF was not generated.');
   }

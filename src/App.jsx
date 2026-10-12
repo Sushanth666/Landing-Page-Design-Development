@@ -1,20 +1,19 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Navbar } from './components/Navbar';
-import { Hero } from './components/Hero';
-import { About } from './components/About';
-import { Features } from './components/Features';
-import { HowItWorks } from './components/HowItWorks';
-import { Testimonials } from './components/Testimonials';
-import { Pricing } from './components/Pricing';
-import { Footer } from './components/Footer';
-import { ToastContainer } from './components/Toast';
-import { Modal } from './components/Modal';
-import { DemoVideoPlayer } from './components/DemoVideoPlayer';
-import { Canvas3D } from './components/Canvas3D';
-import { AnimatedFavicon } from './components/AnimatedFavicon';
-import { ArchitectureSubpage } from './components/ArchitectureSubpage';
-import { FeatureDetailSubpage } from './components/FeatureDetailSubpage';
-import { ArrowUp, Play, CheckCircle, Sparkles, Send } from 'lucide-react';
+import { 
+  Navbar, 
+  Hero, 
+  About, 
+  Features, 
+  HowItWorks, 
+  Testimonials, 
+  Pricing, 
+  Footer 
+} from './components/sections';
+import { ArchitectureSubpage, FeatureDetailSubpage } from './components/pages';
+import { Modal, ToastContainer } from './components/ui';
+import { DemoVideoPlayer, Canvas3D } from './components/media';
+import { AnimatedFavicon } from './components/meta';
+import { ArrowUp, Sparkles } from 'lucide-react';
 
 export default function App() {
   const [toasts, setToasts] = useState([]);

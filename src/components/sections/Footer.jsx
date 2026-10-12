@@ -8,7 +8,7 @@ import {
   CheckCircle, 
   MessageSquare 
 } from 'lucide-react';
-import { BrandLogo } from './BrandLogo';
+import { BrandLogo } from '../ui/BrandLogo';
 
 export const Footer = ({ onShowToast }) => {
   const [emailInput, setEmailInput] = useState('');

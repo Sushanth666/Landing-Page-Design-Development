@@ -24,8 +24,8 @@ import {
   X,
   Share2
 } from 'lucide-react';
-import { BrandLogo } from './BrandLogo';
-import { TiltCard } from './TiltCard';
+import { BrandLogo } from '../ui/BrandLogo';
+import { TiltCard } from '../ui/TiltCard';
 
 export const ArchitectureSubpage = ({ 
   onNavigateHome, 

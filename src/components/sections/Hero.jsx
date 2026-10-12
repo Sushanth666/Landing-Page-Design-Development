@@ -16,8 +16,8 @@ import {
   Layers,
   ExternalLink
 } from 'lucide-react';
-import { TiltCard } from './TiltCard';
-import { Canvas3D } from './Canvas3D';
+import { TiltCard } from '../ui/TiltCard';
+import { Canvas3D } from '../media/Canvas3D';
 
 export const Hero = ({ onOpenAuthModal, onOpenDemoModal, onShowToast }) => {
   const [activeNode, setActiveNode] = useState('ml');

@@ -27,7 +27,7 @@ import {
   ChevronRight,
   ExternalLink
 } from 'lucide-react';
-import { TiltCard } from './TiltCard';
+import { TiltCard } from '../ui/TiltCard';
 
 export const featurePagesData = {
   1: {

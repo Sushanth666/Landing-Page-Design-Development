@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Check, Sparkles, Zap, Shield, ArrowRight, HelpCircle } from 'lucide-react';
-import { TiltCard } from './TiltCard';
+import { TiltCard } from '../ui/TiltCard';
 
 export const Pricing = ({ onOpenAuthModal, onShowToast }) => {
   const [isAnnual, setIsAnnual] = useState(true);

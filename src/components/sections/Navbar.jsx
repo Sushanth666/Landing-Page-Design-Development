@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Sparkles, Menu, X, ArrowRight } from 'lucide-react';
-import { BrandLogo } from './BrandLogo';
+import { BrandLogo } from '../ui/BrandLogo';
 
 export const Navbar = ({ onOpenAuthModal, onOpenDemoModal, onNavigateToArchitecture }) => {
   const [isScrolled, setIsScrolled] = useState(false);

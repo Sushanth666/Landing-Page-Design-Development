@@ -144,34 +144,55 @@ The project adopts the **Aurora Matrix & Deep Slate** design language:
 
 ```text
 Landing Page Design & Development/
-├── public/
-│   ├── demo-walkthrough.webp     # High-resolution video walkthrough media
-│   └── favicon.svg               # Official AetherFlow animated SVG favicon
+├── docs/                                 # Technical documentation & compiled manuals
+│   ├── AetherFlow_Complete_Functions_Reference.html
+│   └── AetherFlow_Complete_Functions_Reference.pdf
+├── scripts/                              # Build automation & generation scripts
+│   ├── generate_audio.ps1                # Speech synthesis pipeline script
+│   └── generate_pdf.cjs                  # Edge headless technical reference compiler
+├── public/                               # Public static assets & media
+│   ├── ai-voice-chapter-0.wav            # AI voice chapter narrations (0 - 3)
+│   ├── demo-walkthrough.webp             # High-resolution video walkthrough media
+│   └── favicon.svg                       # Official AetherFlow brand SVG favicon
 ├── src/
 │   ├── components/
-│   │   ├── About.jsx             # Metrics and legacy comparison matrix
-│   │   ├── AnimatedFavicon.jsx   # Dynamic 18 FPS browser tab favicon animator
-│   │   ├── BrandLogo.jsx         # Official brand logo with orbiting electron
-│   │   ├── Canvas3D.jsx          # 60 FPS 3D neural lattice particle background
-│   │   ├── DemoVideoPlayer.jsx   # Walkthrough video player with 2s reset logic
-│   │   ├── Features.jsx          # 6-card bento grid with category filters
-│   │   ├── Footer.jsx            # Newsletter, link directory, status beacon
-│   │   ├── Hero.jsx              # DAG workflow canvas, node simulator, metrics
-│   │   ├── HowItWorks.jsx        # 4-step interactive timeline sandbox
-│   │   ├── Modal.jsx             # Reusable accessible glassmorphic modal
-│   │   ├── Navbar.jsx            # Sticky glassmorphic header with single CTA
-│   │   ├── Pricing.jsx           # Billing switcher, 3 tiers, FAQ accordion
-│   │   ├── Testimonials.jsx      # Filterable verified review cards
-│   │   ├── TiltCard.jsx          # 3D mouse perspective tilt card component
-│   │   └── Toast.jsx             # Auto-dismissing notification alerts
-│   ├── App.jsx                   # Main application layout and modal state
-│   ├── index.css                 # Design tokens, keyframes, scrollbar styles
-│   └── main.jsx                  # React 19 root bootstrap
-├── index.html                    # HTML entry point with metadata & favicon
-├── package.json                  # Dependencies and build scripts
-├── vite.config.js                # Vite build and server configuration
-└── README.md                     # Comprehensive project documentation
+│   │   ├── ui/                           # Reusable UI primitives & design tokens
+│   │   │   ├── BrandLogo.jsx             # Official animated emblem with orbiting satellite
+│   │   │   ├── Modal.jsx                 # Glassmorphic modal with accessibility traps
+│   │   │   ├── TiltCard.jsx              # 3D mouse perspective physics tilt component
+│   │   │   ├── Toast.jsx                 # Auto-dismissing notification toasts
+│   │   │   └── index.js                  # UI barrel export
+│   │   ├── sections/                     # Landing page modular content sections
+│   │   │   ├── Navbar.jsx                # Sticky glassmorphic header
+│   │   │   ├── Hero.jsx                  # DAG workflow canvas, node simulator, metrics
+│   │   │   ├── About.jsx                 # Metrics, velocity counters, platform matrix
+│   │   │   ├── Features.jsx              # 6-card bento grid with category filters
+│   │   │   ├── HowItWorks.jsx            # 4-step interactive timeline sandbox
+│   │   │   ├── Testimonials.jsx          # Filterable verified review cards
+│   │   │   ├── Pricing.jsx               # Billing switcher, 3 tiers, FAQ accordion
+│   │   │   ├── Footer.jsx                # Newsletter, link directory, status beacon
+│   │   │   └── index.js                  # Sections barrel export
+│   │   ├── pages/                        # Full deep-dive subpages & routes
+│   │   │   ├── ArchitectureSubpage.jsx   # Interactive architecture specifications subpage
+│   │   │   ├── FeatureDetailSubpage.jsx  # Dedicated deep-dive subpages for all 6 features
+│   │   │   └── index.js                  # Pages barrel export
+│   │   ├── media/                        # Audio-visual engines & interactive simulations
+│   │   │   ├── Canvas3D.jsx              # 60 FPS 3D neural lattice particle background
+│   │   │   ├── DemoVideoPlayer.jsx       # Real-time player with audio & CC narration
+│   │   │   └── index.js                  # Media barrel export
+│   │   ├── meta/                         # Browser environment controllers
+│   │   │   ├── AnimatedFavicon.jsx       # Dynamic canvas favicon & marquee tab title
+│   │   │   └── index.js                  # Meta barrel export
+│   │   └── index.js                      # Central re-export barrel
+│   ├── App.jsx                           # Root layout, modal managers & hash router
+│   ├── index.css                         # Design tokens, keyframes, font animations
+│   └── main.jsx                          # React 19 root bootstrap
+├── index.html                            # HTML entry point with metadata & favicon
+├── package.json                          # Dependencies and npm automation scripts
+├── vite.config.js                        # Vite build and server configuration
+└── README.md                             # Comprehensive project documentation
 ```
+
 
 ---
 

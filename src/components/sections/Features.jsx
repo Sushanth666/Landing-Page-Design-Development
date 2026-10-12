@@ -14,7 +14,7 @@ import {
   Cpu,
   Layers
 } from 'lucide-react';
-import { TiltCard } from './TiltCard';
+import { TiltCard } from '../ui/TiltCard';
 
 export const Features = ({ onShowToast, onOpenAuthModal, onNavigateToArchitecture, onNavigateToFeature }) => {
   const [activeCategory, setActiveCategory] = useState('all');

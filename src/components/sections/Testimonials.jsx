@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Star, Quote, CheckCircle2, Sparkles } from 'lucide-react';
-import { TiltCard } from './TiltCard';
+import { TiltCard } from '../ui/TiltCard';
 
 export const Testimonials = ({ onShowToast }) => {
   const [activeFilter, setActiveFilter] = useState('all');
