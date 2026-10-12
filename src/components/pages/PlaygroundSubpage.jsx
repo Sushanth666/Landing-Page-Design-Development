@@ -3,10 +3,8 @@ import {
   ArrowLeft, 
   Play, 
   RotateCcw, 
-  Sparkles, 
   Boxes, 
   CheckCircle2, 
-  ArrowRight, 
   Copy, 
   Check, 
   Network, 
@@ -17,9 +15,7 @@ import {
   Database, 
   Activity, 
   Terminal, 
-  FileCode,
-  Sliders,
-  Share2
+  FileCode
 } from 'lucide-react';
 import { BrandLogo } from '../ui/BrandLogo';
 

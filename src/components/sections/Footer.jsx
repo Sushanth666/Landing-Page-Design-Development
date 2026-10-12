@@ -7,16 +7,9 @@ import {
   CheckCircle, 
   MessageSquare,
   ExternalLink,
-  ShieldCheck,
-  FileText,
-  Activity,
-  Briefcase,
-  Terminal,
   Sparkles,
   Server,
-  Zap,
-  Lock,
-  Globe
+  Zap
 } from 'lucide-react';
 import { BrandLogo } from '../ui/BrandLogo';
 import { Modal } from '../ui/Modal';
