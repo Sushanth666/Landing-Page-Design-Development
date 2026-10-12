@@ -8,7 +8,8 @@ import {
   Sparkles,
   ArrowRight,
   Network,
-  Layers
+  Layers,
+  RotateCcw
 } from 'lucide-react';
 import { TiltCard } from '../ui/TiltCard';
 
@@ -82,6 +83,26 @@ export const Features = ({ onShowToast, onOpenAuthModal, onNavigateToArchitectur
       badge: '32 Edge Regions',
       metrics: '99.98% Uptime SLA',
       highlight: false,
+    },
+    {
+      id: 7,
+      category: 'automation',
+      title: 'Self-Healing Canary Rollbacks',
+      description: 'Continuous telemetry anomaly monitoring triggers automated 8-second zero-downtime rollbacks and root-cause postmortem synthesis.',
+      icon: RotateCcw,
+      badge: '8s Auto-Rollback',
+      metrics: '0 Downtime Incidents',
+      highlight: false,
+    },
+    {
+      id: 8,
+      category: 'intelligence',
+      title: 'Natural Language Workflow Synthesizer',
+      description: 'Describe complex deployments in plain English. Dual-LLM agents compile schema-validated, executable DAG pipelines in under 500ms.',
+      icon: Sparkles,
+      badge: 'Text-to-DAG AI',
+      metrics: '10x Faster Authoring',
+      highlight: true,
     },
   ];
 

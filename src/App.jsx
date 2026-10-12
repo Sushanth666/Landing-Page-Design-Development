@@ -9,7 +9,7 @@ import {
   Pricing, 
   Footer 
 } from './components/sections';
-import { ArchitectureSubpage, FeatureDetailSubpage } from './components/pages';
+import { ArchitectureSubpage, FeatureDetailSubpage, PlaygroundSubpage } from './components/pages';
 import { Modal, ToastContainer } from './components/ui';
 import { DemoVideoPlayer, Canvas3D } from './components/media';
 import { AnimatedFavicon } from './components/meta';
@@ -34,7 +34,7 @@ export default function App() {
       if (hash.startsWith('#feature-')) {
         const idPart = hash.replace('#feature-', '');
         const parsedId = parseInt(idPart, 10);
-        if (!isNaN(parsedId) && parsedId >= 1 && parsedId <= 6) {
+        if (!isNaN(parsedId) && parsedId >= 1 && parsedId <= 8) {
           setSelectedFeatureId(parsedId);
           setCurrentView('feature-detail');
         } else {
@@ -44,13 +44,20 @@ export default function App() {
             'secure-enclave': 3,
             'cross-platform-integrations': 4,
             'dynamic-process-mapping': 5,
-            'scalable-edge': 6
+            'scalable-edge': 6,
+            'self-healing-rollbacks': 7,
+            'self-healing': 7,
+            'nlp-workflow-synthesizer': 8,
+            'nlp-synthesizer': 8,
+            'workflow-synthesizer': 8
           };
           if (slugMap[idPart]) {
             setSelectedFeatureId(slugMap[idPart]);
             setCurrentView('feature-detail');
           }
         }
+      } else if (hash === '#playground' || hash === '#studio' || hash === '#sandbox') {
+        setCurrentView('playground');
       } else if (hash === '#architecture' || hash === '#specs') {
         setCurrentView('architecture');
       } else if (hash === '#home' || !hash || hash === '#features' || hash === '#about' || hash === '#pricing' || hash === '#testimonials' || hash === '#how-it-works') {
@@ -73,6 +80,12 @@ export default function App() {
     setInitialFeatureId(featureId);
     setCurrentView('architecture');
     window.location.hash = '#architecture';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleNavigateToPlayground = () => {
+    setCurrentView('playground');
+    window.location.hash = '#playground';
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
@@ -165,7 +178,14 @@ export default function App() {
       {/* Global 3D Neural Particle Lattice & Connecting Links across the entire project */}
       <Canvas3D isGlobal={true} />
 
-      {currentView === 'feature-detail' ? (
+      {currentView === 'playground' ? (
+        /* Interactive Workflow Studio Sandbox Subpage */
+        <PlaygroundSubpage
+          onNavigateHome={handleNavigateToHome}
+          onOpenAuthModal={handleOpenAuthModal}
+          onShowToast={showToast}
+        />
+      ) : currentView === 'feature-detail' ? (
         /* Individual Feature Subpage for each box */
         <FeatureDetailSubpage
           featureId={selectedFeatureId || 1}
@@ -192,6 +212,7 @@ export default function App() {
             onOpenAuthModal={handleOpenAuthModal}
             onOpenDemoModal={handleOpenDemoModal}
             onNavigateToArchitecture={handleNavigateToArchitecture}
+            onNavigateToPlayground={handleNavigateToPlayground}
           />
 
           {/* Main Page Content */}

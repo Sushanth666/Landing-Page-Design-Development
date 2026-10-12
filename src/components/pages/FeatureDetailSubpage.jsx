@@ -14,7 +14,9 @@ import {
   Check, 
   Cpu, 
   Play, 
-  RefreshCw
+  RefreshCw,
+  RotateCcw,
+  Sparkles
 } from 'lucide-react';
 import { TiltCard } from '../ui/TiltCard';
 
@@ -395,6 +397,133 @@ workflow "Production-Zero-Downtime-Release" {
       'BGP Anycast rerouted traffic to ORD1 in 84ms • SLA Maintained'
     ],
     simActionText: 'Simulate Anycast Failover'
+  },
+
+  7: {
+    id: 7,
+    slug: 'self-healing-rollbacks',
+    title: 'Self-Healing Canary Rollbacks',
+    badge: '8s Auto-Rollback',
+    subtitle: 'Autonomous error threshold mitigation with automated sub-8s zero-downtime rollback',
+    icon: RotateCcw,
+    accentColor: 'emerald',
+    heroStats: [
+      { label: 'Rollback MTTR', value: '<8s', detail: 'Automated without pager triage' },
+      { label: 'Canary Precision', value: '0.1%', detail: 'Granular user traffic slicing' },
+      { label: 'Anomaly Confidence', value: '99.99%', detail: 'Bayesian metric filtering' },
+      { label: 'Downtime Avoided', value: '100%', detail: 'Proactive SLA protection' },
+    ],
+    overview: 'Eliminate customer-facing outages from faulty production releases. AetherFlow constantly evaluates live telemetry streams, queue backlogs, and P99 latency against baseline models. If error budget burn exceeds safe thresholds, AetherFlow automatically rolls back traffic in under 8 seconds and synthesizes a complete root-cause postmortem.',
+    architectureDetails: [
+      {
+        title: 'Progressive Traffic Slicing',
+        description: 'Deploys updates to a 1% canary cohort, measuring telemetry velocity before advancing to 5%, 25%, and 100% traffic allocation.'
+      },
+      {
+        title: 'Bayesian Anomaly Classifier',
+        description: 'Distinguishes between intermittent third-party network blips and true runtime code regressions with 99.99% mathematical precision.'
+      },
+      {
+        title: 'Instant Ephemeral Reversion',
+        description: 'Pre-warmed green pods immediately receive full traffic reallocation in under 8 seconds without dropping active WebSockets or sessions.'
+      },
+      {
+        title: 'AI Root-Cause Postmortem Generator',
+        description: 'Synthesizes an incident summary citing exact commit diffs, stack traces, and proposed patch fixes directly into Linear and Jira.'
+      }
+    ],
+    codeSnippet: `# AetherFlow Self-Healing Canary Policy
+canary_rollout:
+  version: "2.5"
+  service: "checkout-gateway-api"
+  stages:
+    - traffic_pct: 2
+      duration: "60s"
+      max_error_rate_pct: 0.05
+    - traffic_pct: 10
+      duration: "180s"
+      max_p99_latency_ms: 12
+  self_healing:
+    trigger_threshold: "error_budget_burn > 0.02"
+    action: "instant_rollback"
+    target_stable_hash: "git-commit-e49a21b"
+    max_rollback_time_seconds: 8
+    post_mortem_dispatch:
+      slack_channel: "#incident-ops"
+      linear_project: "infra-bugs"`,
+    codeLang: 'yaml',
+    simulationInitialLogs: [
+      'Deploying canary build (v2.5.1) to 5% edge traffic...',
+      'Telemetry monitor active: P99 latency = 1.4ms (nominal)',
+      'Injecting synthetic error spike to test canary guardrail...',
+      'Anomaly detected: Error rate rose to 2.4% (Threshold: 0.05%)',
+      'Triggering Autonomous Rollback: Diverting traffic to v2.5.0 stable...',
+      'Rollback complete in 6.4 seconds • 0 customer requests dropped',
+      'AI Incident Post-Mortem synthesized & dispatched to Slack & Linear'
+    ],
+    simActionText: 'Simulate Canary Failure & Auto-Rollback'
+  },
+
+  8: {
+    id: 8,
+    slug: 'nlp-workflow-synthesizer',
+    title: 'Natural Language Workflow Synthesizer',
+    badge: 'Text-to-DAG AI',
+    subtitle: 'Convert plain English architecture specifications into production-ready compiled DAG workflows',
+    icon: Sparkles,
+    accentColor: 'emerald',
+    heroStats: [
+      { label: 'Authoring Speed', value: '10x Faster', detail: 'From prompt to compiled DAG' },
+      { label: 'AST Correctness', value: '100%', detail: 'Strict JSON-schema verification' },
+      { label: 'Supported Tools', value: '200+', detail: 'Auto-mapped connector parameters' },
+      { label: 'Prompt Models', value: 'Dual-LLM', detail: 'Architect + Validator consensus' },
+    ],
+    overview: 'Eliminate tedious YAML writing and UI boilerplate. Describe your deployment goal, data pipeline, or security audit in plain natural language (e.g. "When a GitHub PR is merged, run security audits, sync issues to Linear, and deploy canary to US-East"). AetherFlow synthesizes a strictly validated, production-grade DAG workflow with verified input/output bindings.',
+    architectureDetails: [
+      {
+        title: 'Semantic Intent Disambiguation',
+        description: 'Parses natural language prompts into structured DAG execution stages, topological dependencies, and concurrency barriers.'
+      },
+      {
+        title: 'Schema-Locked Tool Binding',
+        description: 'Automatically configures OAuth token scopes, parameters, and error retry handlers across 200+ native cloud and SaaS integrations.'
+      },
+      {
+        title: 'AST Boundary Pre-Compilation',
+        description: 'Pre-compiles and validates generated nodes against language schema rules to eliminate runtime syntax errors or parameter mismatches.'
+      },
+      {
+        title: 'Real-Time Visual Graph Compilation',
+        description: 'Renders an interactive visual DAG diagram in real-time as the agent explains each pipeline stage and dependency link.'
+      }
+    ],
+    codeSnippet: `// Prompt-to-Workflow Compilation Engine
+import { synthesizeWorkflow } from '@aetherflow/ai';
+
+const prompt = \`
+  When a release tag is pushed to GitHub:
+  1. Ingest build artifact and verify sha256 checksum
+  2. Run SAST vulnerability audit in Nitro Enclave
+  3. Deploy to 32 edge clusters with 10% canary traffic
+  4. Send status digest with metrics to Slack #deployments
+\`;
+
+export const pipeline = await synthesizeWorkflow({
+  prompt,
+  targetEngine: 'aetherflow-dag-v2.5',
+  validationMode: 'strict-ast',
+  autoHeal: true
+});`,
+    codeLang: 'typescript',
+    simulationInitialLogs: [
+      'Receiving prompt: "When release PR merges, audit security and deploy canary..."',
+      'Extracting semantic pipeline intents & topological dependencies...',
+      'Resolved 4 nodes: [GitHub Webhook] -> [Nitro Enclave SAST] -> [Edge Deploy] -> [Slack Alert]',
+      'Validating schema bindings against 200+ tool connector schemas...',
+      'Topological sort complete: 0 cyclic deadlocks',
+      'Compiled production DAG in 420ms • Ready for 1-click execution'
+    ],
+    simActionText: 'Synthesize Workflow from Natural Language'
   }
 };
 

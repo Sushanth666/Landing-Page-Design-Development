@@ -2,7 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { Menu, X, ArrowRight } from 'lucide-react';
 import { BrandLogo } from '../ui/BrandLogo';
 
-export const Navbar = ({ onOpenAuthModal, onOpenDemoModal, onNavigateToArchitecture }) => {
+export const Navbar = ({ 
+  onOpenAuthModal, 
+  onOpenDemoModal, 
+  onNavigateToArchitecture,
+  onNavigateToPlayground 
+}) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [hoveredNav, setHoveredNav] = useState(null);
@@ -17,6 +22,7 @@ export const Navbar = ({ onOpenAuthModal, onOpenDemoModal, onNavigateToArchitect
 
   const navLinks = [
     { name: 'Workflow Canvas', href: '#features' },
+    { name: 'Workflow Studio', href: '#playground', isPlayground: true, badge: 'Live' },
     { name: 'Architecture Specs', href: '#architecture', isSubpage: true },
     { name: 'Platform Matrix', href: '#about' },
     { name: 'How It Works', href: '#how-it-works' },
@@ -45,19 +51,27 @@ export const Navbar = ({ onOpenAuthModal, onOpenDemoModal, onNavigateToArchitect
                 key={link.name}
                 href={link.href}
                 onClick={(e) => {
-                  if (link.isSubpage && onNavigateToArchitecture) {
+                  if (link.isPlayground && onNavigateToPlayground) {
+                    e.preventDefault();
+                    onNavigateToPlayground();
+                  } else if (link.isSubpage && onNavigateToArchitecture) {
                     e.preventDefault();
                     onNavigateToArchitecture();
                   }
                 }}
                 onMouseEnter={() => setHoveredNav(idx)}
                 onMouseLeave={() => setHoveredNav(null)}
-                className="relative px-4 py-1.5 text-sm font-medium text-slate-300 hover:text-white rounded-full transition-colors duration-200 group"
+                className="relative px-3.5 py-1.5 text-sm font-medium text-slate-300 hover:text-white rounded-full transition-colors duration-200 group flex items-center gap-1.5"
               >
                 {hoveredNav === idx && (
                   <span className="absolute inset-0 bg-emerald-500/15 border border-emerald-500/30 rounded-full -z-10 animate-in fade-in zoom-in-95 duration-150" />
                 )}
                 <span className="group-hover:text-emerald-300 transition-colors font-hover-expand">{link.name}</span>
+                {link.badge && (
+                  <span className="text-[9px] font-mono font-bold px-1.5 py-0.2 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">
+                    {link.badge}
+                  </span>
+                )}
               </a>
             ))}
           </nav>
@@ -95,14 +109,22 @@ export const Navbar = ({ onOpenAuthModal, onOpenDemoModal, onNavigateToArchitect
                   href={link.href}
                   onClick={(e) => {
                     setMobileMenuOpen(false);
-                    if (link.isSubpage && onNavigateToArchitecture) {
+                    if (link.isPlayground && onNavigateToPlayground) {
+                      e.preventDefault();
+                      onNavigateToPlayground();
+                    } else if (link.isSubpage && onNavigateToArchitecture) {
                       e.preventDefault();
                       onNavigateToArchitecture();
                     }
                   }}
-                  className="px-4 py-2.5 text-base font-medium text-slate-300 hover:text-emerald-300 hover:bg-emerald-950/40 rounded-xl transition-all"
+                  className="px-4 py-2.5 text-base font-medium text-slate-300 hover:text-emerald-300 hover:bg-emerald-950/40 rounded-xl transition-all flex items-center justify-between"
                 >
-                  {link.name}
+                  <span>{link.name}</span>
+                  {link.badge && (
+                    <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">
+                      {link.badge}
+                    </span>
+                  )}
                 </a>
               ))}
               <div className="pt-4 mt-2 border-t border-emerald-950 flex flex-col gap-2.5">

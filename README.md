@@ -19,39 +19,51 @@ Modern engineering organizations suffer from fragmented toolchains, context swit
 
 ## 🌟 Latest Project Features & Enhancements
 
-### 1. Dedicated Subpages for All 6 Capability Boxes (`src/components/pages/FeatureDetailSubpage.jsx`)
-Clicking any feature card or "Inspect →" navigates directly to a dedicated deep-dive subpage with browser hash routing (`#feature-1` to `#feature-6`):
+### 1. Dedicated Subpages for All 8 Capability Boxes (`src/components/pages/FeatureDetailSubpage.jsx`)
+Clicking any feature card or "Inspect →" navigates directly to a dedicated deep-dive subpage with browser hash routing (`#feature-1` to `#feature-8`):
 - **1. Autonomous AI Agents** (`#feature-1` / `#feature-autonomous-agents`): PR synthesis, multi-agent AST analysis, 98.2% accuracy.
 - **2. Real-Time Data Streams** (`#feature-2` / `#feature-realtime-streams`): Sub-millisecond telemetry, queue velocity, predictive alerts.
 - **3. Secure Orchestration Enclave** (`#feature-3` / `#feature-secure-enclave`): Zero-retention encryption, SOC2 Type II, air-gapped enclaves.
 - **4. Cross-Platform Integrations** (`#feature-4` / `#feature-cross-platform-integrations`): 200+ native connectors, bi-directional OAuth sync.
 - **5. Dynamic Process Mapping** (`#feature-5` / `#feature-dynamic-process-mapping`): Visual in-browser DAG compiler with self-healing nodes.
 - **6. Scalable Edge Infrastructure** (`#feature-6` / `#feature-scalable-edge`): 32 distributed edge enclaves with sub-15ms edge compute.
+- **7. Self-Healing Canary Rollbacks** (`#feature-7` / `#feature-self-healing-rollbacks`): Real-time anomaly detection, zero downtime, sub-8s MTTR automated rollbacks.
+- **8. Natural Language Workflow Synthesizer** (`#feature-8` / `#feature-nlp-workflow-synthesizer`): Text-to-DAG AI compilation, human intent translation, 10x creation velocity.
 - **Subpage Capabilities**:
   - Interactive breadcrumbs with 1-click home navigation.
-  - 4 custom real-time metric dials per feature.
-  - 4 engineering mechanics breakdown cards.
+  - 4 custom real-time metric dials per feature (32 custom metrics across all 8 features).
+  - 4 engineering mechanics breakdown cards per feature (32 mechanics specifications).
   - Interactive live verification simulator with simulated execution feedback.
   - Multi-language technical specification playground (TypeScript, Python, YAML, JavaScript, HCL, JSON).
-  - Quick-switch feature carousel navigation.
+  - Quick-switch feature carousel navigation connecting all 8 features.
 
-### 2. Architecture Specifications Subpage (`src/components/pages/ArchitectureSubpage.jsx`)
+### 2. Interactive Workflow Studio Sandbox Subpage (`src/components/pages/PlaygroundSubpage.jsx`)
+- Dedicated visual canvas accessible via `#playground`, `#studio`, or the Navigation bar ("Workflow Studio" with glowing "Live" badge).
+- **Interactive Visual DAG Canvas**: Step-through simulation of enterprise orchestration graphs with interactive node selection.
+- **Pre-Configured Workflow Templates**:
+  - *PR Review & Canary Deployment*: GitHub Webhook → Multi-Agent AST Check → Automated Canary (10%) → Full Production Release.
+  - *Real-Time Telemetry & Self-Healing*: Datadog P99 Alarm → AI Root-Cause Diagnostic → Canary Rollback Action → Slack Incident Broadcast.
+- **Execution Simulator**: Interactive "Run Simulation", "Next Step", and "Reset" controls with moving packet progress lines and real-time step state transitions.
+- **Node Inspector & Telemetry**: Click any node to inspect payload inputs, output schemas, timeout settings, and retry policies.
+- **Multi-Format Specification Exporter**: Instant toggling between YAML and JSON workflow DAG manifests with 1-click copy-to-clipboard.
+
+### 3. Architecture Specifications Subpage (`src/components/pages/ArchitectureSubpage.jsx`)
 - Dedicated subpage accessible via `#architecture` or the navigation bar.
 - Interactive system specifications table, terminal emulator with interactive shell commands, and enterprise security matrix.
 
-### 3. AI Voice Background Narration & Enhanced Video Player (`src/components/media/DemoVideoPlayer.jsx`)
+### 4. AI Voice Background Narration & Enhanced Video Player (`src/components/media/DemoVideoPlayer.jsx`)
 - **AI Voice Narration Engine**: 4 synchronized chapter voiceover tracks generated via speech synthesis (`public/ai-voice-chapter-0.wav` through `3.wav`), with automatic Web Speech API fallback.
 - **Unified "Audio On" / "Audio Off" Control**: Merged audio toggle button with an integrated real-time soundwave visualizer.
 - **Dedicated "CC On" / "CC Off" Toggle**: Independent subtitle button with floating synchronized transcription subtitles.
 - **2-Second Auto-Reset Playback Memory**: Automatically resets video and narration to `0:00` if closed for 2+ seconds, while retaining playback if quickly reopened.
 
-### 4. Dynamic Moving Browser Tab Animations (`src/components/meta/AnimatedFavicon.jsx`)
+### 5. Dynamic Moving Browser Tab Animations (`src/components/meta/AnimatedFavicon.jsx`)
 - **Moving Canvas Favicon**: Offscreen 32x32 canvas rendering a bright orbiting satellite electron with comet tails, expanding radar sonar waves, and signal transmission pulses.
 - **Moving Browser Tab Title**: Smooth character-by-character marquee ticker scrolling in `document.title` (`⚡ AetherFlow — Autonomous Workflow Intelligence ✦ 98.2% Accuracy ✦ 1.5ms Latency ✦`).
-- **Context-Aware Titles**: Tab title automatically updates to reflect the active feature subpage or architecture view.
+- **Context-Aware Titles**: Tab title automatically updates to reflect the active feature subpage, studio sandbox, or architecture view.
 - **In-App Workflow Header Tab**: Authentic browser tab pill embedded in the Hero Workflow Canvas with glowing status beacons and shimmer typography.
 
-### 5. Official Partner Links Redirection (`src/components/sections/Hero.jsx`)
+### 6. Official Partner Links Redirection (`src/components/sections/Hero.jsx`)
 - Partner logos and company names in the social proof strip are clickable links redirecting to official websites:
   - **Linear** (`https://linear.app`)
   - **Supabase** (`https://supabase.com`)
@@ -62,7 +74,7 @@ Clicking any feature card or "Inspect →" navigates directly to a dedicated dee
   - **Figma** (`https://www.figma.com`)
 - Includes spring hover scaling, external link indicators, portal toast alerts, and security isolation (`target="_blank"`, `rel="noopener noreferrer"`).
 
-### 6. Moving Typography Animation Engine (`src/index.css`)
+### 7. Moving Typography Animation Engine (`src/index.css`)
 - Custom CSS animation keyframes applied across headers, badges, and interactive copy:
   - `.font-shimmer`: Sweeping gradient shimmer reflection across text.
   - `.font-aurora`: Flowing emerald-to-mint color gradient wave.
@@ -70,11 +82,11 @@ Clicking any feature card or "Inspect →" navigates directly to a dedicated dee
   - `.font-float`: Gentle vertical floating motion.
   - `.font-hover-expand`: Smooth letter-spacing expansion on hover.
 
-### 7. Clean Modular Domain Architecture
+### 8. Clean Modular Domain Architecture
 - Entire codebase refactored from a flat structure into modular domain folders:
   - `src/components/ui/` (Reusable primitives: `BrandLogo`, `Modal`, `TiltCard`, `Toast`)
   - `src/components/sections/` (Landing page: `Navbar`, `Hero`, `About`, `Features`, `HowItWorks`, `Testimonials`, `Pricing`, `Footer`)
-  - `src/components/pages/` (Subpages: `ArchitectureSubpage`, `FeatureDetailSubpage`)
+  - `src/components/pages/` (Subpages: `ArchitectureSubpage`, `FeatureDetailSubpage`, `PlaygroundSubpage`)
   - `src/components/media/` (Visual engines: `Canvas3D`, `DemoVideoPlayer`)
   - `src/components/meta/` (Browser controller: `AnimatedFavicon`)
   - `docs/` (Technical documentation: PDF and HTML references)
@@ -117,7 +129,7 @@ The project adopts the **Aurora Matrix & Deep Slate** design language:
 
 ### 4. Features Bento Grid (`src/components/sections/Features.jsx`)
 - Dynamic category filters (*All*, *Agents*, *Telemetry*, *Security*).
-- 6 interactive bento cards with 3D tilt physics and direct "Inspect →" links to dedicated subpages.
+- 8 interactive bento cards with 3D tilt physics and direct "Inspect →" links to dedicated subpages.
 
 ### 5. How It Works (`src/components/sections/HowItWorks.jsx`)
 - 4-step progressive timeline sandbox with live code, token exchange, and telemetry previews.
@@ -161,7 +173,7 @@ Landing Page Design & Development/
 │   │   │   ├── Navbar.jsx                # Sticky glassmorphic header
 │   │   │   ├── Hero.jsx                  # DAG workflow canvas, partner links, throughput simulator
 │   │   │   ├── About.jsx                 # Metrics, velocity counters, platform matrix
-│   │   │   ├── Features.jsx              # 6-card bento grid with category filters
+│   │   │   ├── Features.jsx              # 8-card bento grid with category filters
 │   │   │   ├── HowItWorks.jsx            # 4-step interactive timeline sandbox
 │   │   │   ├── Testimonials.jsx          # Filterable verified review cards
 │   │   │   ├── Pricing.jsx               # Billing switcher, 3 tiers, FAQ accordion
@@ -169,7 +181,8 @@ Landing Page Design & Development/
 │   │   │   └── index.js                  # Sections barrel export
 │   │   ├── pages/                        # Full deep-dive subpages & routes
 │   │   │   ├── ArchitectureSubpage.jsx   # Interactive architecture specifications subpage
-│   │   │   ├── FeatureDetailSubpage.jsx  # Dedicated deep-dive subpages for all 6 features
+│   │   │   ├── FeatureDetailSubpage.jsx  # Dedicated deep-dive subpages for all 8 features
+│   │   │   ├── PlaygroundSubpage.jsx     # Interactive Workflow Studio DAG sandbox
 │   │   │   └── index.js                  # Pages barrel export
 │   │   ├── media/                        # Audio-visual engines & interactive simulations
 │   │   │   ├── Canvas3D.jsx              # 60 FPS 3D neural lattice particle background

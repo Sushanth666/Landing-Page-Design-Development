@@ -215,11 +215,15 @@ export const AnimatedFavicon = ({ currentView = 'home', selectedFeatureId = 1 })
         3: '🔒 AetherFlow: Secure Orchestration Enclave ✦ Zero-Retention Encryption ✦ SOC2 Type II ✦ ',
         4: '🔌 AetherFlow: Cross-Platform Integrations ✦ 200+ Connectors ✦ Bi-Directional OAuth ✦ ',
         5: '🔀 AetherFlow: Dynamic Process Mapping ✦ Visual DAG Builder ✦ Self-Healing Logic ✦ ',
-        6: '🌐 AetherFlow: Scalable Edge Infrastructure ✦ 32 Global Edge Regions ✦ '
+        6: '🌐 AetherFlow: Scalable Edge Infrastructure ✦ 32 Global Edge Regions ✦ ',
+        7: '🛡️ AetherFlow: Self-Healing Canary Rollbacks ✦ 8s MTTR ✦ 0 Downtime ✦ ',
+        8: '✨ AetherFlow: Natural Language Synthesizer ✦ Text-to-DAG AI ✦ 10x Velocity ✦ '
       };
       baseText = featureTitles[selectedFeatureId] || baseText;
     } else if (currentView === 'architecture') {
       baseText = '📐 AetherFlow: Architecture Specifications ✦ Enterprise Security Matrix ✦ Sub-ms Pipelines ✦ ';
+    } else if (currentView === 'playground') {
+      baseText = '⚡ AetherFlow Studio: Interactive DAG Canvas ✦ Live Sandbox Active ✦ ';
     }
 
     let offset = 0;
