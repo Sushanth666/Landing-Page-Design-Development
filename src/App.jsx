@@ -160,8 +160,8 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-[#05090f] text-slate-100 flex flex-col font-sans selection:bg-emerald-500 selection:text-slate-950 relative">
-      {/* Live Animated Moving Favicon with official brand logo in browser tab */}
-      <AnimatedFavicon />
+      {/* Live Animated Moving Favicon with official brand logo in browser tab & scrolling title */}
+      <AnimatedFavicon currentView={currentView} selectedFeatureId={selectedFeatureId} />
 
       {/* Global 3D Neural Particle Lattice & Connecting Links across the entire project */}
       <Canvas3D isGlobal={true} />

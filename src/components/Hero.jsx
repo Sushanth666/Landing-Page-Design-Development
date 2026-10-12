@@ -208,15 +208,33 @@ export const Hero = ({ onOpenAuthModal, onOpenDemoModal, onShowToast }) => {
             {/* Radar scanner sweep line effect */}
             <div className="absolute inset-x-0 h-24 bg-gradient-to-b from-transparent via-emerald-400/8 to-transparent pointer-events-none animate-radar-sweep -z-0" />
 
-            {/* Canvas Header / Controls with 3D Perspective Toggle */}
-            <div className="flex items-center justify-between px-5 py-3.5 border-b border-emerald-950/80 bg-[#060b13] relative z-10">
-              <div className="flex items-center gap-2">
-                <div className="w-3 h-3 rounded-full bg-rose-500/80 hover:scale-125 transition-transform cursor-pointer" />
-                <div className="w-3 h-3 rounded-full bg-amber-500/80 hover:scale-125 transition-transform cursor-pointer" />
-                <div className="w-3 h-3 rounded-full bg-emerald-500/80 hover:scale-125 transition-transform cursor-pointer" />
-                <span className="ml-3 text-xs font-mono text-emerald-400 flex items-center gap-1.5 font-semibold">
-                  <Network className="w-3.5 h-3.5 animate-spin-slow" />
-                  Workflow Canvas: Real-time DAG Orchestration
+            {/* Canvas Header / Controls with 3D Perspective Toggle & Animated Browser Tab Pill */}
+            <div className="flex flex-wrap items-center justify-between gap-3 px-4 sm:px-5 py-2.5 sm:py-3 border-b border-emerald-950/80 bg-[#060b13] relative z-10">
+              <div className="flex items-center gap-3">
+                {/* Traffic lights */}
+                <div className="flex items-center gap-1.5">
+                  <div className="w-3 h-3 rounded-full bg-rose-500/80 hover:scale-125 transition-transform cursor-pointer" />
+                  <div className="w-3 h-3 rounded-full bg-amber-500/80 hover:scale-125 transition-transform cursor-pointer" />
+                  <div className="w-3 h-3 rounded-full bg-emerald-500/80 hover:scale-125 transition-transform cursor-pointer" />
+                </div>
+
+                {/* Animated Browser Tab Pill matching user screenshot */}
+                <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[#0c1624] border border-emerald-500/30 text-xs font-medium text-slate-200 shadow-inner group">
+                  <div className="relative w-4 h-4 flex items-center justify-center">
+                    <span className="absolute inset-0 rounded bg-emerald-400/20 animate-ping" />
+                    <Network className="w-3.5 h-3.5 text-emerald-400 animate-spin-slow relative z-10" />
+                  </div>
+                  <span className="font-semibold tracking-tight text-white flex items-center gap-1">
+                    AetherFlow <span className="text-emerald-400 font-normal">—</span>
+                    <span className="font-shimmer font-hover-expand text-emerald-300">Autonomous Workflows</span>
+                  </span>
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse ml-0.5" />
+                  <span className="text-slate-500 hover:text-slate-300 text-[11px] ml-1.5 cursor-pointer">✕</span>
+                </div>
+
+                <span className="sm:hidden text-[11px] font-mono text-emerald-400 flex items-center gap-1 font-semibold">
+                  <Network className="w-3 h-3 animate-spin-slow" />
+                  AetherFlow DAG
                 </span>
               </div>
 
