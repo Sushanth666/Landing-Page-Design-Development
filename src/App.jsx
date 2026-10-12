@@ -13,6 +13,7 @@ import { DemoVideoPlayer } from './components/DemoVideoPlayer';
 import { Canvas3D } from './components/Canvas3D';
 import { AnimatedFavicon } from './components/AnimatedFavicon';
 import { ArchitectureSubpage } from './components/ArchitectureSubpage';
+import { FeatureDetailSubpage } from './components/FeatureDetailSubpage';
 import { ArrowUp, Play, CheckCircle, Sparkles, Send } from 'lucide-react';
 
 export default function App() {
@@ -22,15 +23,36 @@ export default function App() {
   const [demoModalOpen, setDemoModalOpen] = useState(false);
   const [showBackToTop, setShowBackToTop] = useState(false);
 
-  // Subpage routing state ('home' | 'architecture')
+  // Subpage routing state ('home' | 'architecture' | 'feature-detail')
   const [currentView, setCurrentView] = useState('home');
   const [initialFeatureId, setInitialFeatureId] = useState(null);
+  const [selectedFeatureId, setSelectedFeatureId] = useState(1);
 
   // Hash synchronization & browser history listener
   useEffect(() => {
     const handleHashChange = () => {
       const hash = window.location.hash;
-      if (hash === '#architecture' || hash === '#specs') {
+      if (hash.startsWith('#feature-')) {
+        const idPart = hash.replace('#feature-', '');
+        const parsedId = parseInt(idPart, 10);
+        if (!isNaN(parsedId) && parsedId >= 1 && parsedId <= 6) {
+          setSelectedFeatureId(parsedId);
+          setCurrentView('feature-detail');
+        } else {
+          const slugMap = {
+            'autonomous-agents': 1,
+            'realtime-streams': 2,
+            'secure-enclave': 3,
+            'cross-platform-integrations': 4,
+            'dynamic-process-mapping': 5,
+            'scalable-edge': 6
+          };
+          if (slugMap[idPart]) {
+            setSelectedFeatureId(slugMap[idPart]);
+            setCurrentView('feature-detail');
+          }
+        }
+      } else if (hash === '#architecture' || hash === '#specs') {
         setCurrentView('architecture');
       } else if (hash === '#home' || !hash || hash === '#features' || hash === '#about' || hash === '#pricing' || hash === '#testimonials' || hash === '#how-it-works') {
         setCurrentView('home');
@@ -40,6 +62,13 @@ export default function App() {
     window.addEventListener('hashchange', handleHashChange);
     return () => window.removeEventListener('hashchange', handleHashChange);
   }, []);
+
+  const handleNavigateToFeature = (featureId) => {
+    setSelectedFeatureId(featureId);
+    setCurrentView('feature-detail');
+    window.location.hash = `#feature-${featureId}`;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   const handleNavigateToArchitecture = (featureId = null) => {
     setInitialFeatureId(featureId);
@@ -137,7 +166,17 @@ export default function App() {
       {/* Global 3D Neural Particle Lattice & Connecting Links across the entire project */}
       <Canvas3D isGlobal={true} />
 
-      {currentView === 'architecture' ? (
+      {currentView === 'feature-detail' ? (
+        /* Individual Feature Subpage for each box */
+        <FeatureDetailSubpage
+          featureId={selectedFeatureId || 1}
+          onNavigateHome={handleNavigateToHome}
+          onNavigateToFeature={handleNavigateToFeature}
+          onOpenAuthModal={handleOpenAuthModal}
+          onOpenDemoModal={handleOpenDemoModal}
+          onShowToast={showToast}
+        />
+      ) : currentView === 'architecture' ? (
         /* Architecture & Feature Deep Dive Subpage */
         <ArchitectureSubpage
           onNavigateHome={handleNavigateToHome}
@@ -176,6 +215,7 @@ export default function App() {
               onShowToast={showToast}
               onOpenAuthModal={handleOpenAuthModal}
               onNavigateToArchitecture={handleNavigateToArchitecture}
+              onNavigateToFeature={handleNavigateToFeature}
             />
 
             {/* 5. How It Works */}

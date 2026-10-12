@@ -337,6 +337,7 @@
   <li class="toc-item"><a href="#sec-14">14. Modal Dialog Accessibility &amp; Toast Queue</a> <span>src/components/Modal.jsx &amp; Toast.jsx</span></li>
   <li class="toc-item"><a href="#sec-15">15. Moving Typography Animation Keyframes</a> <span>src/index.css</span></li>
   <li class="toc-item"><a href="#sec-16">16. Architecture &amp; Feature Deep Dive Subpage</a> <span>src/components/ArchitectureSubpage.jsx</span></li>
+  <li class="toc-item"><a href="#sec-17">17. Individual Feature Subpages (6 Boxes)</a> <span>src/components/FeatureDetailSubpage.jsx</span></li>
 </ul>
 
 <div class="note-box">
@@ -979,8 +980,51 @@ document.<span class="function">getElementsByTagName</span>(<span class="string"
 };</code></pre>
 </div>
 
+<div class="page-break"></div>
+
+<!-- SECTION 17 -->
+<h1 id="sec-17">17. Individual Feature Subpages (FeatureDetailSubpage.jsx)</h1>
+<p>
+  <code>src/components/FeatureDetailSubpage.jsx</code> provides dedicated, deep-dive subpages for each of the 6 core platform capabilities, accessible directly from the landing page feature cards or via URL hashes (<code>#feature-1</code> through <code>#feature-6</code>).
+</p>
+
+<div class="func-card">
+  <div class="func-header">
+    <span class="func-name">featurePagesData Dictionary &amp; Dedicated Content</span>
+    <span class="func-badge">Architecture Model</span>
+  </div>
+  <p class="func-desc">
+    Houses full technical specifications, 4 custom SLA metrics, 4 engineering mechanics breakdowns, multi-language runnable specifications (TypeScript, Python, YAML, HCL, JSON), and simulated test streams for each box.
+  </p>
+  <table>
+    <tr><th>ID &amp; Hash</th><th>Feature Name</th><th>Badge</th><th>Language Spec</th></tr>
+    <tr><td>1 (<code>#feature-1</code>)</td><td>Autonomous AI Agents</td><td>Agent Mesh</td><td>TypeScript</td></tr>
+    <tr><td>2 (<code>#feature-2</code>)</td><td>Real-Time Data Streams</td><td>Live Telemetry</td><td>Python</td></tr>
+    <tr><td>3 (<code>#feature-3</code>)</td><td>Secure Orchestration Enclave</td><td>SOC2 Type II</td><td>YAML</td></tr>
+    <tr><td>4 (<code>#feature-4</code>)</td><td>Cross-Platform Integrations</td><td>200+ Connectors</td><td>JavaScript</td></tr>
+    <tr><td>5 (<code>#feature-5</code>)</td><td>Dynamic Process Mapping</td><td>Visual DAG Builder</td><td>HCL</td></tr>
+    <tr><td>6 (<code>#feature-6</code>)</td><td>Scalable Edge Infrastructure</td><td>32 Edge Regions</td><td>JSON</td></tr>
+  </table>
+</div>
+
+<div class="func-card">
+  <div class="func-header">
+    <span class="func-name">handleNavigateToFeature(featureId)</span>
+    <span class="func-badge">Hash Navigation</span>
+  </div>
+  <p class="func-desc">
+    Switches client-side SPA view to <code>'feature-detail'</code>, updates <code>window.location.hash</code> to <code>#feature-{id}</code>, and smoothly scrolls to top for instant subpage rendering.
+  </p>
+  <pre><code><span class="keyword">const</span> <span class="function">handleNavigateToFeature</span> = (featureId) => {
+  <span class="function">setSelectedFeatureId</span>(featureId);
+  <span class="function">setCurrentView</span>(<span class="string">'feature-detail'</span>);
+  window.location.hash = <span class="string">`#feature-${featureId}`</span>;
+  window.<span class="function">scrollTo</span>({ top: <span class="number">0</span>, behavior: <span class="string">'smooth'</span> });
+};</code></pre>
+</div>
+
 <div class="note-box" style="margin-top: 24px;">
-  <strong>Summary:</strong> This reference covers all 16 components, 28 core functions, 5 animation token engines, and 3 mathematical coordinate projection systems in the AetherFlow codebase.
+  <strong>Summary:</strong> This reference covers all 17 components, 32 core functions, 6 individual feature subpages, 5 animation token engines, and 3 mathematical coordinate projection systems in the AetherFlow codebase.
 </div>
 
 </body>
