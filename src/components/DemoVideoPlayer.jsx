@@ -120,7 +120,7 @@ export const DemoVideoPlayer = ({
               <div className="w-14 h-14 rounded-2xl bg-emerald-500/10 border border-emerald-500/40 mx-auto flex items-center justify-center animate-pulse">
                 <Radio className="w-7 h-7 text-emerald-400 animate-spin-slow" />
               </div>
-              <h4 className="text-base font-bold text-white">
+              <h4 className="text-base font-bold text-white font-shimmer font-hover-expand">
                 Live Simulation: {chapters[activeChapter].title}
               </h4>
               <p className="text-xs text-slate-400 leading-relaxed">
@@ -128,7 +128,7 @@ export const DemoVideoPlayer = ({
               </p>
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-950/60 border border-emerald-500/30 text-[11px] font-mono text-emerald-300">
                 <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
-                <span>Deterministic Execution • 1.5ms latency</span>
+                <span className="font-glow">Deterministic Execution • 1.5ms latency</span>
               </div>
             </div>
           </div>
@@ -143,7 +143,7 @@ export const DemoVideoPlayer = ({
             <div className="w-18 h-18 rounded-full bg-emerald-500 text-slate-950 flex items-center justify-center shadow-2xl shadow-emerald-500/50 group-hover/play:scale-115 transition-all duration-300">
               <Play className="w-9 h-9 fill-slate-950 translate-x-0.5" />
             </div>
-            <span className="mt-3 text-sm font-bold text-white bg-[#060b13]/80 px-4 py-1.5 rounded-full border border-emerald-950 shadow-md">
+            <span className="mt-3 text-sm font-bold text-white bg-[#060b13]/80 px-4 py-1.5 rounded-full border border-emerald-950 shadow-md font-hover-expand">
               Click to Resume Walkthrough
             </span>
           </div>
@@ -156,7 +156,7 @@ export const DemoVideoPlayer = ({
               <span className={`absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75 ${isPlaying ? 'animate-ping' : ''}`}></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
             </span>
-            <span>{chapters[activeChapter].title}</span>
+            <span className="font-aurora font-hover-expand">{chapters[activeChapter].title}</span>
           </span>
           <span className="hidden sm:inline-flex px-2.5 py-1 rounded-full text-[11px] font-mono text-slate-300 bg-black/60 border border-white/10 backdrop-blur-md">
             1080p 60fps

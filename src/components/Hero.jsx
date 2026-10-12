@@ -132,8 +132,8 @@ export const Hero = ({ onOpenAuthModal, onOpenDemoModal, onShowToast }) => {
               <span className="animate-ping-slow absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-400"></span>
             </span>
-            <span className="font-bold text-emerald-400">AetherFlow Matrix v2.5:</span>
-            <span>Interactive 3D Node-Graph Workflow Engine</span>
+            <span className="font-bold font-aurora">AetherFlow Matrix v2.5:</span>
+            <span className="font-hover-expand">Interactive 3D Node-Graph Workflow Engine</span>
             <ArrowRight className="w-3.5 h-3.5 text-emerald-400 group-hover:translate-x-1 transition-transform" />
           </button>
         </div>
@@ -141,8 +141,8 @@ export const Hero = ({ onOpenAuthModal, onOpenDemoModal, onShowToast }) => {
         {/* Hero Heading with Animated Color Flow Gradient */}
         <div className="text-center max-w-4xl mx-auto">
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-white leading-[1.12]">
-            Interactive Workflow Automation:{' '}
-            <span className="animate-text-gradient bg-gradient-to-r from-emerald-400 via-teal-300 via-emerald-200 to-emerald-400 bg-clip-text text-transparent">
+            <span className="font-shimmer font-hover-expand inline-block">Interactive Workflow Automation:</span>{' '}
+            <span className="font-aurora font-hover-expand inline-block">
               Autonomous AI Data
             </span>
           </h1>

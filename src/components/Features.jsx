@@ -104,10 +104,11 @@ export const Features = ({ onShowToast, onOpenAuthModal }) => {
         <div className="text-center max-w-3xl mx-auto mb-12">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-xs font-semibold text-emerald-400 mb-4 animate-pulse">
             <Sparkles className="w-3.5 h-3.5" />
-            <span>CORE ARCHITECTURE</span>
+            <span className="font-aurora font-float">CORE ARCHITECTURE</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-tight">
-            High-Performance Building Blocks for Autonomous Operations
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight">
+            <span className="font-shimmer font-hover-expand inline-block">High-Performance Building Blocks for</span>{' '}
+            <span className="font-aurora font-hover-expand inline-block">Autonomous Operations</span>
           </h2>
           <p className="mt-4 text-base sm:text-lg text-slate-300 leading-relaxed">
             A unified suite of autonomous multi-agent meshes, visual process mapping, and real-time telemetry engineered to supercharge your delivery pipeline.

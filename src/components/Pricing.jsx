@@ -98,10 +98,11 @@ export const Pricing = ({ onOpenAuthModal, onShowToast }) => {
         <div className="text-center max-w-3xl mx-auto mb-14">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-xs font-semibold text-emerald-400 mb-4 animate-pulse">
             <Sparkles className="w-3.5 h-3.5" />
-            <span>TRANSPARENT PRICING</span>
+            <span className="font-aurora font-float">TRANSPARENT PRICING</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-tight">
-            Predictable Plans for Every Stage of Growth
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight">
+            <span className="font-shimmer font-hover-expand inline-block">Predictable Plans for</span>{' '}
+            <span className="font-aurora font-hover-expand inline-block">Every Stage of Growth</span>
           </h2>
           <p className="mt-4 text-base sm:text-lg text-slate-300 leading-relaxed">
             Start for free, scale as your team velocity compounds. No surprise invoices, hidden charges, or vendor lock-in.
@@ -171,7 +172,7 @@ export const Pricing = ({ onOpenAuthModal, onShowToast }) => {
 
                   {/* Price display with smooth counter font */}
                   <div className="flex items-baseline gap-2 mb-6">
-                    <span className="text-4xl sm:text-5xl font-extrabold text-white tracking-tight font-mono">
+                    <span className="text-4xl sm:text-5xl font-extrabold tracking-tight font-mono font-aurora font-glow inline-block">
                       ${price}
                     </span>
                     <span className="text-sm text-slate-400">

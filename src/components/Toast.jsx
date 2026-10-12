@@ -17,7 +17,7 @@ export const ToastContainer = ({ toasts, onDismiss }) => {
           {toast.type === 'warning' && <AlertCircle className="w-5 h-5 text-amber-400 shrink-0 mt-0.5" />}
 
           <div className="flex-1 min-w-0">
-            <h4 className="text-sm font-semibold text-white">{toast.title}</h4>
+            <h4 className="text-sm font-semibold text-white font-shimmer">{toast.title}</h4>
             <p className="text-xs text-slate-300 mt-0.5 leading-relaxed">{toast.message}</p>
           </div>
 

@@ -71,10 +71,11 @@ export const About = ({ onShowToast }) => {
         <div className="text-center max-w-3xl mx-auto mb-16">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-xs font-semibold text-emerald-400 mb-4 animate-pulse">
             <Network className="w-3.5 h-3.5 animate-spin-slow" />
-            <span>THE AETHERFLOW MATRIX</span>
+            <span className="font-aurora font-float">THE AETHERFLOW MATRIX</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-tight">
-            Designed for Modern Teams That Refuse to Move Slowly
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight">
+            <span className="font-shimmer font-hover-expand inline-block">Designed for Modern Teams That</span>{' '}
+            <span className="font-aurora font-hover-expand inline-block">Refuse to Move Slowly</span>
           </h2>
           <p className="mt-4 text-base sm:text-lg text-slate-300 leading-relaxed">
             Every day, engineering and product teams waste up to 40% of their bandwidth wrangling disconnected tools, resolving sync conflicts, and handling repetitive operational tasks. AetherFlow gives you an intelligent autonomous layer that harmonizes your workflows and drives high-velocity execution.
@@ -95,7 +96,7 @@ export const About = ({ onShowToast }) => {
               className="p-6 rounded-2xl bg-[#09121d] border border-emerald-950/80 hover:border-emerald-400 cursor-pointer shadow-lg hover:shadow-emerald-500/20 group"
             >
               <div className="flex items-center justify-between mb-3">
-                <span className="text-3xl sm:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-white via-emerald-200 to-emerald-400 font-mono inline-block">
+                <span className="text-3xl sm:text-4xl font-extrabold font-aurora font-glow font-mono inline-block">
                   {stat.value}
                 </span>
                 <span className="p-2 rounded-xl bg-emerald-500/10 text-emerald-400 group-hover:bg-emerald-500 group-hover:text-slate-950 spring-icon">

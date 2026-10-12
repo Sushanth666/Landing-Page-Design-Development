@@ -75,7 +75,7 @@ export const Footer = ({ onShowToast }) => {
           {/* Newsletter subscription form */}
           <div className="lg:col-span-6">
             <div className="p-5 rounded-2xl bg-[#09121d] border border-emerald-950 hover:border-emerald-800 transition-colors">
-              <h4 className="text-sm font-bold text-white mb-1">
+              <h4 className="text-sm font-bold text-white mb-1 font-shimmer font-hover-expand inline-block">
                 Stay updated with autonomous workflow innovations
               </h4>
               <p className="text-xs text-slate-400 mb-3">
@@ -113,7 +113,7 @@ export const Footer = ({ onShowToast }) => {
           {/* 4 Category link columns */}
           {Object.entries(footerLinks).map(([category, links]) => (
             <div key={category}>
-              <h4 className="text-xs font-bold uppercase tracking-wider text-emerald-400/90 mb-4">
+              <h4 className="text-xs font-bold uppercase tracking-wider text-emerald-400/90 mb-4 font-aurora">
                 {category}
               </h4>
               <ul className="space-y-2.5">
@@ -133,7 +133,7 @@ export const Footer = ({ onShowToast }) => {
 
           {/* Contact Information Column */}
           <div className="col-span-2 md:col-span-4 lg:col-span-1">
-            <h4 className="text-xs font-bold uppercase tracking-wider text-emerald-400/90 mb-4">
+            <h4 className="text-xs font-bold uppercase tracking-wider text-emerald-400/90 mb-4 font-aurora">
               Get in Touch
             </h4>
             <div className="space-y-3 text-xs text-slate-400">
@@ -159,7 +159,7 @@ export const Footer = ({ onShowToast }) => {
                     <span className="animate-ping-slow absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                     <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400"></span>
                   </span>
-                  <span>All Systems Operational (99.98%)</span>
+                  <span className="font-glow">All Systems Operational (99.98%)</span>
                 </div>
               </div>
             </div>

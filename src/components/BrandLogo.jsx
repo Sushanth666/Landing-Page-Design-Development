@@ -50,9 +50,9 @@ export const BrandLogo = ({ size = 'md', showText = true, showBadge = true, clas
       {showText && (
         <div className="flex flex-col">
           <span className={`${sizeClasses.text} font-extrabold tracking-tight text-white flex items-center gap-1.5`}>
-            Aether<span className="text-emerald-400 group-hover:text-emerald-300 transition-colors">Flow</span>
+            Aether<span className="font-aurora font-hover-expand">Flow</span>
             {showBadge && (
-              <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 animate-pulse">
+              <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 font-float font-glow">
                 AI Matrix
               </span>
             )}

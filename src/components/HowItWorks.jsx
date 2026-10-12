@@ -98,10 +98,11 @@ export const HowItWorks = ({ onShowToast, onOpenAuthModal }) => {
         <div className="text-center max-w-3xl mx-auto mb-16">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-xs font-semibold text-emerald-400 mb-4 animate-pulse">
             <Network className="w-3.5 h-3.5 animate-spin-slow" />
-            <span>HOW IT WORKS</span>
+            <span className="font-aurora font-float">HOW IT WORKS</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-tight">
-            From Setup to Autonomous Delivery in Four Simple Steps
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight">
+            <span className="font-shimmer font-hover-expand inline-block">From Setup to Autonomous Delivery in</span>{' '}
+            <span className="font-aurora font-hover-expand inline-block">Four Simple Steps</span>
           </h2>
           <p className="mt-4 text-base sm:text-lg text-slate-300 leading-relaxed">
             No endless configuration scripts or complicated machine learning pipelines. AetherFlow integrates seamlessly into your existing habits.

@@ -51,7 +51,7 @@ export const Navbar = ({ onOpenAuthModal, onOpenDemoModal }) => {
                 {hoveredNav === idx && (
                   <span className="absolute inset-0 bg-emerald-500/15 border border-emerald-500/30 rounded-full -z-10 animate-in fade-in zoom-in-95 duration-150" />
                 )}
-                <span className="group-hover:text-emerald-300 transition-colors">{link.name}</span>
+                <span className="group-hover:text-emerald-300 transition-colors font-hover-expand">{link.name}</span>
               </a>
             ))}
           </nav>
@@ -62,7 +62,7 @@ export const Navbar = ({ onOpenAuthModal, onOpenDemoModal }) => {
               onClick={() => onOpenAuthModal('Explore Platform')}
               className="shimmer-trigger relative group inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold text-sm text-slate-950 bg-gradient-to-r from-emerald-400 via-emerald-300 to-teal-300 hover:from-emerald-300 hover:to-teal-200 shadow-lg shadow-emerald-500/25 hover:shadow-emerald-500/50 hover:-translate-y-0.5 active:translate-y-0 active:scale-95 transition-all duration-200 cursor-pointer"
             >
-              <span>Explore Platform</span>
+              <span className="font-hover-expand">Explore Platform</span>
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </button>
           </div>

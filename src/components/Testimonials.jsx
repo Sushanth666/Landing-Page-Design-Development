@@ -95,10 +95,11 @@ export const Testimonials = ({ onShowToast }) => {
         <div className="text-center max-w-3xl mx-auto mb-12">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-xs font-semibold text-emerald-400 mb-4 animate-pulse">
             <Sparkles className="w-3.5 h-3.5" />
-            <span>CUSTOMER STORIES</span>
+            <span className="font-aurora font-float">CUSTOMER STORIES</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-tight">
-            Loved by Builders, Trusted by Leaders
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight">
+            <span className="font-shimmer font-hover-expand inline-block">Loved by Builders,</span>{' '}
+            <span className="font-aurora font-hover-expand inline-block">Trusted by Leaders</span>
           </h2>
           <p className="mt-4 text-base sm:text-lg text-slate-300 leading-relaxed">
             Discover how high-growth startups and established tech leaders utilize AetherFlow to accelerate delivery without burning out their teams.
