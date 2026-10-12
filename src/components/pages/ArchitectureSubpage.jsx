@@ -8,23 +8,15 @@ import {
   Network, 
   Layers, 
   CheckCircle2, 
-  Sparkles, 
-  ArrowRight, 
   Terminal, 
   Copy, 
   Check, 
-  ShieldCheck, 
-  Zap, 
   Cpu, 
   Globe, 
-  Database, 
   Activity, 
   Play, 
-  RefreshCw,
-  X,
-  Share2
+  RefreshCw
 } from 'lucide-react';
-import { BrandLogo } from '../ui/BrandLogo';
 import { TiltCard } from '../ui/TiltCard';
 
 export const ArchitectureSubpage = ({ 

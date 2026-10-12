@@ -3,10 +3,6 @@ import {
   Check, 
   X, 
   Network, 
-  Zap, 
-  ShieldCheck, 
-  BarChart3, 
-  Layers, 
   ArrowUpRight 
 } from 'lucide-react';
 import { TiltCard } from '../ui/TiltCard';

@@ -8,24 +8,13 @@ import {
   Network, 
   Layers, 
   CheckCircle2, 
-  Sparkles, 
   ArrowRight, 
   Terminal, 
   Copy, 
   Check, 
-  ShieldCheck, 
-  Zap, 
   Cpu, 
-  Globe, 
-  Database, 
-  Activity, 
   Play, 
-  RefreshCw,
-  X,
-  Share2,
-  Sliders,
-  ChevronRight,
-  ExternalLink
+  RefreshCw
 } from 'lucide-react';
 import { TiltCard } from '../ui/TiltCard';
 

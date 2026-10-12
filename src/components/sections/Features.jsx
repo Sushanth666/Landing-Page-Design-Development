@@ -4,14 +4,10 @@ import {
   BarChart, 
   Lock, 
   GitMerge, 
-  Wand2, 
-  RefreshCw, 
   CheckCircle2, 
   Sparkles,
   ArrowRight,
-  Database,
   Network,
-  Cpu,
   Layers
 } from 'lucide-react';
 import { TiltCard } from '../ui/TiltCard';

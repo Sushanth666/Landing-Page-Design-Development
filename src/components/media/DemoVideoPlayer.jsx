@@ -7,11 +7,7 @@ import {
   VolumeX, 
   Maximize2, 
   Sparkles, 
-  CheckCircle, 
   Radio, 
-  Layers,
-  ChevronRight,
-  Mic,
   Subtitles
 } from 'lucide-react';
 

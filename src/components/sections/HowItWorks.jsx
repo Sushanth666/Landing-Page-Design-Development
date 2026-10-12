@@ -4,11 +4,7 @@ import {
   SlidersHorizontal, 
   Cpu, 
   Rocket, 
-  CheckCircle2, 
-  Sparkles,
   ArrowRight,
-  Code2,
-  Terminal,
   ShieldAlert,
   Network
 } from 'lucide-react';
