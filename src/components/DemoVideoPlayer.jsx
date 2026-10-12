@@ -317,26 +317,27 @@ export const DemoVideoPlayer = ({
 
             {/* Right side controls */}
             <div className="flex items-center gap-2">
-              {/* AI Voice Active Soundwave Visualizer & Subtitle Toggle */}
-              <div 
-                onClick={() => setShowCaptions(!showCaptions)}
-                className="hidden sm:flex items-center gap-2 px-2.5 py-1.5 rounded-lg bg-[#07101a] border border-emerald-950/80 hover:border-emerald-700/60 transition-colors cursor-pointer select-none"
-                title={showCaptions ? 'Click to hide AI voice captions' : 'Click to show AI voice captions'}
-              >
-                <div className="flex items-end gap-0.5 h-3">
-                  <span className={`w-0.5 rounded-full bg-emerald-400 transition-all ${isVoiceSpeaking && !isMuted ? 'animate-pulse h-3' : 'h-1 opacity-50'}`} />
-                  <span className={`w-0.5 rounded-full bg-emerald-400 transition-all ${isVoiceSpeaking && !isMuted ? 'animate-bounce h-3.5' : 'h-1.5 opacity-50'}`} style={{ animationDuration: '0.5s' }} />
-                  <span className={`w-0.5 rounded-full bg-emerald-400 transition-all ${isVoiceSpeaking && !isMuted ? 'animate-pulse h-2.5' : 'h-1 opacity-50'}`} />
-                  <span className={`w-0.5 rounded-full bg-emerald-400 transition-all ${isVoiceSpeaking && !isMuted ? 'animate-bounce h-3' : 'h-2 opacity-50'}`} style={{ animationDuration: '0.7s' }} />
-                </div>
-                <span className="text-[11px] font-mono text-emerald-300 font-semibold flex items-center gap-1">
-                  <span>AI VOICE</span>
-                  <span className="text-[9px] text-slate-400">({showCaptions ? 'CC ON' : 'CC OFF'})</span>
-                </span>
-              </div>
-
-              {/* Voice Mute / Audio On Toggle */}
+              {/* Individual CC (Closed Captions) Toggle Button */}
               <button
+                type="button"
+                onClick={() => setShowCaptions(!showCaptions)}
+                className={`p-2 sm:px-3 rounded-lg border transition-all cursor-pointer flex items-center gap-1.5 active:scale-95 ${
+                  showCaptions
+                    ? 'bg-emerald-500/15 border-emerald-500/50 text-emerald-300 shadow-sm'
+                    : 'bg-white/5 border-white/10 text-slate-400 hover:text-white hover:bg-white/10'
+                }`}
+                title={showCaptions ? 'Turn Subtitles Off' : 'Turn Subtitles On'}
+                aria-label="Toggle Closed Captions"
+              >
+                <Subtitles className={`w-3.5 h-3.5 ${showCaptions ? 'text-emerald-400' : 'text-slate-400'}`} />
+                <span className="text-[11px] font-mono font-semibold">
+                  {showCaptions ? 'CC On' : 'CC Off'}
+                </span>
+              </button>
+
+              {/* Merged Unified "Audio On" / "Audio Off" Button with Soundwave Visualizer */}
+              <button
+                type="button"
                 onClick={() => {
                   const nextMuted = !isMuted;
                   setIsMuted(nextMuted);
@@ -347,14 +348,38 @@ export const DemoVideoPlayer = ({
                     }
                   }
                 }}
-                className="p-2 rounded-lg bg-white/10 hover:bg-white/20 text-slate-300 hover:text-white transition-all cursor-pointer flex items-center gap-1.5"
-                title={isMuted ? 'Unmute AI Voice' : 'Mute AI Voice'}
+                className={`p-2 sm:px-3 rounded-lg border transition-all cursor-pointer flex items-center gap-2 active:scale-95 ${
+                  !isMuted
+                    ? 'bg-[#091523] border-emerald-500/50 text-emerald-300 shadow-sm'
+                    : 'bg-white/5 border-white/10 text-slate-400 hover:text-white hover:bg-white/10'
+                }`}
+                title={isMuted ? 'Turn Audio On' : 'Turn Audio Off'}
+                aria-label="Toggle Audio"
               >
-                {isMuted ? <VolumeX className="w-4 h-4 text-rose-400" /> : <Volume2 className="w-4 h-4 text-emerald-400" />}
-                <span className="text-[11px] hidden sm:inline">{isMuted ? 'Voice Muted' : 'Voice Audio On'}</span>
+                {/* Embedded Soundwave Frequency Bars */}
+                <div className="flex items-end gap-0.5 h-3">
+                  <span className={`w-0.5 rounded-full bg-emerald-400 transition-all ${isVoiceSpeaking && !isMuted && isPlaying ? 'animate-pulse h-3' : 'h-1 opacity-40'}`} />
+                  <span className={`w-0.5 rounded-full bg-emerald-400 transition-all ${isVoiceSpeaking && !isMuted && isPlaying ? 'animate-bounce h-3.5' : 'h-1.5 opacity-40'}`} style={{ animationDuration: '0.5s' }} />
+                  <span className={`w-0.5 rounded-full bg-emerald-400 transition-all ${isVoiceSpeaking && !isMuted && isPlaying ? 'animate-pulse h-2.5' : 'h-1 opacity-40'}`} />
+                  <span className={`w-0.5 rounded-full bg-emerald-400 transition-all ${isVoiceSpeaking && !isMuted && isPlaying ? 'animate-bounce h-3' : 'h-2 opacity-40'}`} style={{ animationDuration: '0.7s' }} />
+                </div>
+
+                {/* Speaker Icon */}
+                {!isMuted ? (
+                  <Volume2 className="w-4 h-4 text-emerald-400 shrink-0" />
+                ) : (
+                  <VolumeX className="w-4 h-4 text-rose-400 shrink-0" />
+                )}
+
+                {/* Merged Button Label: Audio on */}
+                <span className="text-[11px] font-semibold font-sans">
+                  {!isMuted ? 'Audio On' : 'Audio Off'}
+                </span>
               </button>
 
+              {/* Fullscreen Button */}
               <button
+                type="button"
                 onClick={() => {
                   const elem = document.querySelector('.aspect-video');
                   if (elem && elem.requestFullscreen) {
