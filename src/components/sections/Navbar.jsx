@@ -21,10 +21,10 @@ export const Navbar = ({
   }, []);
 
   const navLinks = [
-    { name: 'Workflow Canvas', href: '#features' },
-    { name: 'Workflow Studio', href: '#playground', isPlayground: true, badge: 'Live' },
-    { name: 'Architecture Specs', href: '#architecture', isSubpage: true },
-    { name: 'Platform Matrix', href: '#about' },
+    { name: 'Features', href: '#features' },
+    { name: 'Studio', href: '#playground', isPlayground: true, badge: 'Live' },
+    { name: 'Architecture', href: '#architecture', isSubpage: true },
+    { name: 'Platform', href: '#about' },
     { name: 'How It Works', href: '#how-it-works' },
     { name: 'Pricing', href: '#pricing' },
   ];
@@ -45,7 +45,7 @@ export const Navbar = ({
           </a>
 
           {/* Desktop Navigation Links with animated hover pill */}
-          <nav className="hidden md:flex items-center gap-1 bg-[#09121d]/80 p-1.5 rounded-full border border-emerald-950/80 backdrop-blur-md shadow-inner relative">
+          <nav className="hidden md:flex items-center gap-0.5 bg-[#08121d]/90 px-2 py-1 rounded-full border border-emerald-950/80 backdrop-blur-md shadow-lg shadow-black/30 relative">
             {navLinks.map((link, idx) => (
               <a
                 key={link.name}
@@ -61,14 +61,15 @@ export const Navbar = ({
                 }}
                 onMouseEnter={() => setHoveredNav(idx)}
                 onMouseLeave={() => setHoveredNav(null)}
-                className="relative px-3.5 py-1.5 text-sm font-medium text-slate-300 hover:text-white rounded-full transition-colors duration-200 group flex items-center gap-1.5"
+                className="relative px-3 py-1.5 text-[13px] font-medium text-slate-300 hover:text-white rounded-full transition-colors duration-200 group flex items-center gap-1.5 whitespace-nowrap leading-none select-none"
               >
                 {hoveredNav === idx && (
                   <span className="absolute inset-0 bg-emerald-500/15 border border-emerald-500/30 rounded-full -z-10 animate-in fade-in zoom-in-95 duration-150" />
                 )}
                 <span className="group-hover:text-emerald-300 transition-colors font-hover-expand">{link.name}</span>
                 {link.badge && (
-                  <span className="text-[9px] font-mono font-bold px-1.5 py-0.2 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">
+                  <span className="inline-flex items-center gap-1 text-[9px] font-mono font-bold px-1.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 leading-none tracking-wider uppercase">
+                    <span className="w-1 h-1 rounded-full bg-emerald-400 animate-pulse" />
                     {link.badge}
                   </span>
                 )}
