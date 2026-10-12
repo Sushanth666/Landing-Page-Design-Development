@@ -13,7 +13,8 @@ import {
   RefreshCw,
   Sparkles,
   Box,
-  Layers
+  Layers,
+  ExternalLink
 } from 'lucide-react';
 import { TiltCard } from './TiltCard';
 import { Canvas3D } from './Canvas3D';
@@ -101,13 +102,13 @@ export const Hero = ({ onOpenAuthModal, onOpenDemoModal, onShowToast }) => {
   };
 
   const partnerLogos = [
-    { name: 'Linear', symbol: '▲' },
-    { name: 'Supabase', symbol: '⚡' },
-    { name: 'Stripe', symbol: 'S' },
-    { name: 'Vercel', symbol: '▲' },
-    { name: 'Datadog', symbol: '🐕' },
-    { name: 'Snowflake', symbol: '❄' },
-    { name: 'Figma', symbol: '❖' },
+    { name: 'Linear', symbol: '▲', url: 'https://linear.app' },
+    { name: 'Supabase', symbol: '⚡', url: 'https://supabase.com' },
+    { name: 'Stripe', symbol: 'S', url: 'https://stripe.com' },
+    { name: 'Vercel', symbol: '▲', url: 'https://vercel.com' },
+    { name: 'Datadog', symbol: '🐕', url: 'https://www.datadoghq.com' },
+    { name: 'Snowflake', symbol: '❄', url: 'https://www.snowflake.com' },
+    { name: 'Figma', symbol: '❖', url: 'https://www.figma.com' },
   ];
 
   const currentNode = nodes[activeNode];
@@ -528,15 +529,21 @@ export const Hero = ({ onOpenAuthModal, onOpenDemoModal, onShowToast }) => {
           <p className="text-xs uppercase tracking-widest text-emerald-500/80 font-semibold mb-6">
             Powering autonomous engineering teams at high-growth organizations
           </p>
-          <div className="flex flex-wrap items-center justify-center gap-8 sm:gap-12 md:gap-16 opacity-75 grayscale hover:grayscale-0 transition-all duration-500">
+          <div className="flex flex-wrap items-center justify-center gap-6 sm:gap-10 md:gap-14 opacity-80 hover:opacity-100 transition-all duration-300">
             {partnerLogos.map((partner) => (
-              <div 
+              <a 
                 key={partner.name}
-                className="flex items-center gap-2 text-slate-400 hover:text-emerald-300 spring-pop cursor-default"
+                href={partner.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => onShowToast?.('External Partner Portal', `Redirecting to official ${partner.name} platform (${partner.url})...`)}
+                title={`Visit official ${partner.name} website (${partner.url})`}
+                className="group/partner flex items-center gap-2 text-slate-400 hover:text-emerald-300 spring-pop cursor-pointer transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-1 focus:ring-emerald-500/50 rounded-xl px-2.5 py-1.5 hover:bg-emerald-500/10 hover:shadow-lg hover:shadow-emerald-500/10 border border-transparent hover:border-emerald-500/30"
               >
-                <span className="text-lg font-bold">{partner.symbol}</span>
-                <span className="text-sm font-semibold tracking-wider">{partner.name}</span>
-              </div>
+                <span className="text-lg font-bold group-hover/partner:text-emerald-400 group-hover/partner:scale-110 transition-all">{partner.symbol}</span>
+                <span className="text-sm font-semibold tracking-wider group-hover/partner:text-white transition-colors">{partner.name}</span>
+                <ExternalLink className="w-3 h-3 text-emerald-400/0 group-hover/partner:text-emerald-400 -translate-x-1 group-hover/partner:translate-x-0 transition-all duration-300" />
+              </a>
             ))}
           </div>
         </div>
