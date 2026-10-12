@@ -16,7 +16,7 @@ import {
 } from 'lucide-react';
 import { TiltCard } from './TiltCard';
 
-export const Features = ({ onShowToast, onOpenAuthModal }) => {
+export const Features = ({ onShowToast, onOpenAuthModal, onNavigateToArchitecture }) => {
   const [activeCategory, setActiveCategory] = useState('all');
 
   const categories = [
@@ -143,8 +143,13 @@ export const Features = ({ onShowToast, onOpenAuthModal }) => {
                 scale={1.03}
                 className="group rounded-2xl bg-[#080f1a]/90 border border-emerald-950 hover:border-emerald-400 p-6 sm:p-7 flex flex-col justify-between shadow-xl hover:shadow-2xl hover:shadow-emerald-500/20 backdrop-blur-sm cursor-pointer"
                 onClick={() => {
-                  onShowToast(feature.title, `Inspecting architecture specs for ${feature.title}...`);
-                  onOpenAuthModal(`Explore ${feature.title}`);
+                  if (onNavigateToArchitecture) {
+                    onShowToast(`Deep Dive: ${feature.title}`, `Opening technical specifications...`, 'info');
+                    onNavigateToArchitecture(feature.id);
+                  } else {
+                    onShowToast(feature.title, `Inspecting architecture specs for ${feature.title}...`);
+                    onOpenAuthModal(`Explore ${feature.title}`);
+                  }
                 }}
               >
                 <div>

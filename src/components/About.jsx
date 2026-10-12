@@ -11,7 +11,7 @@ import {
 } from 'lucide-react';
 import { TiltCard } from './TiltCard';
 
-export const About = ({ onShowToast }) => {
+export const About = ({ onShowToast, onNavigateToArchitecture }) => {
   const [selectedStat, setSelectedStat] = useState(null);
 
   const stats = [
@@ -91,7 +91,12 @@ export const About = ({ onShowToast }) => {
               scale={1.04}
               onClick={() => {
                 setSelectedStat(idx);
-                onShowToast(stat.label, stat.detail);
+                if (onNavigateToArchitecture) {
+                  onShowToast(stat.label, `Opening deep dive specifications...`, 'info');
+                  onNavigateToArchitecture();
+                } else {
+                  onShowToast(stat.label, stat.detail);
+                }
               }}
               className="p-6 rounded-2xl bg-[#09121d] border border-emerald-950/80 hover:border-emerald-400 cursor-pointer shadow-lg hover:shadow-emerald-500/20 group"
             >

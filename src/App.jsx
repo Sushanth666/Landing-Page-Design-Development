@@ -12,6 +12,7 @@ import { Modal } from './components/Modal';
 import { DemoVideoPlayer } from './components/DemoVideoPlayer';
 import { Canvas3D } from './components/Canvas3D';
 import { AnimatedFavicon } from './components/AnimatedFavicon';
+import { ArchitectureSubpage } from './components/ArchitectureSubpage';
 import { ArrowUp, Play, CheckCircle, Sparkles, Send } from 'lucide-react';
 
 export default function App() {
@@ -20,6 +21,38 @@ export default function App() {
   const [authModalAction, setAuthModalAction] = useState('Explore Platform');
   const [demoModalOpen, setDemoModalOpen] = useState(false);
   const [showBackToTop, setShowBackToTop] = useState(false);
+
+  // Subpage routing state ('home' | 'architecture')
+  const [currentView, setCurrentView] = useState('home');
+  const [initialFeatureId, setInitialFeatureId] = useState(null);
+
+  // Hash synchronization & browser history listener
+  useEffect(() => {
+    const handleHashChange = () => {
+      const hash = window.location.hash;
+      if (hash === '#architecture' || hash === '#specs') {
+        setCurrentView('architecture');
+      } else if (hash === '#home' || !hash || hash === '#features' || hash === '#about' || hash === '#pricing' || hash === '#testimonials' || hash === '#how-it-works') {
+        setCurrentView('home');
+      }
+    };
+    handleHashChange();
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
+
+  const handleNavigateToArchitecture = (featureId = null) => {
+    setInitialFeatureId(featureId);
+    setCurrentView('architecture');
+    window.location.hash = '#architecture';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleNavigateToHome = () => {
+    setCurrentView('home');
+    window.location.hash = '#home';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   // Video playback memory & 2-second auto-reset logic
   const lastVideoClosedRef = useRef(null);
@@ -104,48 +137,67 @@ export default function App() {
       {/* Global 3D Neural Particle Lattice & Connecting Links across the entire project */}
       <Canvas3D isGlobal={true} />
 
-      {/* 1. Navbar */}
-      <Navbar
-        onOpenAuthModal={handleOpenAuthModal}
-        onOpenDemoModal={handleOpenDemoModal}
-      />
-
-      {/* Main Page Content */}
-      <main className="flex-1">
-        {/* 2. Hero Section */}
-        <Hero
+      {currentView === 'architecture' ? (
+        /* Architecture & Feature Deep Dive Subpage */
+        <ArchitectureSubpage
+          onNavigateHome={handleNavigateToHome}
           onOpenAuthModal={handleOpenAuthModal}
           onOpenDemoModal={handleOpenDemoModal}
           onShowToast={showToast}
+          initialFeatureId={initialFeatureId}
         />
+      ) : (
+        /* Standard Landing Page Experience */
+        <>
+          {/* 1. Navbar */}
+          <Navbar
+            onOpenAuthModal={handleOpenAuthModal}
+            onOpenDemoModal={handleOpenDemoModal}
+            onNavigateToArchitecture={handleNavigateToArchitecture}
+          />
 
-        {/* 3. About / Introduction */}
-        <About onShowToast={showToast} />
+          {/* Main Page Content */}
+          <main className="flex-1">
+            {/* 2. Hero Section */}
+            <Hero
+              onOpenAuthModal={handleOpenAuthModal}
+              onOpenDemoModal={handleOpenDemoModal}
+              onShowToast={showToast}
+            />
 
-        {/* 4. Features Section */}
-        <Features
-          onShowToast={showToast}
-          onOpenAuthModal={handleOpenAuthModal}
-        />
+            {/* 3. About / Introduction */}
+            <About 
+              onShowToast={showToast} 
+              onNavigateToArchitecture={handleNavigateToArchitecture}
+            />
 
-        {/* 5. How It Works */}
-        <HowItWorks
-          onShowToast={showToast}
-          onOpenAuthModal={handleOpenAuthModal}
-        />
+            {/* 4. Features Section */}
+            <Features
+              onShowToast={showToast}
+              onOpenAuthModal={handleOpenAuthModal}
+              onNavigateToArchitecture={handleNavigateToArchitecture}
+            />
 
-        {/* 6. Testimonials */}
-        <Testimonials onShowToast={showToast} />
+            {/* 5. How It Works */}
+            <HowItWorks
+              onShowToast={showToast}
+              onOpenAuthModal={handleOpenAuthModal}
+            />
 
-        {/* 7. Pricing Section */}
-        <Pricing
-          onOpenAuthModal={handleOpenAuthModal}
-          onShowToast={showToast}
-        />
-      </main>
+            {/* 6. Testimonials */}
+            <Testimonials onShowToast={showToast} />
 
-      {/* 8. Footer */}
-      <Footer onShowToast={showToast} />
+            {/* 7. Pricing Section */}
+            <Pricing
+              onOpenAuthModal={handleOpenAuthModal}
+              onShowToast={showToast}
+            />
+          </main>
+
+          {/* 8. Footer */}
+          <Footer onShowToast={showToast} />
+        </>
+      )}
 
       {/* Back to Top Floating Button with Bouncing Pulse Glow */}
       {showBackToTop && (

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Sparkles, Menu, X, ArrowRight } from 'lucide-react';
 import { BrandLogo } from './BrandLogo';
 
-export const Navbar = ({ onOpenAuthModal, onOpenDemoModal }) => {
+export const Navbar = ({ onOpenAuthModal, onOpenDemoModal, onNavigateToArchitecture }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [hoveredNav, setHoveredNav] = useState(null);
@@ -17,9 +17,9 @@ export const Navbar = ({ onOpenAuthModal, onOpenDemoModal }) => {
 
   const navLinks = [
     { name: 'Workflow Canvas', href: '#features' },
-    { name: 'Platform', href: '#about' },
+    { name: 'Architecture Specs', href: '#architecture', isSubpage: true },
+    { name: 'Platform Matrix', href: '#about' },
     { name: 'How It Works', href: '#how-it-works' },
-    { name: 'Reviews', href: '#testimonials' },
     { name: 'Pricing', href: '#pricing' },
   ];
 
@@ -44,6 +44,12 @@ export const Navbar = ({ onOpenAuthModal, onOpenDemoModal }) => {
               <a
                 key={link.name}
                 href={link.href}
+                onClick={(e) => {
+                  if (link.isSubpage && onNavigateToArchitecture) {
+                    e.preventDefault();
+                    onNavigateToArchitecture();
+                  }
+                }}
                 onMouseEnter={() => setHoveredNav(idx)}
                 onMouseLeave={() => setHoveredNav(null)}
                 className="relative px-4 py-1.5 text-sm font-medium text-slate-300 hover:text-white rounded-full transition-colors duration-200 group"
@@ -87,7 +93,13 @@ export const Navbar = ({ onOpenAuthModal, onOpenDemoModal }) => {
                 <a
                   key={link.name}
                   href={link.href}
-                  onClick={() => setMobileMenuOpen(false)}
+                  onClick={(e) => {
+                    setMobileMenuOpen(false);
+                    if (link.isSubpage && onNavigateToArchitecture) {
+                      e.preventDefault();
+                      onNavigateToArchitecture();
+                    }
+                  }}
                   className="px-4 py-2.5 text-base font-medium text-slate-300 hover:text-emerald-300 hover:bg-emerald-950/40 rounded-xl transition-all"
                 >
                   {link.name}

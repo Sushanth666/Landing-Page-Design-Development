@@ -336,6 +336,7 @@
   <li class="toc-item"><a href="#sec-13">13. Footer Newsletter Validator &amp; System Health</a> <span>src/components/Footer.jsx</span></li>
   <li class="toc-item"><a href="#sec-14">14. Modal Dialog Accessibility &amp; Toast Queue</a> <span>src/components/Modal.jsx &amp; Toast.jsx</span></li>
   <li class="toc-item"><a href="#sec-15">15. Moving Typography Animation Keyframes</a> <span>src/index.css</span></li>
+  <li class="toc-item"><a href="#sec-16">16. Architecture &amp; Feature Deep Dive Subpage</a> <span>src/components/ArchitectureSubpage.jsx</span></li>
 </ul>
 
 <div class="note-box">
@@ -937,8 +938,49 @@ document.<span class="function">getElementsByTagName</span>(<span class="string"
 }</code></pre>
 </div>
 
+<div class="page-break"></div>
+
+<!-- SECTION 16 -->
+<h1 id="sec-16">16. Architecture &amp; Feature Deep Dive Subpage (ArchitectureSubpage.jsx)</h1>
+<p>
+  <code>src/components/ArchitectureSubpage.jsx</code> implements the dedicated technical architecture subpage with regional telemetry inspection (US-East, EU-Central, AP-South), interactive live DAG simulation sandboxes, and code snippet analyzers.
+</p>
+
+<div class="func-card">
+  <div class="func-header">
+    <span class="func-name">Client-Side Subpage Hash Routing (App.jsx)</span>
+    <span class="func-badge">SPA Router</span>
+  </div>
+  <p class="func-desc">
+    Synchronizes browser URL hash history (<code>#architecture</code>, <code>#home</code>) and dispatches smooth transitions between the primary landing page and the technical architecture subpage.
+  </p>
+  <pre><code><span class="keyword">const</span> <span class="function">handleNavigateToArchitecture</span> = (featureId = <span class="keyword">null</span>) => {
+  <span class="function">setInitialFeatureId</span>(featureId);
+  <span class="function">setCurrentView</span>(<span class="string">'architecture'</span>);
+  window.location.hash = <span class="string">'#architecture'</span>;
+  window.<span class="function">scrollTo</span>({ top: <span class="number">0</span>, behavior: <span class="string">'smooth'</span> });
+};</code></pre>
+</div>
+
+<div class="func-card">
+  <div class="func-header">
+    <span class="func-name">handleRunSimulation() &amp; Sandbox Log Stream</span>
+    <span class="func-badge">Simulation Engine</span>
+  </div>
+  <p class="func-desc">
+    Executes live verification checks across the active architecture module, asserting AST boundary compliance, cryptographic enclave attestation, and regional SLA latency metrics.
+  </p>
+  <pre><code><span class="keyword">const</span> <span class="function">handleRunSimulation</span> = () => {
+  <span class="function">setIsSimulating</span>(<span class="keyword">true</span>);
+  <span class="comment">// Sequentially stream verification logs</span>
+  <span class="keyword">const</span> interval = <span class="function">setInterval</span>(() => {
+    <span class="function">setSimLog</span>((prev) => [...prev, `${currentSystem.name} verified: ${metrics[1].regionSpeed[selectedRegion]}`]);
+  }, <span class="number">600</span>);
+};</code></pre>
+</div>
+
 <div class="note-box" style="margin-top: 24px;">
-  <strong>Summary:</strong> This reference covers all 15 components, 24 core functions, 5 animation token engines, and 3 mathematical coordinate projection systems in the AetherFlow codebase.
+  <strong>Summary:</strong> This reference covers all 16 components, 28 core functions, 5 animation token engines, and 3 mathematical coordinate projection systems in the AetherFlow codebase.
 </div>
 
 </body>
