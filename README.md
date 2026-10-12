@@ -89,9 +89,8 @@ Clicking any feature card or "Inspect →" navigates directly to a dedicated dee
   - `src/components/pages/` (Subpages: `ArchitectureSubpage`, `FeatureDetailSubpage`, `PlaygroundSubpage`)
   - `src/components/media/` (Visual engines: `Canvas3D`, `DemoVideoPlayer`)
   - `src/components/meta/` (Browser controller: `AnimatedFavicon`)
-  - `docs/` (Technical documentation: PDF and HTML references)
-  - `scripts/` (Automation: `generate_pdf.cjs`, `generate_audio.ps1`)
-- Purged 44 unused imports across 10 components.
+  - `public/` (Static assets: chapter voiceovers, favicon, media)
+- Purged all unused imports across all components.
 
 ---
 
@@ -151,12 +150,6 @@ The project adopts the **Aurora Matrix & Deep Slate** design language:
 
 ```text
 Landing Page Design & Development/
-├── docs/                                 # Technical documentation & compiled manuals
-│   ├── AetherFlow_Complete_Functions_Reference.html
-│   └── AetherFlow_Complete_Functions_Reference.pdf
-├── scripts/                              # Build automation & generation scripts
-│   ├── generate_audio.ps1                # Speech synthesis voice generator
-│   └── generate_pdf.cjs                  # Edge headless technical reference compiler
 ├── public/                               # Public static assets & media
 │   ├── ai-voice-chapter-0.wav to 3.wav   # AI voice chapter narration audio tracks
 │   ├── demo-walkthrough.webp             # High-resolution video walkthrough media
@@ -245,19 +238,7 @@ npm run build
 # Preview production build locally
 npm run preview
 
-# Generate technical reference documentation PDF
-npm run docs:pdf
-
-# Generate AI chapter voice narration audio tracks
-npm run audio:gen
 ```
-
----
-
-## 📄 Technical Reference Manual
-A complete 17-section reference manual covering all components, functions, mathematical formulas, and projection systems is compiled and available in:
-- Printable PDF: [`docs/AetherFlow_Complete_Functions_Reference.pdf`](docs/AetherFlow_Complete_Functions_Reference.pdf)
-- Standalone HTML: [`docs/AetherFlow_Complete_Functions_Reference.html`](docs/AetherFlow_Complete_Functions_Reference.html)
 
 ---
 

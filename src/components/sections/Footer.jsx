@@ -383,26 +383,34 @@ export const Footer = ({
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
               <a
-                href="/docs/AetherFlow_Complete_Functions_Reference.html"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-3 rounded-xl bg-[#060b13] border border-emerald-950 hover:border-emerald-500/50 transition-colors flex items-center justify-between group"
+                href="#architecture"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setActiveModal(null);
+                  if (onNavigateToArchitecture) onNavigateToArchitecture();
+                  else window.location.hash = '#architecture';
+                }}
+                className="p-3 rounded-xl bg-[#060b13] border border-emerald-950 hover:border-emerald-500/50 transition-colors flex items-center justify-between group cursor-pointer"
               >
                 <div>
-                  <div className="text-xs font-bold text-white group-hover:text-emerald-300">Interactive HTML Docs</div>
-                  <div className="text-[11px] text-slate-400">Complete functions & API reference</div>
+                  <div className="text-xs font-bold text-white group-hover:text-emerald-300">Architecture Specifications</div>
+                  <div className="text-[11px] text-slate-400">Sub-ms pipelines & security matrix</div>
                 </div>
                 <ExternalLink className="w-4 h-4 text-emerald-400" />
               </a>
               <a
-                href="/docs/AetherFlow_Complete_Functions_Reference.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-3 rounded-xl bg-[#060b13] border border-emerald-950 hover:border-emerald-500/50 transition-colors flex items-center justify-between group"
+                href="#playground"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setActiveModal(null);
+                  if (onNavigateToPlayground) onNavigateToPlayground();
+                  else window.location.hash = '#playground';
+                }}
+                className="p-3 rounded-xl bg-[#060b13] border border-emerald-950 hover:border-emerald-500/50 transition-colors flex items-center justify-between group cursor-pointer"
               >
                 <div>
-                  <div className="text-xs font-bold text-white group-hover:text-emerald-300">Download PDF Manual</div>
-                  <div className="text-[11px] text-slate-400">Printable technical specifications</div>
+                  <div className="text-xs font-bold text-white group-hover:text-emerald-300">Workflow Studio Sandbox</div>
+                  <div className="text-[11px] text-slate-400">Interactive DAG compiler & simulation</div>
                 </div>
                 <ExternalLink className="w-4 h-4 text-emerald-400" />
               </a>
