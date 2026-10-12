@@ -582,18 +582,44 @@ const htmlContent = `<!DOCTYPE html>
 
 <div class="func-card">
   <div class="func-header">
-    <span class="func-name">handleRestart()</span>
-    <span class="func-badge">Reset Controller</span>
+    <span class="func-name">AI Voice Synchronization Engine (audioRef)</span>
+    <span class="func-badge">Background Voice AI</span>
   </div>
   <p class="func-desc">
-    Resets scrubber progress to 0%, sets active chapter to 0, and resumes playback from the beginning.
+    Synchronizes neural AI speech narration with video chapters using high-fidelity WAV tracks and an automatic Web Speech API fallback. Dynamically switches audio files as the active chapter advances, pauses during modal dismissal, and resumes cleanly on user interaction.
   </p>
-  <pre><code><span class="keyword">const</span> <span class="function">handleRestart</span> = () => {
-  <span class="function">setProgress</span>(<span class="number">0</span>);
-  <span class="function">setActiveChapter</span>(<span class="number">0</span>);
-  <span class="function">setIsPlaying</span>(<span class="keyword">true</span>);
-  <span class="function">onProgressUpdate</span>?.(<span class="number">0</span>, <span class="number">0</span>);
-};</code></pre>
+  <pre><code><span class="comment">// 1. Synchronized Chapter Audio Switching</span>
+<span class="keyword">if</span> (lastPlayedChapterRef.current !== activeChapter) {
+  lastPlayedChapterRef.current = activeChapter;
+  <span class="keyword">const</span> targetAudio = chapters[activeChapter].audioSrc;
+  audioRef.current.src = targetAudio;
+  audioRef.current.currentTime = <span class="number">0</span>;
+  audioRef.current.<span class="function">play</span>().<span class="function">then</span>(() => {
+    <span class="function">setIsVoiceSpeaking</span>(<span class="keyword">true</span>);
+  }).<span class="function">catch</span>(() => {
+    <span class="comment">// Automatic fallback to SpeechSynthesis API</span>
+    <span class="keyword">const</span> utterance = <span class="keyword">new</span> <span class="type">SpeechSynthesisUtterance</span>(chapters[activeChapter].voiceText);
+    utterance.rate = <span class="number">0.95</span>;
+    window.speechSynthesis.<span class="function">speak</span>(utterance);
+  });
+}</code></pre>
+  <table>
+    <tr><th>Chapter</th><th>Audio Source</th><th>Voice Line Synthesized</th></tr>
+    <tr><td>01. OAuth</td><td><code>/ai-voice-chapter-0.wav</code></td><td>Initiating zero-config sync with GitHub, Linear, Slack, AWS CloudWatch.</td></tr>
+    <tr><td>02. DAG</td><td><code>/ai-voice-chapter-1.wav</code></td><td>Compiling multi-agent mesh workflows, verifying AST boundaries.</td></tr>
+    <tr><td>03. Rollback</td><td><code>/ai-voice-chapter-2.wav</code></td><td>Continuous telemetry triggers canary rollback in under 8 seconds.</td></tr>
+    <tr><td>04. SLA</td><td><code>/ai-voice-chapter-3.wav</code></td><td>Aggregating P99 latency & throughput across 32 distributed edge regions.</td></tr>
+  </table>
+</div>
+
+<div class="func-card">
+  <div class="func-header">
+    <span class="func-name">AI Voice Soundwave Equalizer &amp; Subtitle Captions</span>
+    <span class="func-badge">Audio Visualizer</span>
+  </div>
+  <p class="func-desc">
+    Renders real-time animated frequency bars when AI voice is active, provides instant Mute/Unmute state toggling, and overlays floating transcript subtitles for accessibility.
+  </p>
 </div>
 
 <div class="page-break"></div>

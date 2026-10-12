@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { 
   Play, 
   Pause, 
@@ -10,7 +10,9 @@ import {
   CheckCircle, 
   Radio, 
   Layers,
-  ChevronRight
+  ChevronRight,
+  Mic,
+  Subtitles
 } from 'lucide-react';
 
 export const DemoVideoPlayer = ({ 
@@ -23,6 +25,11 @@ export const DemoVideoPlayer = ({
   const [progress, setProgress] = useState(initialProgress);
   const [isMuted, setIsMuted] = useState(false);
   const [activeChapter, setActiveChapter] = useState(initialChapter);
+  const [isVoiceSpeaking, setIsVoiceSpeaking] = useState(false);
+  const [showCaptions, setShowCaptions] = useState(true);
+
+  const audioRef = useRef(null);
+  const lastPlayedChapterRef = useRef(null);
 
   const chapters = [
     {
@@ -30,26 +37,84 @@ export const DemoVideoPlayer = ({
       time: '0:00',
       progressStart: 0,
       description: 'Zero-config bi-directional synchronization with GitHub, Linear, Slack, and AWS CloudWatch.',
+      audioSrc: '/ai-voice-chapter-0.wav',
+      voiceText: 'Chapter One: Stack OAuth Connect. Initiating zero configuration bi-directional synchronization with GitHub, Linear, Slack, and AWS CloudWatch. Security certificates verified.',
     },
     {
       title: '02. Autonomous Agent DAG',
       time: '0:45',
       progressStart: 25,
       description: 'Real-time multi-agent mesh compiling workflows, resolving PR edge cases, and verifying AST boundaries.',
+      audioSrc: '/ai-voice-chapter-1.wav',
+      voiceText: 'Chapter Two: Autonomous Agent Directed Acyclic Graph. Compiling multi-agent mesh workflows in real time. Resolving pull request edge cases and verifying abstract syntax tree boundaries.',
     },
     {
       title: '03. Self-Healing Rollback',
       time: '1:30',
       progressStart: 55,
       description: 'Detecting runtime latency anomalies and automatically executing safe canary rollbacks in 8 seconds.',
+      audioSrc: '/ai-voice-chapter-2.wav',
+      voiceText: 'Chapter Three: Self-Healing Rollback. Continuous telemetry detects latency anomaly in production. Automated canary rollback successfully executed in under eight seconds.',
     },
     {
       title: '04. Live Telemetry & SLA',
       time: '2:15',
       progressStart: 80,
       description: 'Aggregating P99 latency and cycle throughput metrics across 32 distributed edge regions.',
+      audioSrc: '/ai-voice-chapter-3.wav',
+      voiceText: 'Chapter Four: Live Telemetry and Enterprise SLA. Aggregating P99 latency and cycle throughput metrics across thirty-two distributed edge regions. All systems operational.',
     },
   ];
+
+  // AI Voice Narration Synchronization Engine
+  useEffect(() => {
+    if (!audioRef.current) return;
+
+    if (!isPlaying || isMuted) {
+      audioRef.current.pause();
+      setIsVoiceSpeaking(false);
+      if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
+        window.speechSynthesis.pause();
+      }
+      return;
+    }
+
+    // If chapter changed or audio needs playback
+    if (lastPlayedChapterRef.current !== activeChapter) {
+      lastPlayedChapterRef.current = activeChapter;
+      const targetAudio = chapters[activeChapter].audioSrc;
+      audioRef.current.src = targetAudio;
+      audioRef.current.currentTime = 0;
+      audioRef.current.play().then(() => {
+        setIsVoiceSpeaking(true);
+      }).catch(() => {
+        // Fallback to Web Speech API if audio playback was blocked
+        if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
+          window.speechSynthesis.cancel();
+          const utterance = new SpeechSynthesisUtterance(chapters[activeChapter].voiceText);
+          utterance.rate = 0.95;
+          utterance.pitch = 1.0;
+          utterance.onstart = () => setIsVoiceSpeaking(true);
+          utterance.onend = () => setIsVoiceSpeaking(false);
+          window.speechSynthesis.speak(utterance);
+        }
+      });
+    } else if (audioRef.current.paused && isPlaying && !isMuted) {
+      audioRef.current.play().then(() => setIsVoiceSpeaking(true)).catch(() => {});
+    }
+  }, [isPlaying, isMuted, activeChapter]);
+
+  // Cleanup on unmount
+  useEffect(() => {
+    return () => {
+      if (audioRef.current) {
+        audioRef.current.pause();
+      }
+      if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+      }
+    };
+  }, []);
 
   // Simulated continuous progress ticker when playing
   useEffect(() => {
@@ -79,6 +144,7 @@ export const DemoVideoPlayer = ({
     setProgress(newProgress);
     setActiveChapter(chapterIdx);
     setIsPlaying(true);
+    lastPlayedChapterRef.current = null; // force reload voice for sought chapter
     onProgressUpdate?.(newProgress, chapterIdx);
   };
 
@@ -86,6 +152,14 @@ export const DemoVideoPlayer = ({
     setProgress(0);
     setActiveChapter(0);
     setIsPlaying(true);
+    lastPlayedChapterRef.current = null;
+    if (audioRef.current) {
+      audioRef.current.currentTime = 0;
+      audioRef.current.src = chapters[0].audioSrc;
+      if (!isMuted) {
+        audioRef.current.play().catch(() => {});
+      }
+    }
     onProgressUpdate?.(0, 0);
   };
 
@@ -163,6 +237,33 @@ export const DemoVideoPlayer = ({
           </span>
         </div>
 
+        {/* Native Synchronized AI Voice Background Audio Track */}
+        <audio 
+          ref={audioRef}
+          preload="auto"
+          onPlay={() => setIsVoiceSpeaking(true)}
+          onPause={() => setIsVoiceSpeaking(false)}
+          onEnded={() => setIsVoiceSpeaking(false)}
+        />
+
+        {/* Floating Live AI Voice Narration Transcript / Subtitle */}
+        {showCaptions && (
+          <div className="absolute bottom-16 inset-x-4 z-20 flex justify-center pointer-events-none">
+            <div className="max-w-xl bg-black/90 backdrop-blur-md border border-emerald-500/40 px-4 py-2 rounded-xl text-center shadow-2xl animate-in fade-in slide-in-from-bottom-2">
+              <div className="flex items-center justify-center gap-2 mb-1">
+                <span className="flex items-center gap-1.5 text-[10px] font-mono uppercase tracking-wider text-emerald-400 font-bold">
+                  <Radio className="w-3 h-3 text-emerald-400 animate-pulse" />
+                  <span>AI Voice Narration • Neural Audio</span>
+                </span>
+                <span className={`w-1.5 h-1.5 rounded-full bg-emerald-400 ${isVoiceSpeaking && !isMuted ? 'animate-ping' : 'opacity-40'}`} />
+              </div>
+              <p className="text-xs text-white leading-relaxed font-medium">
+                "{chapters[activeChapter].voiceText}"
+              </p>
+            </div>
+          </div>
+        )}
+
         {/* Bottom Playback Scrubber & Controls Bar */}
         <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/95 via-black/70 to-transparent p-4 pt-10 z-20 transition-opacity">
           {/* Progress Timeline Scrubber Bar */}
@@ -216,13 +317,41 @@ export const DemoVideoPlayer = ({
 
             {/* Right side controls */}
             <div className="flex items-center gap-2">
+              {/* AI Voice Active Soundwave Visualizer & Subtitle Toggle */}
+              <div 
+                onClick={() => setShowCaptions(!showCaptions)}
+                className="hidden sm:flex items-center gap-2 px-2.5 py-1.5 rounded-lg bg-[#07101a] border border-emerald-950/80 hover:border-emerald-700/60 transition-colors cursor-pointer select-none"
+                title={showCaptions ? 'Click to hide AI voice captions' : 'Click to show AI voice captions'}
+              >
+                <div className="flex items-end gap-0.5 h-3">
+                  <span className={`w-0.5 rounded-full bg-emerald-400 transition-all ${isVoiceSpeaking && !isMuted ? 'animate-pulse h-3' : 'h-1 opacity-50'}`} />
+                  <span className={`w-0.5 rounded-full bg-emerald-400 transition-all ${isVoiceSpeaking && !isMuted ? 'animate-bounce h-3.5' : 'h-1.5 opacity-50'}`} style={{ animationDuration: '0.5s' }} />
+                  <span className={`w-0.5 rounded-full bg-emerald-400 transition-all ${isVoiceSpeaking && !isMuted ? 'animate-pulse h-2.5' : 'h-1 opacity-50'}`} />
+                  <span className={`w-0.5 rounded-full bg-emerald-400 transition-all ${isVoiceSpeaking && !isMuted ? 'animate-bounce h-3' : 'h-2 opacity-50'}`} style={{ animationDuration: '0.7s' }} />
+                </div>
+                <span className="text-[11px] font-mono text-emerald-300 font-semibold flex items-center gap-1">
+                  <span>AI VOICE</span>
+                  <span className="text-[9px] text-slate-400">({showCaptions ? 'CC ON' : 'CC OFF'})</span>
+                </span>
+              </div>
+
+              {/* Voice Mute / Audio On Toggle */}
               <button
-                onClick={() => setIsMuted(!isMuted)}
+                onClick={() => {
+                  const nextMuted = !isMuted;
+                  setIsMuted(nextMuted);
+                  if (audioRef.current) {
+                    audioRef.current.muted = nextMuted;
+                    if (!nextMuted && isPlaying) {
+                      audioRef.current.play().catch(() => {});
+                    }
+                  }
+                }}
                 className="p-2 rounded-lg bg-white/10 hover:bg-white/20 text-slate-300 hover:text-white transition-all cursor-pointer flex items-center gap-1.5"
-                title={isMuted ? 'Unmute' : 'Mute'}
+                title={isMuted ? 'Unmute AI Voice' : 'Mute AI Voice'}
               >
                 {isMuted ? <VolumeX className="w-4 h-4 text-rose-400" /> : <Volume2 className="w-4 h-4 text-emerald-400" />}
-                <span className="text-[11px] hidden sm:inline">{isMuted ? 'Muted' : 'Audio On'}</span>
+                <span className="text-[11px] hidden sm:inline">{isMuted ? 'Voice Muted' : 'Voice Audio On'}</span>
               </button>
 
               <button
